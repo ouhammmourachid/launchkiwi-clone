@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 
 import { footerGroups, leftSidebarProducts, navLinks, rightSidebarProducts } from "@/data/site";
@@ -83,6 +84,8 @@ function MegaphoneIcon() {
 }
 
 export function SiteShell({ children }: { children: ReactNode }) {
+  const pathname = usePathname();
+
   return (
     <div className="min-h-screen bg-[#0a0c07] text-[#f3efe6] font-sans antialiased">
       {/* Top Banner */}
@@ -100,15 +103,22 @@ export function SiteShell({ children }: { children: ReactNode }) {
             </Link>
 
             <nav className="hidden items-center gap-5 md:flex">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-xs font-semibold text-[#c5ceb8] transition hover:text-white"
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`text-xs font-semibold transition px-2.5 py-1 rounded-lg ${
+                      isActive
+                        ? "text-[#86ba28] bg-[#141810] border border-[#23291b]"
+                        : "text-[#c5ceb8] hover:text-white"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
             </nav>
           </div>
 
