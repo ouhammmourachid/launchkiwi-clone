@@ -244,11 +244,42 @@ export function SideAdStack() {
   );
 }
 
+export function RightRail() {
+  const cards = [
+    { name: "ReviewTurbo", accent: "bg-[#b7d65d]", blurb: "AI replies for your customer reviews." },
+    { name: "Porn blockade...", accent: "bg-[#c7d760]", blurb: "Protect yourself and your family with a blocker built t..." },
+    { name: "Personal Black Hole", accent: "bg-[#f1efe8]", blurb: "Physics-inspired black holes for any web page — Solo..." },
+    { name: "CoRegulateAI", accent: "bg-[#d6dff8]", blurb: "The Personalized Operating System for Emotional..." },
+    { name: "Advertise", accent: "bg-[#1a1d17]", blurb: "Book this slot" },
+  ];
+
+  return (
+    <div className="hidden w-[240px] shrink-0 flex-col gap-4 xl:flex">
+      {cards.map((card, index) => (
+        <Link
+          key={card.name}
+          href="/advertise"
+          className={`flex min-h-[110px] items-center rounded-2xl border border-[#4d5640] bg-[#1a1d17] p-4 text-left transition hover:border-[#b7d65d] ${index === 4 ? "border-dashed border-[#5d5a4d]" : ""}`}
+        >
+          <div className="mr-3 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-sm font-black text-[#0b0d09] ${card.accent}">
+            {index === 0 ? "⚡" : index === 1 ? "◉" : index === 2 ? "◌" : index === 3 ? "✦" : "✎" }
+          </div>
+          <div className="min-w-0 flex-1">
+            <div className="text-lg font-bold leading-tight text-white">{card.name}</div>
+            <div className="mt-1 text-sm leading-relaxed text-[#b7c0aa]">{card.blurb}</div>
+          </div>
+        </Link>
+      ))}
+    </div>
+  );
+}
+
 export function ContentShell({ children }: { children: ReactNode }) {
   return (
     <div className="mx-auto flex max-w-[1440px] items-start justify-center gap-6 px-4 pb-8 pt-5 sm:px-8 xl:px-12">
       <SideAdStack />
       <div className="w-full max-w-[880px]">{children}</div>
+      <RightRail />
     </div>
   );
 }

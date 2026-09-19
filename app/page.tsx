@@ -222,6 +222,35 @@ export default function HomePage() {
             </div>
 
             <div className="px-5 py-5">
+              <div className="grid gap-4 md:grid-cols-2">
+                {sideCards.map((card, idx) => (
+                  <div key={card.name} className="rounded-2xl border border-white/8 bg-[#1a1d17] p-4">
+                    <div className="mb-3 flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        <div className={`flex h-9 w-9 items-center justify-center rounded-lg ${idx % 2 === 0 ? "bg-[#b7d65d] text-[#0b0d09]" : "bg-[#d9d9d9] text-[#0b0d09]"} text-[11px] font-black`}>
+                          {card.name.slice(0, 2).toUpperCase()}
+                        </div>
+                        <div className="text-base font-semibold text-white">{card.name}</div>
+                      </div>
+                      <div className="rounded-full bg-white/5 px-2 py-1 text-[10px] uppercase tracking-[0.12em] text-[#dfe7d2]">{idx + 1}</div>
+                    </div>
+                    <p className="text-sm leading-relaxed text-[#b7c0aa]">{card.blurb}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="rounded-[28px] border border-white/8 bg-[#0f120d] p-0">
+            <div className="flex items-center justify-between border-b border-white/8 px-5 py-4">
+              <div className="flex items-center gap-3">
+                <span className="inline-flex h-3.5 w-3.5 rounded-full bg-[#b7d65d]" />
+                <h2 className="text-2xl font-black tracking-[-0.05em] text-white">Past Week Hunts</h2>
+              </div>
+              <span className="text-[11px] uppercase tracking-[0.18em] text-[#aeb8a0]">Launches from last week</span>
+            </div>
+
+            <div className="px-5 py-5">
               <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
                 {sideCards.map((card, idx) => (
                   <div key={card.name} className="rounded-2xl border border-white/8 bg-[#1a1d17] p-4">
