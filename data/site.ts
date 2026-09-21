@@ -276,7 +276,168 @@ export const pastWeekHunts: Product[] = [
   },
 ];
 
+export interface ReviewItem {
+  id: string;
+  badge: string;
+  date: string;
+  rating: string;
+  title: string;
+  description: string;
+  iconType: string;
+  slug: string;
+}
+
+export const reviewsData: ReviewItem[] = [
+  {
+    id: "pagecub-review",
+    badge: "PAGECUB",
+    date: "September 19, 2026",
+    rating: "8.8",
+    title: "PageCub: Custom Illustrated Kids Books Built from Scratch",
+    description: "Custom and personalized illustrated kids books, from scratch every time. Make them the hero!",
+    iconType: "bear",
+    slug: "pagecub",
+  },
+  {
+    id: "linkedin-mcp-review",
+    badge: "LINKEDIN MCP SERVER",
+    date: "September 18, 2026",
+    rating: "8.8",
+    title: "LinkedIn MCP Server: Bringing AI Automation to LinkedIn Management",
+    description: "Reach MCP connects your real LinkedIn account to Claude, ChatGPT, Cursor or n8n. Six ready playbooks.",
+    iconType: "linkedin",
+    slug: "linkedin-mcp-server",
+  },
+  {
+    id: "coregulateai-review",
+    badge: "COREGULATEAI",
+    date: "September 16, 2026",
+    rating: "9",
+    title: "CoRegulateAI Review: Personalized AI Emotional Regulation",
+    description: "The Personalized Operating System for Emotional Regulation",
+    iconType: "coregulate",
+    slug: "coregulateai",
+  },
+  {
+    id: "jerncloud-review",
+    badge: "JERN CLOUD",
+    date: "September 4, 2026",
+    rating: "9.3",
+    title: "Jern Cloud Review: Governed Cloud AI Coding for Security-Conscious Teams",
+    description: "Deploy a governed coding agent that operates in isolated cloud environments",
+    iconType: "jerncloud",
+    slug: "jern-cloud",
+  },
+  {
+    id: "certyneo-review",
+    badge: "CERTYNEO",
+    date: "August 21, 2026",
+    rating: "7",
+    title: "Certyneo Review: Sovereign European eSignatures and AI Contract Generation",
+    description: "Sovereign eIDAS-compliant electronic signature platform hosted in Europe",
+    iconType: "cheapfax",
+    slug: "certyneo",
+  },
+  {
+    id: "reviewturbo-review",
+    badge: "REVIEWTURBO",
+    date: "August 20, 2026",
+    rating: "6.8",
+    title: "ReviewTurbo: AI-Powered Customer Review Replies Examined",
+    description: "AI replies for your customer reviews.",
+    iconType: "honeyfield",
+    slug: "reviewturbo",
+  },
+];
+
+// ---------------------------------------------------------------------------
+// Browse page data
+// ---------------------------------------------------------------------------
+
+export const categories = [
+  { name: "All", count: 279 },
+  { name: "AI", count: 119 },
+  { name: "Developer Tools", count: 62 },
+  { name: "SaaS", count: 109 },
+  { name: "APIs", count: 21 },
+  { name: "Productivity", count: 94 },
+  { name: "Design", count: 17 },
+  { name: "AR/VR", count: 0 },
+  { name: "Marketing", count: 48 },
+  { name: "Health Tech", count: 13 },
+  { name: "E-commerce", count: 11 },
+  { name: "Hardware", count: 5 },
+  { name: "Robotics", count: 0 },
+  { name: "SEO", count: 17 },
+  { name: "UI/UX", count: 14 },
+  { name: "Other", count: 38 },
+];
+
+export const priceFilters = ["All", "Free", "Freemium", "Paid"];
+
+// ---------------------------------------------------------------------------
+// Pricing page data
+// ---------------------------------------------------------------------------
+
+export interface PricingPlan {
+  name: string;
+  price: string;
+  description: string;
+  features: string[];
+  highlighted?: boolean;
+}
+
+export const pricingPlans: PricingPlan[] = [
+  {
+    name: "Free",
+    price: "$0",
+    description: "Perfect for side projects and first-time launches.",
+    features: ["Basic listing", "Community voting", "Launch on a permanent page"],
+  },
+  {
+    name: "Featured",
+    price: "$29",
+    description: "Boost visibility and get more attention from the LaunchKiwi audience.",
+    features: ["Priority placement", "Landing page highlight", "Social promotion support"],
+    highlighted: true,
+  },
+  {
+    name: "Pro",
+    price: "$79",
+    description: "For founders ready to turn launches into a repeatable growth engine.",
+    features: ["High-priority placement", "Weekly report", "Dedicated founder support"],
+  },
+];
+
+// ---------------------------------------------------------------------------
+// Home page hero data
+// ---------------------------------------------------------------------------
+
+export interface StatItem {
+  value: string;
+  label: string;
+  sub?: string;
+}
+
+export const siteStats: StatItem[] = [
+  { value: "11,030", label: "Upvotes" },
+  { value: "DR 53", label: "Domain authority", sub: "Powered by Ahrefs" },
+  { value: "107,730", label: "Monthly visitors", sub: "Powered by Cloudflare" },
+  { value: "358 +", label: "Products submitted" },
+];
+
+export const heroFeatures = [
+  "Free forever",
+  "Takes 30 seconds",
+  "358+ products listed",
+];
+
+// ---------------------------------------------------------------------------
+// Footer
+// ---------------------------------------------------------------------------
+
 export const footerGroups = [
+
   {
     heading: "PLATFORM",
     links: [

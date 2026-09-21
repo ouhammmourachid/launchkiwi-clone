@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import { SiteShell } from "@/components/layout/site-shell";
 
 const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta-sans",
@@ -21,7 +22,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${plusJakarta.variable} ${jetbrainsMono.variable} h-full antialiased`} suppressHydrationWarning>
-      <body className="min-h-full bg-surface text-gray-900 dark:bg-bg-dark dark:text-gray-100">{children}</body>
+      <body className="min-h-full">
+        <SiteShell>{children}</SiteShell>
+      </body>
     </html>
   );
 }

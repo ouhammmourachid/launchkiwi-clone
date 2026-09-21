@@ -1,4 +1,4 @@
-import { ContentShell, SiteShell } from "@/components/site-shell";
+import { ContentShell } from "@/components/layout/content-shell";
 
 const steps = [
   "Add your product URL and basic details.",
@@ -8,9 +8,8 @@ const steps = [
 
 export default function LaunchPage() {
   return (
-    <SiteShell>
-      <ContentShell>
-        <div className="space-y-6">
+    <ContentShell>
+      <div className="space-y-6">
           <section className="rounded-3xl border border-[#ece7e1] bg-white p-6 shadow-sm">
             <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#ff6b2c]">Launch</p>
             <h1 className="mt-2 text-3xl font-black text-[#111827] md:text-4xl">Submit your product</h1>
@@ -50,8 +49,7 @@ export default function LaunchPage() {
               </ul>
             </aside>
           </div>
-        </div>
-      </ContentShell>
-    </SiteShell>
+      </div>
+    </ContentShell>
   );
 }
