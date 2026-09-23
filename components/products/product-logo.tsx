@@ -20,7 +20,7 @@ export function ProductLogo({ name, logoUrl, size = "md" }: ProductLogoProps) {
 
   if (logoUrl) {
     return (
-      <div className={`${box} bg-white`} style={{ width: px, height: px }}>
+      <div className={`${box} bg-[#fff]`} style={{ width: px, height: px }}>
         {/* PocketBase serves the file directly; skip the Next optimizer for local/dev hosts. */}
         <Image src={logoUrl} alt={`${name} logo`} width={px} height={px} unoptimized className="h-full w-full object-contain" />
       </div>
@@ -30,7 +30,7 @@ export function ProductLogo({ name, logoUrl, size = "md" }: ProductLogoProps) {
   const hash = [...name].reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
   return (
     <div
-      className={`${box} font-black text-white`}
+      className={`${box} font-black text-[#fff]`}
       style={{ width: px, height: px, background: MONOGRAM_COLORS[hash % MONOGRAM_COLORS.length], fontSize: px * 0.4 }}
       aria-hidden
     >

@@ -48,7 +48,7 @@ export default async function LaunchPage({ searchParams }: { searchParams: Searc
               <ol className="mt-4 space-y-3">
                 {steps.map((step, index) => (
                   <li key={step} className="flex gap-3 text-sm text-dune-100">
-                    <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-sun text-xs font-bold text-dune-970">
+                    <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-sun text-xs font-bold text-on-sun">
                       {index + 1}
                     </span>
                     {step}

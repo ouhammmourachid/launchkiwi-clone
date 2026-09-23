@@ -55,7 +55,7 @@ export function CommentSection({ productId }: { productId: string }) {
             className="w-full rounded-xl border border-dune-900 bg-dune-990 px-3.5 py-2.5 text-sm text-white placeholder:text-dune-700 outline-none focus:border-sun"
           />
           <div className="mt-2 flex items-center justify-between gap-3">
-            <span className={`text-[11px] ${error ? "text-[#f87171]" : "text-dune-600"}`} role={error ? "alert" : undefined}>
+            <span className={`text-[11px] ${error ? "text-danger" : "text-dune-600"}`} role={error ? "alert" : undefined}>
               {error ?? `${content.length} / ${MAX_LENGTH}`}
             </span>
             <Button type="submit" size="sm" loading={add.isPending}>
@@ -76,7 +76,7 @@ export function CommentSection({ productId }: { productId: string }) {
 
       <ul className="mt-5 space-y-4">
         {isLoading && <li className="text-xs text-dune-500">Loading comments…</li>}
-        {isError && <li className="text-xs text-[#f87171]">Couldn&apos;t load comments.</li>}
+        {isError && <li className="text-xs text-danger">Couldn&apos;t load comments.</li>}
         {!isLoading && !isError && comments.length === 0 && (
           <li>
             <EmptyState title="No comments yet">Be the first to say something nice.</EmptyState>
@@ -94,7 +94,7 @@ export function CommentSection({ productId }: { productId: string }) {
                     type="button"
                     onClick={() => remove.mutate(comment.id)}
                     disabled={remove.isPending}
-                    className="ml-auto text-[11px] font-semibold text-dune-500 hover:text-[#f87171] cursor-pointer"
+                    className="ml-auto text-[11px] font-semibold text-dune-500 hover:text-danger cursor-pointer"
                   >
                     Delete
                   </button>

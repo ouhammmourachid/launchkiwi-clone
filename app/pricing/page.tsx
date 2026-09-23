@@ -34,7 +34,7 @@ function PlanCard({ plan }: { plan: PricingPlan }) {
       <div className="flex items-center justify-between gap-2">
         <p className="text-xs font-bold uppercase tracking-[0.16em] text-sun">{plan.name}</p>
         {plan.highlighted && (
-          <span className="rounded-full bg-sun px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-dune-970">Best value</span>
+          <span className="rounded-full bg-sun px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-on-sun">Best value</span>
         )}
       </div>
       <div className="mt-4 flex items-end gap-2">

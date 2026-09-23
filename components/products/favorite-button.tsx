@@ -18,7 +18,7 @@ export function FavoriteButton({ productId }: { productId: string }) {
       aria-pressed={isSaved}
       className={`inline-flex items-center gap-1.5 rounded-full border px-4 py-2 text-xs font-bold transition cursor-pointer disabled:cursor-wait ${
         isSaved
-          ? "border-[#ca8a04] bg-[#282310] text-[#eab308]"
+          ? "border-[#ca8a04] bg-[#282310] text-[#eab308] light:bg-[#fdf3d0] light:text-[#a16207]"
           : "border-dune-850 bg-dune-925 text-dune-100 hover:border-dune-750 hover:text-white"
       }`}
     >

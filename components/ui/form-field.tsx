@@ -31,7 +31,7 @@ function FieldShell({ label, error, hint, children }: FieldShellProps) {
         "aria-describedby": describedBy,
       })}
       {error ? (
-        <p id={`${id}-error`} className="mt-1.5 text-[11px] font-medium text-[#f87171]">
+        <p id={`${id}-error`} className="mt-1.5 text-[11px] font-medium text-danger">
           {error}
         </p>
       ) : hint ? (

@@ -5,7 +5,7 @@
 
 export function AnnouncementBanner() {
   return (
-    <div className="bg-sun px-4 py-1.5 text-center text-xs font-semibold text-dune-970 flex items-center justify-center gap-1.5">
+    <div className="bg-sun px-4 py-1.5 text-center text-xs font-semibold text-on-sun flex items-center justify-center gap-1.5">
       <span>🚀</span>
       <span>Launch free — permanent DR 53 dofollow backlink, verified in minutes.</span>
     </div>

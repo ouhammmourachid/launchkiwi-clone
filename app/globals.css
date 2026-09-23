@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
+
 /*
  * LaunchDunes — "Golden Hour" theme.
  * Warm desert-at-sunset palette: night sand grounds, dune-brown surfaces, sun-amber accent.
@@ -28,6 +30,9 @@
   --color-sun-bright: #f7b457;
   --color-sun-deep: #d98a24;
   --color-ember: #c2521b;
+  /* Ink for text sitting on a sun-filled surface; fixed across themes. */
+  --color-on-sun: #16100a;
+  --color-danger: #f87171;
 
   /* Dune — warm neutral scale, light (text) to dark (grounds) */
   --color-dune-50: #f7ead6;
@@ -74,6 +79,7 @@ body {
     radial-gradient(ellipse 80% 40% at 50% -5%, rgba(242, 163, 58, 0.14), transparent 60%),
     var(--background);
   color: var(--foreground);
+  transition: background-color 0.2s ease, color 0.2s ease;
   font-family: var(--font-readex-pro), "Segoe UI", Tahoma, Arial, sans-serif;
 }
 
@@ -84,11 +90,52 @@ h3 {
   font-family: var(--font-bricolage), var(--font-readex-pro), system-ui, sans-serif;
 }
 
-.dark {
-  --background: #120d08;
-  --foreground: #f7ead6;
-  --surface: #1e160e;
-  --ink: #f7ead6;
+/*
+ * Light theme — "Midday". Set via `data-theme="light"` on <html> (see ThemeToggle).
+ * The dune scale is mirrored so the same utilities (`bg-dune-925`, `text-dune-50`) read
+ * correctly on sunlit sand; `white` becomes the headline ink.
+ */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --background: #f8f1e5;
+  --foreground: #2a1f14;
+  --surface: #fffaf2;
+  --surface-soft: #fdf6ec;
+  --bg-dark: #f3e9d9;
+  --ink: #2a1f14;
+  --muted: #6f5f4b;
+  --panel: rgba(255, 250, 242, 0.92);
+  --panel-strong: rgba(253, 246, 236, 0.96);
+  --line: rgba(42, 31, 20, 0.1);
+  --shadow: rgba(87, 73, 58, 0.15);
+
+  --color-white: #1d150d;
+  --color-danger: #c2362b;
+  --color-sun: #e8952a;
+  --color-sun-bright: #f2a33a;
+  --color-sun-deep: #c47a1c;
+
+  --color-dune-50: #2a1f14;
+  --color-dune-100: #3f3327;
+  --color-dune-200: #4f4234;
+  --color-dune-300: #62533f;
+  --color-dune-400: #76654f;
+  --color-dune-500: #8a7659;
+  --color-dune-600: #9e896b;
+  --color-dune-700: #b6a184;
+  --color-dune-750: #d2c0a4;
+  --color-dune-800: #dfd0b8;
+  --color-dune-850: #e8dcc8;
+  --color-dune-900: #efe5d5;
+  --color-dune-925: #fffbf5;
+  --color-dune-940: #fdf7ee;
+  --color-dune-950: #f8f1e5;
+  --color-dune-970: #f5ecde;
+  --color-dune-990: #fffdf9;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
 }
 
 * {

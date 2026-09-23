@@ -11,6 +11,7 @@ import { usePathname } from "next/navigation";
 import { UserMenu } from "@/components/auth/user-menu";
 import { HeaderSearch } from "@/components/layout/header-search";
 import { DunesLogo } from "@/components/layout/nav-icons";
+import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { navLinks } from "@/data/site";
 
 export function SiteHeader() {
@@ -53,10 +54,11 @@ export function SiteHeader() {
 
         {/* Actions */}
         <div className="flex items-center gap-3">
+          <ThemeToggle />
           <UserMenu />
           <Link
             href="/launch"
-            className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-sun px-3.5 py-1.5 text-xs font-bold text-dune-970 transition hover:bg-sun-bright shadow-sm"
+            className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-sun px-3.5 py-1.5 text-xs font-bold text-on-sun transition hover:bg-sun-bright shadow-sm"
           >
             <span>🚀</span>
             <span className="hidden sm:inline">Launch your project</span>

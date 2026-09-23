@@ -25,7 +25,7 @@ export function EmptyState({ title, children }: { title: string; children?: Reac
 
 export function Alert({ tone = "error", children }: { tone?: "error" | "success"; children: ReactNode }) {
   const styles =
-    tone === "error" ? "border-[#5c2320] bg-[#2a1210] text-[#fca5a5]" : "border-dune-800 bg-dune-900 text-sun-bright";
+    tone === "error" ? "border-[#5c2320] bg-[#2a1210] text-[#fca5a5] light:border-[#f5c2bd] light:bg-[#fdecea] light:text-[#b42318]" : "border-dune-800 bg-dune-900 text-sun-bright";
   return (
     <div role={tone === "error" ? "alert" : "status"} className={`rounded-xl border px-4 py-3 text-xs font-medium ${styles}`}>
       {children}

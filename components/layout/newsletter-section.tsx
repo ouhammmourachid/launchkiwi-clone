@@ -61,14 +61,14 @@ export function NewsletterSection() {
             <button
               type="submit"
               disabled={subscribe.isPending}
-              className="w-full sm:w-auto shrink-0 rounded-xl bg-sun px-5 py-2.5 text-xs font-bold text-dune-970 transition hover:bg-sun-bright cursor-pointer disabled:opacity-60"
+              className="w-full sm:w-auto shrink-0 rounded-xl bg-sun px-5 py-2.5 text-xs font-bold text-on-sun transition hover:bg-sun-bright cursor-pointer disabled:opacity-60"
             >
               {subscribe.isPending ? "Subscribing…" : "Subscribe"}
             </button>
           </form>
         )}
         {error && (
-          <p role="alert" className="mt-2 text-xs text-[#f87171]">
+          <p role="alert" className="mt-2 text-xs text-danger">
             {error}
           </p>
         )}

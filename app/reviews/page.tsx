@@ -58,7 +58,7 @@ export default async function ReviewsPage() {
             <div className="mt-5">
               <Link
                 href="/pricing"
-                className="inline-flex items-center gap-1.5 rounded-full bg-sun px-5 py-2.5 text-xs font-bold text-dune-970 transition hover:bg-sun-bright shadow-sm cursor-pointer"
+                className="inline-flex items-center gap-1.5 rounded-full bg-sun px-5 py-2.5 text-xs font-bold text-on-sun transition hover:bg-sun-bright shadow-sm cursor-pointer"
               >
                 <span>Get Priority</span>
                 <span>→</span>

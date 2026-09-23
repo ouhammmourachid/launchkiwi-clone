@@ -146,12 +146,12 @@ function FilterChip({ label, count, active, onClick }: FilterChipProps) {
       aria-pressed={active}
       className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-semibold transition cursor-pointer ${
         active
-          ? "bg-sun text-dune-970 font-bold"
+          ? "bg-sun text-on-sun font-bold"
           : "bg-dune-940 border border-dune-850 text-dune-200 hover:border-dune-750 hover:text-white"
       }`}
     >
       <span>{label}</span>
-      {count !== undefined && <span className={`text-[10px] ${active ? "text-dune-970/70" : "text-dune-600"}`}>{count}</span>}
+      {count !== undefined && <span className={`text-[10px] ${active ? "text-on-sun/70" : "text-dune-600"}`}>{count}</span>}
     </button>
   );
 }

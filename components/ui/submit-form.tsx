@@ -20,7 +20,7 @@ export function SubmitForm() {
       />
       <button
         type="submit"
-        className="w-full sm:w-auto shrink-0 rounded-lg bg-sun px-4 py-2 text-xs font-bold text-dune-970 transition hover:bg-sun-bright cursor-pointer flex items-center justify-center gap-1.5"
+        className="w-full sm:w-auto shrink-0 rounded-lg bg-sun px-4 py-2 text-xs font-bold text-on-sun transition hover:bg-sun-bright cursor-pointer flex items-center justify-center gap-1.5"
       >
         <span>🚀</span>
         <span>Submit</span>

@@ -192,7 +192,7 @@ export function AdvertiseContent() {
           >
             {selectedDuration === "30" && (
               <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                <span className="inline-flex items-center rounded-full bg-sun px-3 py-1 text-[10px] font-black uppercase tracking-[0.15em] text-dune-970">
+                <span className="inline-flex items-center rounded-full bg-sun px-3 py-1 text-[10px] font-black uppercase tracking-[0.15em] text-on-sun">
                   SELECTED
                 </span>
               </div>
@@ -247,7 +247,7 @@ export function AdvertiseContent() {
             }`}
           >
             <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-              <span className="inline-flex items-center rounded-full bg-sun px-3 py-1 text-[10px] font-black uppercase tracking-[0.15em] text-dune-970">
+              <span className="inline-flex items-center rounded-full bg-sun px-3 py-1 text-[10px] font-black uppercase tracking-[0.15em] text-on-sun">
                 BEST VALUE
               </span>
             </div>

@@ -19,7 +19,7 @@ export function UserAvatar({ user, size = 32 }: UserAvatarProps) {
   return (
     <span
       aria-hidden
-      className="flex shrink-0 items-center justify-center rounded-full bg-sun font-black text-dune-970"
+      className="flex shrink-0 items-center justify-center rounded-full bg-sun font-black text-on-sun"
       style={{ width: size, height: size, fontSize: size * 0.45 }}
     >
       {user.name.charAt(0).toUpperCase()}

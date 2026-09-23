@@ -78,7 +78,7 @@ export function UserMenu() {
             type="button"
             role="menuitem"
             onClick={handleSignOut}
-            className="block w-full px-3.5 py-2 text-left text-xs font-semibold text-[#f87171] transition hover:bg-dune-900 cursor-pointer"
+            className="block w-full px-3.5 py-2 text-left text-xs font-semibold text-danger transition hover:bg-dune-900 cursor-pointer"
           >
             Sign out
           </button>

@@ -19,6 +19,8 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
+const THEME_SCRIPT = `(function(){try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}})()`;
+
 export const metadata: Metadata = {
   title: {
     default: "LaunchDunes — Discover the best indie projects & startup launches",
@@ -30,7 +32,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children, auth }: Readonly<{ children: React.ReactNode; auth: React.ReactNode }>) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" className={`${readex.variable} ${bricolage.variable} ${jetbrainsMono.variable} h-full antialiased`} suppressHydrationWarning>
+    <html lang="en" data-theme="dark" data-scroll-behavior="smooth" className={`${readex.variable} ${bricolage.variable} ${jetbrainsMono.variable} h-full antialiased`} suppressHydrationWarning>
+      <head>
+        {/* Apply the saved theme before first paint to avoid a dark→light flash. */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+      </head>
       <body className="min-h-full">
         <Providers>
           <SiteShell>{children}</SiteShell>
