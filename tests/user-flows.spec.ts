@@ -24,10 +24,26 @@ test("visitor signs up, upvotes, saves, comments, launches and signs out", async
   const email = `e2e${stamp}@test.local`;
   const name = `E2E ${stamp.toString().slice(-5)}`;
 
-  await test.step("signed-out upvote asks to sign in", async () => {
+  await test.step("guests can upvote without an account", async () => {
     await open(page, "/");
-    await page.getByRole("button", { name: /^Upvote / }).first().click();
-    await onPath(page, "/login");
+    const button = page.getByRole("button", { name: /^Upvote / }).first();
+    const [, product, count] = (await button.getAttribute("aria-label"))!.match(/^Upvote (.+) \((\d+) upvotes\)$/)!;
+    await button.click();
+    const voted = page.getByRole("button", { name: `Remove upvote from ${product} (${Number(count) + 1} upvotes)` }).first();
+    await expect(voted).toBeVisible();
+    await voted.click();
+    await expect(page.getByRole("button", { name: `Upvote ${product} (${count} upvotes)` }).first()).toBeVisible();
+  });
+
+  await test.step("guest comments wait for moderation", async () => {
+    await open(page, "/browse");
+    await page.locator('a[href^="/p/"]').first().click();
+    await page.getByPlaceholder("Your name").fill("E2E Guest");
+    const comment = `Guest comment ${stamp}`;
+    await page.getByLabel("Write a comment").fill(comment);
+    await page.getByRole("button", { name: "Post comment" }).click();
+    await expect(page.getByRole("status")).toHaveText(/appear once a moderator approves it/);
+    await expect(page.getByText(comment)).toHaveCount(0);
   });
 
   await test.step("register with validation", async () => {

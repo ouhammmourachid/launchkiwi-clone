@@ -1,6 +1,7 @@
 /**
  * upvote-button.tsx
- * Toggleable upvote with optimistic count. Signed-out users are sent to /login.
+ * Toggleable upvote with optimistic count. Works signed out too: guest votes
+ * are tied to this browser.
  */
 
 "use client";

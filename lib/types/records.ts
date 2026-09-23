@@ -69,13 +69,17 @@ export interface ReviewRecord extends RecordModel {
 
 export interface CommentRecord extends RecordModel {
   product: string;
+  /** Empty for guest comments, which carry `author_name` instead. */
   author: string;
+  author_name: string;
   content: string;
+  status: "pending" | "approved" | "rejected";
   expand?: { author?: UserRecord };
 }
 
 export interface VoteRecord extends RecordModel {
   product: string;
+  /** Empty for guest votes, which are tied to a hidden `visitor_hash`. */
   user: string;
 }
 

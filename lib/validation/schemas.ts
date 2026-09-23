@@ -49,6 +49,10 @@ export const commentSchema = z.object({
   content: z.string().trim().min(1, "Write something first.").max(1000, "Comments are limited to 1000 characters."),
 });
 
+export const guestCommentSchema = commentSchema.extend({
+  name: z.string().trim().min(2, "Please enter your name.").max(50, "Names are limited to 50 characters."),
+});
+
 export const subscribeSchema = z.object({ email });
 
 /** Maps a failed parse to `{ field: firstMessage }` for inline form errors. */

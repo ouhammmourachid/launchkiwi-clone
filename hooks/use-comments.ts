@@ -4,7 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { useAuth } from "@/hooks/use-auth";
 import { useToast } from "@/hooks/use-toast";
-import { addComment, deleteComment, listComments } from "@/lib/api/engagement";
+import { addComment, deleteComment, listComments, type NewComment } from "@/lib/api/engagement";
 import { getErrorMessage } from "@/lib/pb/errors";
 import { queryKeys } from "@/lib/query-keys";
 import type { Comment } from "@/lib/types/models";
@@ -18,8 +18,14 @@ export function useComments(productId: string) {
   const query = useQuery({ queryKey: key, queryFn: () => listComments(productId) });
 
   const add = useMutation({
-    mutationFn: (content: string) => addComment(productId, user!.id, content),
-    onSuccess: (comment) => queryClient.setQueryData<Comment[]>(key, (current = []) => [comment, ...current]),
+    /** Pass `authorName` when signed out; the comment then waits for moderation. */
+    mutationFn: ({ content, authorName }: { content: string; authorName?: string }) => {
+      const input: NewComment = user ? { content, userId: user.id } : { content, authorName: authorName ?? "" };
+      return addComment(productId, input);
+    },
+    onSuccess: (comment) => {
+      if (comment.approved) queryClient.setQueryData<Comment[]>(key, (current = []) => [comment, ...current]);
+    },
     onError: (err) => toast(getErrorMessage(err, "Couldn't post your comment."), "error"),
   });
 

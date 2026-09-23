@@ -89,12 +89,35 @@ onRecordUpdateRequest((e) => {
 
 // ── Votes ─────────────────────────────────────────────────────────────────
 
+// Signed-in users vote as themselves; guests vote under their browser's
+// `X-Visitor-Id`, with a per-IP cap so clearing storage can't farm votes.
 onRecordCreateRequest((e) => {
   const u = require(`${__hooks}/utils.js`);
   if (!u.isAdmin(e)) {
-    if (!e.auth) throw new UnauthorizedError("Sign in to upvote.");
-    e.record.set("user", e.auth.id);
-    e.record.set("visitor_hash", "");
+    const r = e.record;
+    const product = r.getString("product");
+    const visitorId = u.visitorId(e);
+    const alreadyVoted = (field, value) =>
+      value !== "" && e.app.countRecords("votes", $dbx.hashExp({ product: product, [field]: value })) > 0;
+
+    if (e.auth) {
+      // Catches a guest vote from this browser made before signing in.
+      if (alreadyVoted("visitor_hash", visitorId)) throw new BadRequestError("You've already upvoted this product.");
+      r.set("user", e.auth.id);
+      r.set("visitor_hash", "");
+      r.set("ip_hash", "");
+    } else {
+      if (!visitorId) throw new BadRequestError("Couldn't save your vote. Please enable site storage and try again.");
+      if (alreadyVoted("visitor_hash", visitorId)) throw new BadRequestError("You've already upvoted this product.");
+      const ipHash = $security.sha256(e.realIP());
+      if (e.app.countRecords("votes", $dbx.hashExp({ product: product, ip_hash: ipHash })) >= u.MAX_GUEST_VOTES_PER_IP) {
+        throw new BadRequestError("Too many upvotes for this product from your network. Sign in to upvote.");
+      }
+      r.set("user", "");
+      r.set("visitor_hash", visitorId);
+      r.set("ip_hash", ipHash);
+    }
+    r.set("user_agent_hash", "");
   }
   e.record.set("voted_at", new DateTime());
   e.next();
@@ -112,7 +135,7 @@ onRecordAfterDeleteSuccess((e) => {
   e.next();
 }, "votes");
 
-// ── Favorites & comments: owner is always the caller ─────────────────────
+// ── Favorites: owner is always the caller ────────────────────────────────
 
 onRecordCreateRequest((e) => {
   const u = require(`${__hooks}/utils.js`);
@@ -123,11 +146,34 @@ onRecordCreateRequest((e) => {
   e.next();
 }, "favorites");
 
+// ── Comments: members post instantly, guests go to moderation ────────────
+
 onRecordCreateRequest((e) => {
   const u = require(`${__hooks}/utils.js`);
+  const r = e.record;
+  r.set("content", r.getString("content").trim());
+  if (u.isAdmin(e)) {
+    if (!r.getString("status")) r.set("status", "approved");
+  } else if (e.auth) {
+    r.set("author", e.auth.id);
+    r.set("author_name", "");
+    r.set("status", "approved");
+  } else {
+    const name = r.getString("author_name").trim().replace(/\s+/g, " ");
+    if (name.length < 2) throw new BadRequestError("Please enter your name.");
+    r.set("author", "");
+    r.set("author_name", name.slice(0, 50));
+    r.set("status", "pending");
+  }
+  e.next();
+}, "comments");
+
+// Authors may edit their wording, but not the moderation status or ownership.
+onRecordUpdateRequest((e) => {
+  const u = require(`${__hooks}/utils.js`);
   if (!u.isAdmin(e)) {
-    if (!e.auth) throw new UnauthorizedError("Sign in to comment.");
-    e.record.set("author", e.auth.id);
+    const original = e.record.original();
+    ["product", "author", "author_name", "status"].forEach((field) => e.record.set(field, original.get(field)));
     e.record.set("content", e.record.getString("content").trim());
   }
   e.next();

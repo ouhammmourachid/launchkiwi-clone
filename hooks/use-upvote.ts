@@ -2,20 +2,24 @@
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-import { useAuth, useRequireAuth } from "@/hooks/use-auth";
+import { useAuth } from "@/hooks/use-auth";
 import { useToast } from "@/hooks/use-toast";
 import { addVote, listVotedProductIds, removeVote } from "@/lib/api/engagement";
 import { getUpvoteCount } from "@/lib/api/products";
 import { getErrorMessage } from "@/lib/pb/errors";
 import { queryKeys } from "@/lib/query-keys";
 
-/** The signed-in user's voted product ids — one request shared by every button. */
+/**
+ * Product ids this visitor has voted for — as a member and/or as this browser
+ * (guest votes). One request shared by every button.
+ */
 function useVotedIds() {
-  const { user } = useAuth();
+  const { user, isReady } = useAuth();
   return useQuery({
     queryKey: queryKeys.votes(user?.id),
-    queryFn: () => listVotedProductIds(user!.id),
-    enabled: !!user,
+    queryFn: listVotedProductIds,
+    // The visitor id and session live in localStorage, so wait for hydration.
+    enabled: isReady,
     staleTime: 5 * 60 * 1000,
   });
 }
@@ -27,7 +31,6 @@ function useVotedIds() {
  */
 export function useUpvote(productId: string, serverCount: number) {
   const { user } = useAuth();
-  const requireAuth = useRequireAuth();
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const votesKey = queryKeys.votes(user?.id);
@@ -41,9 +44,8 @@ export function useUpvote(productId: string, serverCount: number) {
   });
 
   const mutation = useMutation({
-    mutationFn: ({ vote, userId }: { vote: boolean; userId: string }) =>
-      vote ? addVote(productId, userId) : removeVote(productId, userId),
-    onMutate: async ({ vote }) => {
+    mutationFn: (vote: boolean) => (vote ? addVote(productId, user?.id ?? null) : removeVote(productId)),
+    onMutate: async (vote) => {
       await queryClient.cancelQueries({ queryKey: votesKey });
       const previousIds = queryClient.getQueryData<string[]>(votesKey) ?? [];
       const previousCount = queryClient.getQueryData<number>(countKey) ?? serverCount;
@@ -70,8 +72,8 @@ export function useUpvote(productId: string, serverCount: number) {
   const voted = votedIds?.includes(productId) ?? false;
 
   const toggle = () => {
-    if (!requireAuth() || !user || mutation.isPending) return;
-    mutation.mutate({ vote: !voted, userId: user.id });
+    if (mutation.isPending) return;
+    mutation.mutate(!voted);
   };
 
   return { count: cachedCount ?? serverCount, voted, toggle, isPending: mutation.isPending };

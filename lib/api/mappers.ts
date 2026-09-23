@@ -63,9 +63,10 @@ export function toComment(record: CommentRecord): Comment {
     id: record.id,
     content: record.content,
     createdAt: record.created,
+    approved: record.status === "approved",
     author: {
       id: record.author,
-      name: author?.name || "Anonymous maker",
+      name: author?.name || record.author_name || "Anonymous maker",
       avatarUrl: author ? fileUrl(author, author.avatar, "100x100") : null,
     },
   };

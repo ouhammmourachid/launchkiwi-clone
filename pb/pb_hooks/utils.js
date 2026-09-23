@@ -55,6 +55,15 @@ function bumpUpvotes(app, productId, delta) {
     .execute();
 }
 
+/** Guest votes allowed per product from one IP (a household or office can share one). */
+const MAX_GUEST_VOTES_PER_IP = 3;
+
+/** The guest's browser id from `X-Visitor-Id`, or "" when missing/malformed. */
+function visitorId(e) {
+  const value = String(e.requestInfo().headers["x_visitor_id"] || "").trim();
+  return /^[A-Za-z0-9-]{16,64}$/.test(value) ? value : "";
+}
+
 function currentLaunchWeek(app) {
   try {
     return app.findFirstRecordByFilter("launch_weeks", "is_current = true");
@@ -95,5 +104,7 @@ module.exports = {
   uniqueSlug,
   bumpUpvotes,
   currentLaunchWeek,
+  visitorId,
+  MAX_GUEST_VOTES_PER_IP,
   PROTECTED_PRODUCT_FIELDS,
 };

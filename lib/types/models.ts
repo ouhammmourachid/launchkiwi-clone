@@ -42,6 +42,9 @@ export interface Comment {
   id: string;
   content: string;
   createdAt: string;
+  /** False until a moderator approves it (guest comments). */
+  approved: boolean;
+  /** `id` is empty for guests. */
   author: { id: string; name: string; avatarUrl: string | null };
 }
 
