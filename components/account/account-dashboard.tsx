@@ -44,7 +44,7 @@ export function AccountDashboard() {
           <UserAvatar user={user} size={56} />
           <div className="min-w-0">
             <h1 className="truncate text-2xl font-black tracking-tight text-white">{user.name}</h1>
-            <p className="truncate text-xs text-[#8c967d]">{user.email}</p>
+            <p className="truncate text-xs text-dune-400">{user.email}</p>
           </div>
         </div>
         <div className="flex gap-2">
@@ -65,7 +65,7 @@ export function AccountDashboard() {
         emptyTitle={myProducts.isLoading ? "Loading…" : "You haven't launched anything yet"}
         emptyContent={
           !myProducts.isLoading && (
-            <Link href="/launch" className="font-bold text-[#86ba28] hover:underline">
+            <Link href="/launch" className="font-bold text-sun hover:underline">
               Launch your first product →
             </Link>
           )

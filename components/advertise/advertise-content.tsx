@@ -1,13 +1,13 @@
 /**
  * advertise-content.tsx — interactive body of the /advertise page
- * Rebuilt to match the LaunchKiwi dark-theme advertise design with:
+ * Rebuilt to match the LaunchDunes dark-theme advertise design with:
  * - Hero with "ADVERTISE" badge and headline
  * - Stats bar (DR 53, 107k visitors, ~$0.28 CPM, 358+ listed)
  * - 30-day and 90-day spotlight plan cards
  * - Interactive booking form with duration selection & logo upload
  * - Spotlight rotation chips
  * - 3-step process overview
- * - "Why advertise on LaunchKiwi" 4-card grid
+ * - "Why advertise on LaunchDunes" 4-card grid
  */
 
 "use client";
@@ -75,7 +75,7 @@ const spotlightRotation = [
 const whyAdvertise = [
   {
     icon: (
-      <svg className="w-4 h-4 text-[#d97706]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <svg className="w-4 h-4 text-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
       </svg>
     ),
@@ -84,7 +84,7 @@ const whyAdvertise = [
   },
   {
     icon: (
-      <svg className="w-4 h-4 text-[#d97706]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <svg className="w-4 h-4 text-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
       </svg>
     ),
@@ -93,7 +93,7 @@ const whyAdvertise = [
   },
   {
     icon: (
-      <svg className="w-4 h-4 text-[#d97706]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <svg className="w-4 h-4 text-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <line x1="12" y1="1" x2="12" y2="23" />
         <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
       </svg>
@@ -103,7 +103,7 @@ const whyAdvertise = [
   },
   {
     icon: (
-      <svg className="w-4 h-4 text-[#d97706]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <svg className="w-4 h-4 text-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
         <circle cx="9" cy="7" r="4" />
         <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
@@ -141,25 +141,25 @@ export function AdvertiseContent() {
 
         {/* ── Hero Section ── */}
         <section className="pt-10 pb-4 text-center max-w-2xl mx-auto">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-[#d97706]/40 bg-[#d97706]/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#d97706]">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-sun/40 bg-sun/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-sun">
             <MegaphoneIcon />
             Advertise
           </span>
 
-          <h1 className="mt-5 text-4xl font-black leading-tight tracking-tight text-[#f3efe6] md:text-5xl lg:text-[3.2rem]">
+          <h1 className="mt-5 text-4xl font-black leading-tight tracking-tight text-dune-50 md:text-5xl lg:text-[3.2rem]">
             Top of the feed.
             <br />
             Every visitor.
           </h1>
 
-          <p className="mt-4 text-sm leading-relaxed text-[#9ca38d] max-w-lg mx-auto">
+          <p className="mt-4 text-sm leading-relaxed text-dune-300 max-w-lg mx-auto">
             A spotlight slot at the top of the homepage — no directory listing required.
             Pick a duration, pay once, and it&apos;s live today.
           </p>
         </section>
 
         {/* ── Stats Bar ── */}
-        <div className="rounded-xl border border-white/10 bg-[#14170f] px-6 py-5">
+        <div className="rounded-xl border border-white/10 bg-dune-925 px-6 py-5">
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 text-center">
             {[
               { value: "DR 53", label: "DOMAIN RATING" },
@@ -168,10 +168,10 @@ export function AdvertiseContent() {
               { value: "358+", label: "PRODUCTS LISTED" },
             ].map((stat) => (
               <div key={stat.label} className="flex flex-col items-center gap-1">
-                <span className="text-2xl font-black tracking-tight text-[#f3efe6]">
+                <span className="text-2xl font-black tracking-tight text-dune-50">
                   {stat.value}
                 </span>
-                <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#9ca38d]">
+                <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-dune-300">
                   {stat.label}
                 </span>
               </div>
@@ -186,13 +186,13 @@ export function AdvertiseContent() {
           <div
             className={`relative flex flex-col justify-between rounded-xl border p-6 transition-all ${
               selectedDuration === "30"
-                ? "border-[#d97706]/60 bg-[#14170f] shadow-[0_0_40px_rgba(217,119,6,0.08)]"
-                : "border-white/10 bg-[#14170f]"
+                ? "border-sun/60 bg-dune-925 shadow-[0_0_40px_rgba(242,163,58,0.08)]"
+                : "border-white/10 bg-dune-925"
             }`}
           >
             {selectedDuration === "30" && (
               <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                <span className="inline-flex items-center rounded-full bg-[#d97706] px-3 py-1 text-[10px] font-black uppercase tracking-[0.15em] text-[#0a0c07]">
+                <span className="inline-flex items-center rounded-full bg-sun px-3 py-1 text-[10px] font-black uppercase tracking-[0.15em] text-dune-970">
                   SELECTED
                 </span>
               </div>
@@ -200,15 +200,15 @@ export function AdvertiseContent() {
 
             <div>
               <div className="flex items-center justify-between">
-                <span className="text-xl font-black text-[#f3efe6]">30 days</span>
-                <span className="rounded-full bg-[#d97706]/15 px-2.5 py-0.5 text-[11px] font-semibold text-[#d97706]">
+                <span className="text-xl font-black text-dune-50">30 days</span>
+                <span className="rounded-full bg-sun/15 px-2.5 py-0.5 text-[11px] font-semibold text-sun">
                   $1.00/day
                 </span>
               </div>
 
               <div className="mt-4 flex items-end gap-2">
-                <span className="text-4xl font-black tracking-tight text-[#f3efe6]">$30</span>
-                <span className="mb-1 text-xs text-[#9ca38d]">one-time</span>
+                <span className="text-4xl font-black tracking-tight text-dune-50">$30</span>
+                <span className="mb-1 text-xs text-dune-300">one-time</span>
               </div>
 
               <ul className="mt-6 space-y-3">
@@ -220,8 +220,8 @@ export function AdvertiseContent() {
                   "$1.00/day — one flat rate, no bidding",
                   "One-time payment, no subscription, no auto-renewal",
                 ].map((feature) => (
-                  <li key={feature} className="flex items-start gap-2.5 text-sm text-[#f3efe6]">
-                    <span className="mt-0.5 text-[#d97706]">
+                  <li key={feature} className="flex items-start gap-2.5 text-sm text-dune-50">
+                    <span className="mt-0.5 text-sun">
                       <CheckIcon />
                     </span>
                     <span>{feature}</span>
@@ -232,7 +232,7 @@ export function AdvertiseContent() {
 
             <button
               onClick={() => scrollToForm("30")}
-              className="mt-8 inline-flex w-full items-center justify-center rounded-lg bg-[#c26d15] hover:bg-[#d97706] px-4 py-3 text-sm font-bold text-[#f3efe6] transition-colors shadow-md"
+              className="mt-8 inline-flex w-full items-center justify-center rounded-lg bg-sun-deep hover:bg-sun px-4 py-3 text-sm font-bold text-dune-50 transition-colors shadow-md"
             >
               Book 30 days &rarr;
             </button>
@@ -242,27 +242,27 @@ export function AdvertiseContent() {
           <div
             className={`relative flex flex-col justify-between rounded-xl border p-6 transition-all ${
               selectedDuration === "90"
-                ? "border-[#d97706]/60 bg-[#14170f] shadow-[0_0_40px_rgba(217,119,6,0.08)]"
-                : "border-white/10 bg-[#14170f]"
+                ? "border-sun/60 bg-dune-925 shadow-[0_0_40px_rgba(242,163,58,0.08)]"
+                : "border-white/10 bg-dune-925"
             }`}
           >
             <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-              <span className="inline-flex items-center rounded-full bg-[#d97706] px-3 py-1 text-[10px] font-black uppercase tracking-[0.15em] text-[#0a0c07]">
+              <span className="inline-flex items-center rounded-full bg-sun px-3 py-1 text-[10px] font-black uppercase tracking-[0.15em] text-dune-970">
                 BEST VALUE
               </span>
             </div>
 
             <div>
               <div className="flex items-center justify-between">
-                <span className="text-xl font-black text-[#f3efe6]">90 days</span>
-                <span className="rounded-full bg-[#d97706]/15 px-2.5 py-0.5 text-[11px] font-semibold text-[#d97706]">
+                <span className="text-xl font-black text-dune-50">90 days</span>
+                <span className="rounded-full bg-sun/15 px-2.5 py-0.5 text-[11px] font-semibold text-sun">
                   $0.88/day
                 </span>
               </div>
 
               <div className="mt-4 flex items-end gap-2">
-                <span className="text-4xl font-black tracking-tight text-[#f3efe6]">$79</span>
-                <span className="mb-1 text-xs text-[#9ca38d]">one-time</span>
+                <span className="text-4xl font-black tracking-tight text-dune-50">$79</span>
+                <span className="mb-1 text-xs text-dune-300">one-time</span>
               </div>
 
               <ul className="mt-6 space-y-3">
@@ -274,8 +274,8 @@ export function AdvertiseContent() {
                   "$0.88/day — our lowest rate, 12% cheaper per day than the 30-day plan",
                   "One-time payment, no subscription, no auto-renewal",
                 ].map((feature) => (
-                  <li key={feature} className="flex items-start gap-2.5 text-sm text-[#f3efe6]">
-                    <span className="mt-0.5 text-[#d97706]">
+                  <li key={feature} className="flex items-start gap-2.5 text-sm text-dune-50">
+                    <span className="mt-0.5 text-sun">
                       <CheckIcon />
                     </span>
                     <span>{feature}</span>
@@ -286,7 +286,7 @@ export function AdvertiseContent() {
 
             <button
               onClick={() => scrollToForm("90")}
-              className="mt-8 inline-flex w-full items-center justify-center rounded-lg bg-[#c26d15] hover:bg-[#d97706] px-4 py-3 text-sm font-bold text-[#f3efe6] transition-colors shadow-md"
+              className="mt-8 inline-flex w-full items-center justify-center rounded-lg bg-sun-deep hover:bg-sun px-4 py-3 text-sm font-bold text-dune-50 transition-colors shadow-md"
             >
               Book 90 days &rarr;
             </button>
@@ -295,12 +295,12 @@ export function AdvertiseContent() {
         </div>
 
         {/* ── Booking Form Section ── */}
-        <div id="booking-form" className="max-w-4xl mx-auto rounded-xl border border-white/10 bg-[#14170f] p-6 sm:p-8">
+        <div id="booking-form" className="max-w-4xl mx-auto rounded-xl border border-white/10 bg-dune-925 p-6 sm:p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
               
               {/* Step 1: Choose Duration */}
               <div>
-                <label className="text-xs font-bold uppercase tracking-[0.15em] text-[#9ca38d]">
+                <label className="text-xs font-bold uppercase tracking-[0.15em] text-dune-300">
                   1. CHOOSE A DURATION
                 </label>
                 <div className="mt-3 grid grid-cols-2 gap-4">
@@ -309,11 +309,11 @@ export function AdvertiseContent() {
                     onClick={() => setSelectedDuration("30")}
                     className={`flex flex-col items-center justify-center p-4 rounded-lg border transition-all ${
                       selectedDuration === "30"
-                        ? "border-[#d97706] bg-[#d97706]/10 text-[#f3efe6]"
-                        : "border-white/10 bg-[#0a0c07] text-[#9ca38d] hover:border-white/20"
+                        ? "border-sun bg-sun/10 text-dune-50"
+                        : "border-white/10 bg-dune-970 text-dune-300 hover:border-white/20"
                     }`}
                   >
-                    <span className="text-xl font-bold text-[#d97706]">$30</span>
+                    <span className="text-xl font-bold text-sun">$30</span>
                     <span className="text-xs font-semibold mt-1">30 days</span>
                   </button>
 
@@ -322,29 +322,29 @@ export function AdvertiseContent() {
                     onClick={() => setSelectedDuration("90")}
                     className={`flex flex-col items-center justify-center p-4 rounded-lg border transition-all ${
                       selectedDuration === "90"
-                        ? "border-[#d97706] bg-[#d97706]/10 text-[#f3efe6]"
-                        : "border-white/10 bg-[#0a0c07] text-[#9ca38d] hover:border-white/20"
+                        ? "border-sun bg-sun/10 text-dune-50"
+                        : "border-white/10 bg-dune-970 text-dune-300 hover:border-white/20"
                     }`}
                   >
-                    <span className="text-xl font-bold text-[#d97706]">$79</span>
+                    <span className="text-xl font-bold text-sun">$79</span>
                     <span className="text-xs font-semibold mt-1">90 days</span>
                   </button>
                 </div>
-                <p className="mt-2 text-xs text-[#9ca38d]">
+                <p className="mt-2 text-xs text-dune-300">
                   Starts today and runs for the window you pick.
                 </p>
               </div>
 
               {/* Step 2: Your Product */}
               <div className="space-y-4 pt-2">
-                <label className="text-xs font-bold uppercase tracking-[0.15em] text-[#9ca38d]">
+                <label className="text-xs font-bold uppercase tracking-[0.15em] text-dune-300">
                   2. YOUR PRODUCT
                 </label>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-medium text-[#f3efe6] mb-1.5">
-                      Product name <span className="text-[#d97706]">*</span>
+                    <label className="block text-xs font-medium text-dune-50 mb-1.5">
+                      Product name <span className="text-sun">*</span>
                     </label>
                     <input
                       type="text"
@@ -352,13 +352,13 @@ export function AdvertiseContent() {
                       value={productName}
                       onChange={(e) => setProductName(e.target.value)}
                       placeholder="Product name"
-                      className="w-full rounded-lg border border-white/10 bg-[#0a0c07] px-3.5 py-2.5 text-sm text-[#f3efe6] placeholder-[#9ca38d]/50 focus:border-[#d97706] focus:outline-none"
+                      className="w-full rounded-lg border border-white/10 bg-dune-970 px-3.5 py-2.5 text-sm text-dune-50 placeholder-dune-300/50 focus:border-sun focus:outline-none"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-[#f3efe6] mb-1.5">
-                      Website URL <span className="text-[#d97706]">*</span>
+                    <label className="block text-xs font-medium text-dune-50 mb-1.5">
+                      Website URL <span className="text-sun">*</span>
                     </label>
                     <input
                       type="url"
@@ -366,14 +366,14 @@ export function AdvertiseContent() {
                       value={websiteUrl}
                       onChange={(e) => setWebsiteUrl(e.target.value)}
                       placeholder="yourproduct.com"
-                      className="w-full rounded-lg border border-white/10 bg-[#0a0c07] px-3.5 py-2.5 text-sm text-[#f3efe6] placeholder-[#9ca38d]/50 focus:border-[#d97706] focus:outline-none"
+                      className="w-full rounded-lg border border-white/10 bg-dune-970 px-3.5 py-2.5 text-sm text-dune-50 placeholder-dune-300/50 focus:border-sun focus:outline-none"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-[#f3efe6] mb-1.5">
-                    Tagline <span className="text-[#d97706]">*</span>
+                  <label className="block text-xs font-medium text-dune-50 mb-1.5">
+                    Tagline <span className="text-sun">*</span>
                   </label>
                   <input
                     type="text"
@@ -381,14 +381,14 @@ export function AdvertiseContent() {
                     value={tagline}
                     onChange={(e) => setTagline(e.target.value)}
                     placeholder="One line describing your product"
-                    className="w-full rounded-lg border border-white/10 bg-[#0a0c07] px-3.5 py-2.5 text-sm text-[#f3efe6] placeholder-[#9ca38d]/50 focus:border-[#d97706] focus:outline-none"
+                    className="w-full rounded-lg border border-white/10 bg-dune-970 px-3.5 py-2.5 text-sm text-dune-50 placeholder-dune-300/50 focus:border-sun focus:outline-none"
                   />
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-medium text-[#f3efe6] mb-1.5">
-                      Contact email <span className="text-[#d97706]">*</span>
+                    <label className="block text-xs font-medium text-dune-50 mb-1.5">
+                      Contact email <span className="text-sun">*</span>
                     </label>
                     <input
                       type="email"
@@ -396,16 +396,16 @@ export function AdvertiseContent() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="For your receipt and booking confirmation"
-                      className="w-full rounded-lg border border-white/10 bg-[#0a0c07] px-3.5 py-2.5 text-sm text-[#f3efe6] placeholder-[#9ca38d]/50 focus:border-[#d97706] focus:outline-none"
+                      className="w-full rounded-lg border border-white/10 bg-dune-970 px-3.5 py-2.5 text-sm text-dune-50 placeholder-dune-300/50 focus:border-sun focus:outline-none"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-[#f3efe6] mb-1.5">
-                      Logo <span className="text-[#d97706]">*</span>
+                    <label className="block text-xs font-medium text-dune-50 mb-1.5">
+                      Logo <span className="text-sun">*</span>
                     </label>
                     <div className="flex items-center gap-2">
-                      <label className="flex-1 cursor-pointer flex items-center justify-between rounded-lg border border-white/10 bg-[#0a0c07] px-3.5 py-2.5 text-sm text-[#9ca38d] hover:border-white/20">
+                      <label className="flex-1 cursor-pointer flex items-center justify-between rounded-lg border border-white/10 bg-dune-970 px-3.5 py-2.5 text-sm text-dune-300 hover:border-white/20">
                         <span className="truncate">
                           {logoName || "Upload logo"}
                         </span>
@@ -431,14 +431,14 @@ export function AdvertiseContent() {
               <button
                 type="submit"
                 disabled
-                className="w-full rounded-lg bg-[#c26d15] py-3 text-sm font-bold text-[#f3efe6] shadow-lg disabled:cursor-not-allowed disabled:opacity-50"
+                className="w-full rounded-lg bg-sun-deep py-3 text-sm font-bold text-dune-50 shadow-lg disabled:cursor-not-allowed disabled:opacity-50"
               >
                 Online checkout coming soon
               </button>
-              <p className="text-center text-xs text-[#9ca38d]">
+              <p className="text-center text-xs text-dune-300">
                 Want the {selectedDuration}-day spotlight now? Email{" "}
-                <a href="mailto:hello@launchkiwi.com" className="text-[#d97706] underline hover:text-[#f3efe6]">
-                  hello@launchkiwi.com
+                <a href="mailto:hello@launchdunes.com" className="text-sun underline hover:text-dune-50">
+                  hello@launchdunes.com
                 </a>
                 .
               </p>
@@ -448,14 +448,14 @@ export function AdvertiseContent() {
 
         {/* ── Spotlight Rotation Chips ── */}
         <div className="pt-4 text-center">
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#9ca38d]">
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-dune-300">
             RECENTLY IN THE SPOTLIGHT ROTATION
           </p>
           <div className="mt-4 flex flex-wrap items-center justify-center gap-2.5">
             {spotlightRotation.map((item) => (
               <div
                 key={item.name}
-                className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-[#14170f] px-3.5 py-1.5 text-xs font-semibold text-[#f3efe6]"
+                className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-dune-925 px-3.5 py-1.5 text-xs font-semibold text-dune-50"
               >
                 <span>{item.icon}</span>
                 <span>{item.name}</span>
@@ -485,35 +485,35 @@ export function AdvertiseContent() {
           ].map((item) => (
             <div
               key={item.step}
-              className="rounded-xl border border-white/10 bg-[#14170f] p-6 space-y-3"
+              className="rounded-xl border border-white/10 bg-dune-925 p-6 space-y-3"
             >
-              <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-[#d97706]/15 text-xs font-bold text-[#d97706]">
+              <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-sun/15 text-xs font-bold text-sun">
                 {item.step}
               </span>
-              <h3 className="text-base font-bold text-[#f3efe6]">{item.title}</h3>
-              <p className="text-xs leading-relaxed text-[#9ca38d]">{item.text}</p>
+              <h3 className="text-base font-bold text-dune-50">{item.title}</h3>
+              <p className="text-xs leading-relaxed text-dune-300">{item.text}</p>
             </div>
           ))}
         </div>
 
         {/* ── Why Advertise Grid ── */}
         <div className="pt-6 text-center">
-          <h2 className="text-2xl font-black tracking-tight text-[#f3efe6]">
-            Why advertise on LaunchKiwi
+          <h2 className="text-2xl font-black tracking-tight text-dune-50">
+            Why advertise on LaunchDunes
           </h2>
           
           <div className="mt-6 grid gap-4 sm:grid-cols-2 text-left">
             {whyAdvertise.map((item) => (
               <div
                 key={item.title}
-                className="flex items-start gap-3.5 rounded-xl border border-white/10 bg-[#14170f] p-5"
+                className="flex items-start gap-3.5 rounded-xl border border-white/10 bg-dune-925 p-5"
               >
-                <div className="mt-0.5 rounded-lg bg-[#d97706]/10 p-2 text-[#d97706] flex-shrink-0">
+                <div className="mt-0.5 rounded-lg bg-sun/10 p-2 text-sun flex-shrink-0">
                   {item.icon}
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-[#f3efe6]">{item.title}</h3>
-                  <p className="mt-1 text-xs leading-relaxed text-[#9ca38d]">
+                  <h3 className="text-sm font-bold text-dune-50">{item.title}</h3>
+                  <p className="mt-1 text-xs leading-relaxed text-dune-300">
                     {item.description}
                   </p>
                 </div>

@@ -4,16 +4,31 @@
  * Each is a plain function component with no props — size is baked into className.
  */
 
-export function KiwiLogo() {
+/** Natural Crest mark: three dune ridges (gentle windward slope, steep slip face), top ridge in sun amber. */
+export function DunesMark({ className = "h-7 w-7" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 40 40"
+      fill="none"
+      strokeWidth="3.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M3 34C11 34 15 26 21 26C25 26 27 32 37 34" className="stroke-dune-50" opacity="0.45" />
+      <path d="M3 25C11 25 15 17 21 17C25 17 27 23 37 25" className="stroke-dune-50" opacity="0.75" />
+      <path d="M3 16C11 16 15 8 21 8C25 8 27 14 37 16" className="stroke-sun" />
+    </svg>
+  );
+}
+
+export function DunesLogo() {
   return (
     <div className="flex items-center gap-2">
-      <svg className="h-6 w-6 text-[#86ba28]" viewBox="0 0 32 32" fill="currentColor">
-        <path d="M16 4C9.37 4 4 9.37 4 16c0 3.31 1.34 6.31 3.51 8.49l-2.8 2.8a1 1 0 0 0 .71 1.71h10.17c8.84 0 16-7.16 16-16C31.59 9.37 22.63 4 16 4zm-4 8a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z" />
-        <circle cx="10.5" cy="9.5" r="1.5" fill="#0b0d08" />
-        <path d="M26 14c-1.5 0-3 1.5-5 1.5s-3.5-1.5-5-1.5-3 1-4 2" stroke="#0b0d08" strokeWidth="2" strokeLinecap="round" fill="none" />
-      </svg>
-      <span className="text-xl font-black tracking-tight text-white">
-        Launch<span className="text-[#86ba28]">Kiwi</span>
+      <DunesMark />
+      <span className="font-display text-xl font-extrabold tracking-tight text-dune-50">
+        Launch<span className="text-sun">Dunes</span>
       </span>
     </div>
   );
@@ -58,7 +73,7 @@ export function RssIcon() {
 
 export function SunIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 text-[#a6b194]">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 text-dune-200">
       <circle cx="12" cy="12" r="4" />
       <path d="M12 2v2" />
       <path d="M12 20v2" />
@@ -74,7 +89,7 @@ export function SunIcon() {
 
 export function MegaphoneIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-[#86ba28]">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-sun">
       <path d="m3 11 18-5v12L3 13v-2z" />
       <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6" />
     </svg>

@@ -78,7 +78,7 @@ export function SubmitProductForm({ categories, initialUrl = "" }: SubmitProduct
     return (
       <Panel className="p-8 text-center">
         <h2 className="text-lg font-black text-white">Sign in to launch your product</h2>
-        <p className="mt-2 text-sm text-[#9aa48c]">A free account lets you submit launches, upvote and comment.</p>
+        <p className="mt-2 text-sm text-dune-300">A free account lets you submit launches, upvote and comment.</p>
         <div className="mt-5 flex justify-center gap-3">
           <Link href={`/register?next=${encodeURIComponent(next)}`} className={buttonClasses()}>
             Create free account
@@ -144,7 +144,7 @@ export function SubmitProductForm({ categories, initialUrl = "" }: SubmitProduct
           onChange={handleLogo}
           error={errors.logo}
           hint="Square PNG, JPG, WebP or SVG, up to 2 MB."
-          className="w-full rounded-xl border border-[#1e2417] bg-[#070905] px-3.5 py-2 text-xs text-[#9aa48c] file:mr-3 file:rounded-full file:border-0 file:bg-[#1f2417] file:px-3 file:py-1 file:text-xs file:font-bold file:text-white"
+          className="w-full rounded-xl border border-dune-900 bg-dune-990 px-3.5 py-2 text-xs text-dune-300 file:mr-3 file:rounded-full file:border-0 file:bg-dune-900 file:px-3 file:py-1 file:text-xs file:font-bold file:text-white"
         />
 
         <Button type="submit" loading={submit.isPending} className="w-full sm:w-auto">

@@ -31,21 +31,21 @@ export function NewsletterSection() {
   const error = validationError ?? (subscribe.isError ? getErrorMessage(subscribe.error) : null);
 
   return (
-    <section className="border-t border-[#1b1f14] bg-[#0a0c07] px-4 py-16 text-center text-white">
+    <section className="border-t border-dune-900 bg-dune-970 px-4 py-16 text-center text-white">
       <div className="mx-auto max-w-2xl">
-        <span className="inline-block rounded-full border border-[#282e1e] bg-[#15190e] px-3.5 py-1 text-[10px] font-bold uppercase tracking-widest text-[#a6b194]">
+        <span className="inline-block rounded-full border border-dune-800 bg-dune-925 px-3.5 py-1 text-[10px] font-bold uppercase tracking-widest text-dune-200">
           STAY UPDATED
         </span>
         <h3 className="mt-4 text-3xl font-black tracking-tight text-white sm:text-4xl leading-tight">
           Get weekly indie project launches directly in your inbox.
         </h3>
-        <p className="mt-3 text-xs sm:text-sm text-[#9aa48c] leading-relaxed">
+        <p className="mt-3 text-xs sm:text-sm text-dune-300 leading-relaxed">
           Subscribe to receive curated lists of the most successful SaaS products, developer tools, and community favourites.
         </p>
 
         {subscribe.isSuccess ? (
-          <p role="status" className="mt-6 text-sm font-semibold text-[#c5e38a]">
-            You&apos;re subscribed — see you in your inbox! 🥝
+          <p role="status" className="mt-6 text-sm font-semibold text-sun-bright">
+            You&apos;re subscribed — see you in your inbox! ☀️
           </p>
         ) : (
           <form className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-2 max-w-md mx-auto" onSubmit={handleSubmit} noValidate>
@@ -56,12 +56,12 @@ export function NewsletterSection() {
               aria-label="Email address"
               aria-invalid={!!error}
               placeholder="your.email@domain.com"
-              className="w-full rounded-xl border border-[#23291b] bg-[#141810] px-4 py-2.5 text-xs text-white placeholder:text-[#5e6652] outline-none focus:border-[#86ba28]"
+              className="w-full rounded-xl border border-dune-850 bg-dune-925 px-4 py-2.5 text-xs text-white placeholder:text-dune-600 outline-none focus:border-sun"
             />
             <button
               type="submit"
               disabled={subscribe.isPending}
-              className="w-full sm:w-auto shrink-0 rounded-xl bg-[#86ba28] px-5 py-2.5 text-xs font-bold text-[#0a0d06] transition hover:bg-[#96cc2e] cursor-pointer disabled:opacity-60"
+              className="w-full sm:w-auto shrink-0 rounded-xl bg-sun px-5 py-2.5 text-xs font-bold text-dune-970 transition hover:bg-sun-bright cursor-pointer disabled:opacity-60"
             >
               {subscribe.isPending ? "Subscribing…" : "Subscribe"}
             </button>

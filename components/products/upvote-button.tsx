@@ -19,8 +19,8 @@ export function UpvoteButton({ productId, productName, upvotes, size = "md" }: U
 
   const dims = size === "lg" ? "h-14 min-w-[64px] px-4 text-base" : "h-10 min-w-[42px] px-2.5 text-xs";
   const state = voted
-    ? "border-[#86ba28] bg-[#86ba28] text-[#0a0d06]"
-    : "border-[#2b3120] bg-[#161a10] text-white hover:border-[#86ba28] hover:text-[#86ba28]";
+    ? "border-sun bg-sun text-dune-970"
+    : "border-dune-800 bg-dune-925 text-white hover:border-sun hover:text-sun";
 
   return (
     <button

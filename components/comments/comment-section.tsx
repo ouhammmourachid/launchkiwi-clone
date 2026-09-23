@@ -39,8 +39,8 @@ export function CommentSection({ productId }: { productId: string }) {
 
   return (
     <Panel className="p-6">
-      <h2 className="text-sm font-black uppercase tracking-widest text-[#a6b194]">
-        Comments {comments.length > 0 && <span className="text-[#656e58]">({comments.length})</span>}
+      <h2 className="text-sm font-black uppercase tracking-widest text-dune-200">
+        Comments {comments.length > 0 && <span className="text-dune-600">({comments.length})</span>}
       </h2>
 
       {isReady && user ? (
@@ -52,10 +52,10 @@ export function CommentSection({ productId }: { productId: string }) {
             rows={3}
             aria-label="Write a comment"
             placeholder="Share feedback or ask the maker a question…"
-            className="w-full rounded-xl border border-[#1e2417] bg-[#070905] px-3.5 py-2.5 text-sm text-white placeholder:text-[#4e5642] outline-none focus:border-[#86ba28]"
+            className="w-full rounded-xl border border-dune-900 bg-dune-990 px-3.5 py-2.5 text-sm text-white placeholder:text-dune-700 outline-none focus:border-sun"
           />
           <div className="mt-2 flex items-center justify-between gap-3">
-            <span className={`text-[11px] ${error ? "text-[#f87171]" : "text-[#656e58]"}`} role={error ? "alert" : undefined}>
+            <span className={`text-[11px] ${error ? "text-[#f87171]" : "text-dune-600"}`} role={error ? "alert" : undefined}>
               {error ?? `${content.length} / ${MAX_LENGTH}`}
             </span>
             <Button type="submit" size="sm" loading={add.isPending}>
@@ -65,8 +65,8 @@ export function CommentSection({ productId }: { productId: string }) {
         </form>
       ) : (
         isReady && (
-          <p className="mt-4 rounded-xl border border-[#1e2417] bg-[#0f120b] px-4 py-3 text-xs text-[#8c967d]">
-            <Link href={`/login?next=${encodeURIComponent(pathname)}`} className="font-bold text-[#86ba28] hover:underline">
+          <p className="mt-4 rounded-xl border border-dune-900 bg-dune-950 px-4 py-3 text-xs text-dune-400">
+            <Link href={`/login?next=${encodeURIComponent(pathname)}`} className="font-bold text-sun hover:underline">
               Sign in
             </Link>{" "}
             to join the discussion.
@@ -75,7 +75,7 @@ export function CommentSection({ productId }: { productId: string }) {
       )}
 
       <ul className="mt-5 space-y-4">
-        {isLoading && <li className="text-xs text-[#727c65]">Loading comments…</li>}
+        {isLoading && <li className="text-xs text-dune-500">Loading comments…</li>}
         {isError && <li className="text-xs text-[#f87171]">Couldn&apos;t load comments.</li>}
         {!isLoading && !isError && comments.length === 0 && (
           <li>
@@ -88,19 +88,19 @@ export function CommentSection({ productId }: { productId: string }) {
             <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-center gap-x-2 text-xs">
                 <span className="font-bold text-white">{comment.author.name}</span>
-                <span className="text-[#656e58]">{formatDate(comment.createdAt)}</span>
+                <span className="text-dune-600">{formatDate(comment.createdAt)}</span>
                 {user?.id === comment.author.id && (
                   <button
                     type="button"
                     onClick={() => remove.mutate(comment.id)}
                     disabled={remove.isPending}
-                    className="ml-auto text-[11px] font-semibold text-[#727c65] hover:text-[#f87171] cursor-pointer"
+                    className="ml-auto text-[11px] font-semibold text-dune-500 hover:text-[#f87171] cursor-pointer"
                   >
                     Delete
                   </button>
                 )}
               </div>
-              <p className="mt-1 whitespace-pre-line break-words text-sm text-[#c5ceb8]">{comment.content}</p>
+              <p className="mt-1 whitespace-pre-line break-words text-sm text-dune-100">{comment.content}</p>
             </div>
           </li>
         ))}

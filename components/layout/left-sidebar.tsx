@@ -14,7 +14,7 @@ export async function LeftSidebar() {
   const products = await getFeaturedProducts(SIDEBAR_PRODUCTS).catch(() => []);
 
   return (
-    <aside className="sticky top-20 hidden w-48 shrink-0 flex-col gap-3 xl:flex" aria-label="Featured products">
+    <aside className="sticky top-20 hidden w-60 shrink-0 flex-col gap-3 xl:flex" aria-label="Featured products">
       {products.map((product, i) => (
         <SidebarProductCard key={product.id} product={product} index={i} />
       ))}

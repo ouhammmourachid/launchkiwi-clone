@@ -25,7 +25,7 @@ export function Pagination({ page, totalPages, params }: PaginationProps) {
   };
 
   return (
-    <nav aria-label="Pagination" className="flex items-center justify-center gap-3 text-xs text-[#8c967d]">
+    <nav aria-label="Pagination" className="flex items-center justify-center gap-3 text-xs text-dune-400">
       {page > 1 ? (
         <Link href={href(page - 1)} className={buttonClasses({ variant: "secondary", size: "sm" })}>
           ← Previous

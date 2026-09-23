@@ -14,7 +14,7 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
     <div className="mx-auto max-w-[900px] px-4 py-10">
       <Panel className="px-6 py-16 text-center">
         <h1 className="text-2xl font-black tracking-tight text-white">Something went wrong</h1>
-        <p className="mt-2 text-sm text-[#9aa48c]">
+        <p className="mt-2 text-sm text-dune-300">
           We couldn&apos;t load this page. If you&apos;re running locally, make sure PocketBase is up (<code>npm run pb</code>).
         </p>
         <Button className="mt-6" onClick={reset}>

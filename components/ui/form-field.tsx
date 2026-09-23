@@ -7,7 +7,7 @@
 import { useId, type InputHTMLAttributes, type ReactNode, type SelectHTMLAttributes, type TextareaHTMLAttributes } from "react";
 
 const CONTROL =
-  "w-full rounded-xl border bg-[#070905] px-3.5 py-2.5 text-sm text-white placeholder:text-[#4e5642] outline-none transition focus:border-[#86ba28]";
+  "w-full rounded-xl border bg-dune-990 px-3.5 py-2.5 text-sm text-white placeholder:text-dune-700 outline-none transition focus:border-sun";
 
 interface FieldShellProps {
   label: string;
@@ -21,12 +21,12 @@ function FieldShell({ label, error, hint, children }: FieldShellProps) {
   const describedBy = error ? `${id}-error` : hint ? `${id}-hint` : undefined;
   return (
     <div>
-      <label htmlFor={id} className="mb-1.5 block text-xs font-semibold text-[#c5ceb8]">
+      <label htmlFor={id} className="mb-1.5 block text-xs font-semibold text-dune-100">
         {label}
       </label>
       {children({
         id,
-        className: `${CONTROL} ${error ? "border-[#7f2d26]" : "border-[#1e2417]"}`,
+        className: `${CONTROL} ${error ? "border-[#7f2d26]" : "border-dune-900"}`,
         "aria-invalid": !!error,
         "aria-describedby": describedBy,
       })}
@@ -35,7 +35,7 @@ function FieldShell({ label, error, hint, children }: FieldShellProps) {
           {error}
         </p>
       ) : hint ? (
-        <p id={`${id}-hint`} className="mt-1.5 text-[11px] text-[#656e58]">
+        <p id={`${id}-hint`} className="mt-1.5 text-[11px] text-dune-600">
           {hint}
         </p>
       ) : null}

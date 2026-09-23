@@ -10,20 +10,20 @@ import { usePathname } from "next/navigation";
 
 import { UserMenu } from "@/components/auth/user-menu";
 import { HeaderSearch } from "@/components/layout/header-search";
-import { KiwiLogo } from "@/components/layout/nav-icons";
+import { DunesLogo } from "@/components/layout/nav-icons";
 import { navLinks } from "@/data/site";
 
 export function SiteHeader() {
   const pathname = usePathname();
 
   return (
-    <header className="border-b border-[#1b1f14] bg-[#0a0c07] sticky top-0 z-50 backdrop-blur-md bg-opacity-95">
+    <header className="border-b border-dune-900 bg-dune-970 sticky top-0 z-50 backdrop-blur-md bg-opacity-95">
       <div className="mx-auto flex h-16 max-w-[1480px] items-center justify-between gap-4 px-4 sm:px-6">
 
         {/* Logo + Nav */}
         <div className="flex items-center gap-6">
           <Link href="/" className="flex items-center gap-2">
-            <KiwiLogo />
+            <DunesLogo />
           </Link>
 
           <nav className="hidden items-center gap-5 md:flex">
@@ -35,8 +35,8 @@ export function SiteHeader() {
                   href={link.href}
                   className={`text-xs font-semibold transition px-2.5 py-1 rounded-lg ${
                     isActive
-                      ? "text-[#86ba28] bg-[#141810] border border-[#23291b]"
-                      : "text-[#c5ceb8] hover:text-white"
+                      ? "text-sun bg-dune-925 border border-dune-850"
+                      : "text-dune-100 hover:text-white"
                   }`}
                 >
                   {link.label}
@@ -56,10 +56,11 @@ export function SiteHeader() {
           <UserMenu />
           <Link
             href="/launch"
-            className="inline-flex items-center gap-1.5 rounded-full bg-[#86ba28] px-3.5 py-1.5 text-xs font-bold text-[#0a0d06] transition hover:bg-[#96cc2e] shadow-sm"
+            className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-sun px-3.5 py-1.5 text-xs font-bold text-dune-970 transition hover:bg-sun-bright shadow-sm"
           >
             <span>🚀</span>
-            <span>Launch your project</span>
+            <span className="hidden sm:inline">Launch your project</span>
+            <span className="sm:hidden">Launch</span>
           </Link>
         </div>
 

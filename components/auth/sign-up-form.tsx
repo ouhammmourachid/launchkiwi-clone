@@ -19,7 +19,7 @@ export function SignUpForm({ redirectTo }: { redirectTo: string }) {
     initialValues: { name: "", email: "", password: "", passwordConfirm: "" },
     action: signUp,
     redirectTo,
-    successMessage: "Account created — welcome to LaunchKiwi! 🥝",
+    successMessage: "Account created — welcome to LaunchDunes! ☀️",
   });
 
   return (

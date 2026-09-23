@@ -28,24 +28,24 @@ function PlanCard({ plan }: { plan: PricingPlan }) {
   return (
     <div
       className={`flex flex-col rounded-[24px] border p-6 shadow-lg ${
-        plan.highlighted ? "border-[#86ba28] bg-[#171c0f] shadow-[0_0_25px_rgba(134,186,40,0.12)]" : "border-[#22271a] bg-[#13160e]"
+        plan.highlighted ? "border-sun bg-dune-925 shadow-[0_0_25px_rgba(242,163,58,0.12)]" : "border-dune-850 bg-dune-940"
       }`}
     >
       <div className="flex items-center justify-between gap-2">
-        <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#86ba28]">{plan.name}</p>
+        <p className="text-xs font-bold uppercase tracking-[0.16em] text-sun">{plan.name}</p>
         {plan.highlighted && (
-          <span className="rounded-full bg-[#86ba28] px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-[#0a0d06]">Best value</span>
+          <span className="rounded-full bg-sun px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-dune-970">Best value</span>
         )}
       </div>
       <div className="mt-4 flex items-end gap-2">
         <span className="text-4xl font-black text-white">{formatPrice(plan)}</span>
-        <span className="pb-1 text-xs text-[#727c65]">one-time</span>
+        <span className="pb-1 text-xs text-dune-500">one-time</span>
       </div>
-      <p className="mt-3 text-sm leading-relaxed text-[#9aa48c]">{plan.description}</p>
-      <ul className="mt-5 flex-1 space-y-2 text-xs text-[#c5ceb8]">
+      <p className="mt-3 text-sm leading-relaxed text-dune-300">{plan.description}</p>
+      <ul className="mt-5 flex-1 space-y-2 text-xs text-dune-100">
         {plan.features.map((feature) => (
           <li key={feature} className="flex items-start gap-2">
-            <span className="text-[#86ba28]">✓</span>
+            <span className="text-sun">✓</span>
             {feature}
           </li>
         ))}
@@ -71,9 +71,9 @@ export default async function PricingPage() {
     <ContentShell>
       <div className="space-y-6 pb-12">
         <section className="pt-2 text-center">
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#86ba28]">Pricing</p>
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-sun">Pricing</p>
           <h1 className="mt-2 text-3xl font-black tracking-tight text-white md:text-5xl">Simple pricing for every launch stage</h1>
-          <p className="mx-auto mt-3 max-w-xl text-sm text-[#9aa48c]">
+          <p className="mx-auto mt-3 max-w-xl text-sm text-dune-300">
             All listings are permanent. Paid plans are one-time payments — no subscriptions or renewals.
           </p>
         </section>

@@ -15,7 +15,7 @@ interface AuthViewProps {
   inModal?: boolean;
 }
 
-const SWITCH_LINK = "font-bold text-[#86ba28] hover:underline";
+const SWITCH_LINK = "font-bold text-sun hover:underline";
 
 export function SignInView({ next, inModal = false }: AuthViewProps) {
   return (
@@ -25,7 +25,7 @@ export function SignInView({ next, inModal = false }: AuthViewProps) {
       subtitle="Sign in to upvote, comment and launch your products."
       footer={
         <>
-          New to LaunchKiwi?{" "}
+          New to LaunchDunes?{" "}
           {/* replace: switching tabs inside the modal shouldn't stack history entries. */}
           <Link href={`/register?next=${encodeURIComponent(next)}`} replace={inModal} className={SWITCH_LINK}>
             Create an account

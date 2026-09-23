@@ -62,24 +62,24 @@ export function BrowseFilters({ categories, totalItems, current }: BrowseFilters
   }, [search]);
 
   return (
-    <section className="rounded-[24px] border border-[#22271a] bg-[#13160e] p-6 shadow-lg" aria-busy={isPending}>
+    <section className="rounded-[24px] border border-dune-850 bg-dune-940 p-6 shadow-lg" aria-busy={isPending}>
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
             <span className="text-xl">🚀</span>
             <h1 className="text-2xl font-black text-white tracking-tight">Browse Products</h1>
           </div>
-          <p className="mt-1 text-xs text-[#8c967d]">
+          <p className="mt-1 text-xs text-dune-400">
             {isPending ? "Updating…" : `${totalItems} product${totalItems === 1 ? "" : "s"} found.`}
           </p>
         </div>
 
         <label className="flex items-center gap-2">
-          <span className="text-[10px] font-bold uppercase tracking-widest text-[#656e58]">SORT:</span>
+          <span className="text-[10px] font-bold uppercase tracking-widest text-dune-600">SORT:</span>
           <select
             value={current.sort}
             onChange={(e) => navigate({ sort: e.target.value })}
-            className="rounded-full border border-[#23291c] bg-[#0a0c07] px-3 py-1.5 text-xs font-semibold text-white outline-none focus:border-[#86ba28] cursor-pointer"
+            className="rounded-full border border-dune-850 bg-dune-970 px-3 py-1.5 text-xs font-semibold text-white outline-none focus:border-sun cursor-pointer"
           >
             {Object.entries(PRODUCT_SORTS).map(([value, { label }]) => (
               <option key={value} value={value}>
@@ -91,19 +91,19 @@ export function BrowseFilters({ categories, totalItems, current }: BrowseFilters
       </div>
 
       <div className="relative mt-5">
-        <span className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-[#4e5642]">🔍</span>
+        <span className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-dune-700">🔍</span>
         <input
           type="search"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           aria-label="Search products"
           placeholder="Search names, taglines, categories, tags..."
-          className="w-full rounded-xl border border-[#1e2417] bg-[#070905] py-3 pl-10 pr-4 text-xs text-white placeholder:text-[#4e5642] outline-none focus:border-[#86ba28] transition shadow-inner"
+          className="w-full rounded-xl border border-dune-900 bg-dune-990 py-3 pl-10 pr-4 text-xs text-white placeholder:text-dune-700 outline-none focus:border-sun transition shadow-inner"
         />
       </div>
 
       <div className="mt-5">
-        <div className="text-[10px] font-bold uppercase tracking-widest text-[#727c65] mb-2.5">CATEGORY</div>
+        <div className="text-[10px] font-bold uppercase tracking-widest text-dune-500 mb-2.5">CATEGORY</div>
         <div className="flex flex-wrap items-center gap-1.5">
           <FilterChip label="All" active={!current.category} onClick={() => navigate({ category: undefined })} />
           {categories.map((cat) => (
@@ -119,7 +119,7 @@ export function BrowseFilters({ categories, totalItems, current }: BrowseFilters
       </div>
 
       <div className="mt-4 flex flex-wrap items-center gap-3">
-        <span className="text-[10px] font-bold uppercase tracking-widest text-[#727c65]">PRICE:</span>
+        <span className="text-[10px] font-bold uppercase tracking-widest text-dune-500">PRICE:</span>
         <div className="flex flex-wrap items-center gap-1.5">
           <FilterChip label="All" active={!current.pricing} onClick={() => navigate({ pricing: undefined })} />
           {PRICE_FILTERS.map((price) => (
@@ -146,12 +146,12 @@ function FilterChip({ label, count, active, onClick }: FilterChipProps) {
       aria-pressed={active}
       className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-semibold transition cursor-pointer ${
         active
-          ? "bg-[#86ba28] text-[#0a0d06] font-bold"
-          : "bg-[#13170e] border border-[#23291c] text-[#a6b194] hover:border-[#38412b] hover:text-white"
+          ? "bg-sun text-dune-970 font-bold"
+          : "bg-dune-940 border border-dune-850 text-dune-200 hover:border-dune-750 hover:text-white"
       }`}
     >
       <span>{label}</span>
-      {count !== undefined && <span className={`text-[10px] ${active ? "text-[#0a0d06]/70" : "text-[#656e58]"}`}>{count}</span>}
+      {count !== undefined && <span className={`text-[10px] ${active ? "text-dune-970/70" : "text-dune-600"}`}>{count}</span>}
     </button>
   );
 }

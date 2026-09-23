@@ -13,7 +13,7 @@ import { SiteFooter } from "@/components/layout/site-footer";
 
 export function SiteShell({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen bg-[#0a0c07] text-[#f3efe6] font-sans antialiased">
+    <div className="min-h-screen bg-dune-970 text-dune-50 font-sans antialiased">
       <AnnouncementBanner />
       <SiteHeader />
       <main className="relative">{children}</main>

@@ -13,7 +13,7 @@ import { listAllCategories } from "@/lib/api/catalog";
 
 export const metadata: Metadata = {
   title: "Launch your product",
-  description: "Submit your product for free and get a permanent listing on LaunchKiwi.",
+  description: "Submit your product for free and get a permanent listing on LaunchDunes.",
 };
 
 const steps = [
@@ -32,9 +32,9 @@ export default async function LaunchPage({ searchParams }: { searchParams: Searc
     <ContentShell>
       <div className="space-y-6 pb-12">
         <section className="pt-2">
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#86ba28]">Launch</p>
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-sun">Launch</p>
           <h1 className="mt-2 text-3xl font-black tracking-tight text-white md:text-4xl">Submit your product</h1>
-          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#9aa48c]">
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-dune-300">
             Get a free permanent product listing and bring early adopters, builders, and product enthusiasts to your launch.
           </p>
         </section>
@@ -47,8 +47,8 @@ export default async function LaunchPage({ searchParams }: { searchParams: Searc
               <h2 className="text-lg font-bold text-white">How it works</h2>
               <ol className="mt-4 space-y-3">
                 {steps.map((step, index) => (
-                  <li key={step} className="flex gap-3 text-sm text-[#c5ceb8]">
-                    <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#86ba28] text-xs font-bold text-[#0a0d06]">
+                  <li key={step} className="flex gap-3 text-sm text-dune-100">
+                    <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-sun text-xs font-bold text-dune-970">
                       {index + 1}
                     </span>
                     {step}
@@ -58,10 +58,10 @@ export default async function LaunchPage({ searchParams }: { searchParams: Searc
             </Panel>
             <Panel className="p-6">
               <h2 className="text-sm font-bold text-white">Want more visibility?</h2>
-              <p className="mt-2 text-xs leading-relaxed text-[#9aa48c]">
+              <p className="mt-2 text-xs leading-relaxed text-dune-300">
                 Premium and Priority listings get pinned, featured badges and an editorial review.
               </p>
-              <Link href="/pricing" className="mt-3 inline-block text-xs font-bold text-[#86ba28] hover:underline">
+              <Link href="/pricing" className="mt-3 inline-block text-xs font-bold text-sun hover:underline">
                 See pricing →
               </Link>
             </Panel>

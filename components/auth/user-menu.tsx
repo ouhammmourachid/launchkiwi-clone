@@ -40,7 +40,7 @@ export function UserMenu() {
   if (!user) {
     const next = pathname && pathname !== "/login" && pathname !== "/register" ? `?next=${encodeURIComponent(pathname)}` : "";
     return (
-      <Link href={`/login${next}`} className="text-xs font-semibold text-[#c5ceb8] transition hover:text-white px-2 py-1">
+      <Link href={`/login${next}`} className="text-xs font-semibold text-dune-100 transition hover:text-white px-2 py-1">
         Sign In
       </Link>
     );
@@ -60,17 +60,17 @@ export function UserMenu() {
         onClick={() => setOpen((v) => !v)}
         aria-haspopup="menu"
         aria-expanded={open}
-        className="flex items-center gap-2 rounded-full border border-[#23291b] bg-[#141810] py-1 pl-1 pr-3 text-xs font-semibold text-white transition hover:border-[#3c452c] cursor-pointer"
+        className="flex items-center gap-2 rounded-full border border-dune-850 bg-dune-925 py-1 pl-1 pr-3 text-xs font-semibold text-white transition hover:border-dune-750 cursor-pointer"
       >
         <UserAvatar user={user} size={24} />
         <span className="hidden max-w-[110px] truncate sm:inline">{user.name}</span>
       </button>
 
       {open && (
-        <div role="menu" className="absolute right-0 mt-2 w-52 overflow-hidden rounded-xl border border-[#22271a] bg-[#11140c] py-1 shadow-xl">
-          <div className="border-b border-[#1c2014] px-3.5 py-2.5">
+        <div role="menu" className="absolute right-0 mt-2 w-52 overflow-hidden rounded-xl border border-dune-850 bg-dune-940 py-1 shadow-xl">
+          <div className="border-b border-dune-900 px-3.5 py-2.5">
             <p className="truncate text-xs font-bold text-white">{user.name}</p>
-            <p className="truncate text-[11px] text-[#727c65]">{user.email}</p>
+            <p className="truncate text-[11px] text-dune-500">{user.email}</p>
           </div>
           <MenuLink href="/account" onSelect={() => setOpen(false)}>My account</MenuLink>
           <MenuLink href="/launch" onSelect={() => setOpen(false)}>Launch a product</MenuLink>
@@ -78,7 +78,7 @@ export function UserMenu() {
             type="button"
             role="menuitem"
             onClick={handleSignOut}
-            className="block w-full px-3.5 py-2 text-left text-xs font-semibold text-[#f87171] transition hover:bg-[#1a1e13] cursor-pointer"
+            className="block w-full px-3.5 py-2 text-left text-xs font-semibold text-[#f87171] transition hover:bg-dune-900 cursor-pointer"
           >
             Sign out
           </button>
@@ -90,7 +90,7 @@ export function UserMenu() {
 
 function MenuLink({ href, onSelect, children }: { href: string; onSelect: () => void; children: React.ReactNode }) {
   return (
-    <Link role="menuitem" href={href} onClick={onSelect} className="block px-3.5 py-2 text-xs font-semibold text-[#c5ceb8] transition hover:bg-[#1a1e13] hover:text-white">
+    <Link role="menuitem" href={href} onClick={onSelect} className="block px-3.5 py-2 text-xs font-semibold text-dune-100 transition hover:bg-dune-900 hover:text-white">
       {children}
     </Link>
   );

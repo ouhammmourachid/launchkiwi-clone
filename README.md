@@ -1,6 +1,6 @@
-# LaunchKiwi clone
+# LaunchDunes
 
-A LaunchKiwi-style product launch board: **Next.js 16** (App Router) frontend on a **PocketBase 0.40** backend.
+LaunchDunes — a product launch board for makers worldwide and across MENA: **Next.js 16** (App Router) frontend on a **PocketBase 0.40** backend.
 
 ## Quick start
 

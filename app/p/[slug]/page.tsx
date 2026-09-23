@@ -53,7 +53,7 @@ export default async function ProductPage({ params }: { params: Params }) {
   return (
     <ContentShell>
       <div className="space-y-6 pb-12">
-        <nav aria-label="Breadcrumb" className="text-xs text-[#727c65]">
+        <nav aria-label="Breadcrumb" className="text-xs text-dune-500">
           <Link href="/browse" className="hover:text-white">
             All launches
           </Link>
@@ -75,7 +75,7 @@ export default async function ProductPage({ params }: { params: Params }) {
                 <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-white">{product.name}</h1>
                 <ProductBadge badge={product.badge} />
               </div>
-              <p className="mt-2 text-sm text-[#9aa48c] leading-relaxed">{product.tagline}</p>
+              <p className="mt-2 text-sm text-dune-300 leading-relaxed">{product.tagline}</p>
 
               <div className="mt-5 flex flex-wrap items-center gap-2.5">
                 <a href={product.websiteUrl} target="_blank" rel="noopener noreferrer" className={buttonClasses({ size: "sm" })}>
@@ -83,7 +83,7 @@ export default async function ProductPage({ params }: { params: Params }) {
                 </a>
                 <FavoriteButton productId={product.id} />
                 {review && (
-                  <a href="#review" className="text-xs font-bold text-[#86ba28] hover:underline">
+                  <a href="#review" className="text-xs font-bold text-sun hover:underline">
                     Read our review →
                   </a>
                 )}
@@ -96,8 +96,8 @@ export default async function ProductPage({ params }: { params: Params }) {
         <div className="grid gap-6 lg:grid-cols-[1fr_260px]">
           <div className="space-y-6 min-w-0">
             <Panel className="p-6">
-              <h2 className="text-sm font-black uppercase tracking-widest text-[#a6b194]">About</h2>
-              <div className="mt-3 space-y-3 text-sm leading-relaxed text-[#c5ceb8]">
+              <h2 className="text-sm font-black uppercase tracking-widest text-dune-200">About</h2>
+              <div className="mt-3 space-y-3 text-sm leading-relaxed text-dune-100">
                 {product.description.length > 0 ? (
                   product.description.map((paragraph, i) => <p key={i}>{paragraph}</p>)
                 ) : (
@@ -113,11 +113,11 @@ export default async function ProductPage({ params }: { params: Params }) {
 
           <aside className="space-y-6">
             <Panel className="p-5">
-              <h2 className="text-sm font-black uppercase tracking-widest text-[#a6b194]">Details</h2>
+              <h2 className="text-sm font-black uppercase tracking-widest text-dune-200">Details</h2>
               <dl className="mt-3 space-y-2.5 text-xs">
                 {details.map((d) => (
                   <div key={d.label} className="flex justify-between gap-3">
-                    <dt className="text-[#727c65]">{d.label}</dt>
+                    <dt className="text-dune-500">{d.label}</dt>
                     <dd className="truncate font-semibold text-white">{d.value}</dd>
                   </div>
                 ))}
@@ -128,7 +128,7 @@ export default async function ProductPage({ params }: { params: Params }) {
                     <Link
                       key={tag}
                       href={`/browse?q=${encodeURIComponent(tag)}`}
-                      className="rounded-full border border-[#23291c] bg-[#0f120b] px-2.5 py-0.5 text-[10px] font-semibold text-[#a6b194] hover:text-white"
+                      className="rounded-full border border-dune-850 bg-dune-950 px-2.5 py-0.5 text-[10px] font-semibold text-dune-200 hover:text-white"
                     >
                       {tag}
                     </Link>

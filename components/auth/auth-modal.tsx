@@ -41,14 +41,14 @@ export function AuthModal({ children }: { children: ReactNode }) {
       }}
       onClick={onBackdropClick}
       aria-label="Account"
-      className="animate-card-pop m-auto w-[calc(100%-2rem)] max-w-md overflow-visible rounded-[24px] border border-[#22271a] bg-[#13160e] p-0 text-[#f3efe6] shadow-2xl backdrop:bg-black/70 backdrop:backdrop-blur-sm"
+      className="animate-card-pop m-auto w-[calc(100%-2rem)] max-w-md overflow-visible rounded-[24px] border border-dune-850 bg-dune-940 p-0 text-dune-50 shadow-2xl backdrop:bg-black/70 backdrop:backdrop-blur-sm"
     >
       <div className="relative">
         <button
           type="button"
           onClick={close}
           aria-label="Close"
-          className="absolute right-4 top-4 rounded-full p-1.5 text-[#8c967d] transition hover:bg-[#1f2417] hover:text-white"
+          className="absolute right-4 top-4 rounded-full p-1.5 text-dune-400 transition hover:bg-dune-900 hover:text-white"
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="h-4 w-4" aria-hidden>
             <path d="M18 6 6 18M6 6l12 12" />

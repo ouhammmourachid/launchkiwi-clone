@@ -6,7 +6,7 @@
 import Image from "next/image";
 
 const SIZES = { xs: 34, sm: 36, md: 44, lg: 64 } as const;
-const MONOGRAM_COLORS = ["#86ba28", "#0284c7", "#7c3aed", "#ea580c", "#0d9488", "#db2777", "#ca8a04", "#4f46e5"];
+const MONOGRAM_COLORS = ["#f2a33a", "#0284c7", "#7c3aed", "#ea580c", "#0d9488", "#db2777", "#ca8a04", "#4f46e5"];
 
 interface ProductLogoProps {
   name: string;
@@ -16,7 +16,7 @@ interface ProductLogoProps {
 
 export function ProductLogo({ name, logoUrl, size = "md" }: ProductLogoProps) {
   const px = SIZES[size];
-  const box = "flex shrink-0 items-center justify-center overflow-hidden rounded-xl border border-[#262c1c]";
+  const box = "flex shrink-0 items-center justify-center overflow-hidden rounded-xl border border-dune-850";
 
   if (logoUrl) {
     return (

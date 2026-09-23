@@ -1,19 +1,52 @@
 @import "tailwindcss";
 
+/*
+ * LaunchDunes — "Golden Hour" theme.
+ * Warm desert-at-sunset palette: night sand grounds, dune-brown surfaces, sun-amber accent.
+ * Components use the Tailwind tokens below (e.g. `bg-dune-925`, `text-sun`), so the whole
+ * palette can be retuned from this file.
+ */
 :root {
-  --background: #0e100b;
-  --foreground: #f3efe6;
-  --primary: #bedb63;
-  --primary-dark: #a9cf4f;
-  --surface: #14170f;
-  --surface-soft: #1d2117;
-  --bg-dark: #0b0d09;
-  --ink: #f3efe6;
-  --muted: #9ca38d;
-  --panel: rgba(18, 21, 15, 0.92);
-  --panel-strong: rgba(26, 29, 22, 0.96);
-  --line: rgba(255, 255, 255, 0.08);
-  --shadow: rgba(0, 0, 0, 0.4);
+  --background: #16100a;
+  --foreground: #f7ead6;
+  --primary: #f2a33a;
+  --primary-dark: #d98a24;
+  --surface: #1e160e;
+  --surface-soft: #231b13;
+  --bg-dark: #120d08;
+  --ink: #f7ead6;
+  --muted: #b39d80;
+  --panel: rgba(30, 22, 14, 0.92);
+  --panel-strong: rgba(35, 27, 19, 0.96);
+  --line: rgba(247, 234, 214, 0.08);
+  --shadow: rgba(0, 0, 0, 0.45);
+}
+
+@theme {
+  /* Sun — brand accent */
+  --color-sun: #f2a33a;
+  --color-sun-bright: #f7b457;
+  --color-sun-deep: #d98a24;
+  --color-ember: #c2521b;
+
+  /* Dune — warm neutral scale, light (text) to dark (grounds) */
+  --color-dune-50: #f7ead6;
+  --color-dune-100: #dccbb2;
+  --color-dune-200: #c2ad8f;
+  --color-dune-300: #b39d80;
+  --color-dune-400: #9c8769;
+  --color-dune-500: #86735a;
+  --color-dune-600: #6f5f4b;
+  --color-dune-700: #57493a;
+  --color-dune-750: #3f3327;
+  --color-dune-800: #33291f;
+  --color-dune-850: #2b2219;
+  --color-dune-900: #231b13;
+  --color-dune-925: #1e160e;
+  --color-dune-940: #1a130c;
+  --color-dune-950: #16100a;
+  --color-dune-970: #120d08;
+  --color-dune-990: #0d0905;
 }
 
 @theme inline {
@@ -25,8 +58,8 @@
   --color-bg-dark: var(--bg-dark);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
-  --font-sans: var(--font-plus-jakarta-sans);
-  --font-display: var(--font-plus-jakarta-sans);
+  --font-sans: var(--font-readex-pro);
+  --font-display: var(--font-bricolage);
   --font-mono: var(--font-jetbrains-mono);
 }
 
@@ -38,17 +71,24 @@ html {
 body {
   margin: 0;
   background:
-    radial-gradient(circle at top, rgba(121, 138, 74, 0.14), transparent 30%),
+    radial-gradient(ellipse 80% 40% at 50% -5%, rgba(242, 163, 58, 0.14), transparent 60%),
     var(--background);
   color: var(--foreground);
-  font-family: var(--font-plus-jakarta-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-readex-pro), "Segoe UI", Tahoma, Arial, sans-serif;
+}
+
+/* Headings and the wordmark use the display face. */
+h1,
+h2,
+h3 {
+  font-family: var(--font-bricolage), var(--font-readex-pro), system-ui, sans-serif;
 }
 
 .dark {
-  --background: #0b0d09;
-  --foreground: #f3efe6;
-  --surface: #14170f;
-  --ink: #f3efe6;
+  --background: #120d08;
+  --foreground: #f7ead6;
+  --surface: #1e160e;
+  --ink: #f7ead6;
 }
 
 * {
@@ -72,10 +112,10 @@ select {
 }
 
 ::selection {
-  background: rgba(190, 219, 99, 0.35);
+  background: rgba(242, 163, 58, 0.35);
 }
 
-/* Sidebar cards pop in (mirrors launchkiwi.com). */
+/* Sidebar cards pop in. */
 @keyframes card-pop {
   0% { opacity: 0; transform: scale(0.92); }
   100% { opacity: 1; transform: scale(1); }
@@ -85,6 +125,22 @@ select {
   animation: card-pop 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+/* Hero dunes drift sideways; layers move at different speeds for depth. */
+@keyframes dune-drift {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-dune-drift {
+  animation: dune-drift 45s linear infinite;
+}
+
+.animate-dune-drift-slow {
+  animation: dune-drift 80s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-card-pop { animation: none; }
+  .animate-card-pop,
+  .animate-dune-drift,
+  .animate-dune-drift-slow { animation: none; }
 }

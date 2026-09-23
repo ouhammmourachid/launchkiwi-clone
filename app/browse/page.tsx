@@ -17,7 +17,7 @@ import { PRICING_MODELS, type PricingModel } from "@/lib/types/records";
 
 export const metadata: Metadata = {
   title: "Browse products",
-  description: "Search and filter every indie product launched on LaunchKiwi.",
+  description: "Search and filter every indie product launched on LaunchDunes.",
 };
 
 const PER_PAGE = 20;

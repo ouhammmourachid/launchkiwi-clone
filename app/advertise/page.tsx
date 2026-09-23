@@ -5,7 +5,7 @@ import { ContentShell } from "@/components/layout/content-shell";
 
 export const metadata: Metadata = {
   title: "Advertise",
-  description: "Put your product at the top of the LaunchKiwi feed.",
+  description: "Put your product at the top of the LaunchDunes feed.",
 };
 
 export default function AdvertisePage() {
