@@ -1,19 +1,20 @@
 /**
  * submit-form.tsx
- * Client component — the URL submission form on the hero section.
- * Isolated here so the home page can remain a Server Component.
+ * Hero URL box — hands the URL to the full submit form on /launch.
  */
 
-"use client";
+import Form from "next/form";
 
 export function SubmitForm() {
   return (
-    <form
+    <Form
+      action="/launch"
       className="mt-7 flex flex-col sm:flex-row items-center gap-2 max-w-md mx-auto rounded-xl border border-[#22271a] bg-[#0a0c07] p-1.5 shadow-inner"
-      onSubmit={(e) => e.preventDefault()}
     >
       <input
-        type="text"
+        type="url"
+        name="url"
+        aria-label="Your product URL"
         placeholder="https://yourproduct.com"
         className="w-full bg-transparent px-3 py-2 text-xs text-white placeholder:text-[#5d6550] outline-none flex-1"
       />
@@ -24,6 +25,6 @@ export function SubmitForm() {
         <span>🚀</span>
         <span>Submit</span>
       </button>
-    </form>
+    </Form>
   );
 }

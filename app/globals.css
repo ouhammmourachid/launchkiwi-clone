@@ -74,3 +74,17 @@ select {
 ::selection {
   background: rgba(190, 219, 99, 0.35);
 }
+
+/* Sidebar cards pop in (mirrors launchkiwi.com). */
+@keyframes card-pop {
+  0% { opacity: 0; transform: scale(0.92); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.animate-card-pop {
+  animation: card-pop 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-card-pop { animation: none; }
+}

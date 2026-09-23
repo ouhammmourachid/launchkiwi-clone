@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('PocketBase Backend Wire Verification', () => {
   test('PB admin accessible at local URL', async ({ page }) => {
     await page.goto('http://127.0.0.1:8090/_/');
-    await expect(page.locator('body')).toContainText('PocketBase');
+    await expect(page.locator('body')).toContainText('Superuser login');
   });
 
   test('Frontend loads with backend connection', async ({ page }) => {
@@ -13,8 +13,8 @@ test.describe('PocketBase Backend Wire Verification', () => {
   });
 
   test('Login page accessible', async ({ page }) => {
-    await page.goto('http://localhost:3000/_auth/login');
-    await expect(page.locator('h2')).toContainText('Sign in');
+    await page.goto('http://localhost:3000/login');
+    await expect(page.locator('h1')).toContainText('Welcome back');
   });
 
   test('Browse page loads (server fetch)', async ({ page }) => {

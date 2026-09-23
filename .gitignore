@@ -40,3 +40,13 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .env.local
+
+# playwright
+/test-results/
+/playwright-report/
+/.playwright-cli/
+
+# graphify knowledge-graph output
+/graphify-out/
+
+!.env.example

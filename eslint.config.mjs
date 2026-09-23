@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // PocketBase binary, data and JSVM hooks/migrations (not browser/Node code).
+    "pb/**",
   ]),
 ]);
 

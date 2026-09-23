@@ -1,0 +1,730 @@
+{
+  "scraped_at": "2026-09-22T21:55:41.928Z",
+  "products": [
+    {
+      "slug": "pagecub",
+      "name": "PageCub",
+      "tagline": "Custom and personalized illustrated kids books, from scratch every time. Make them the hero!",
+      "description": "<p>Pagecub is a service to make custom and completely personalized illustrated kids books.  They are made from scratch anytime, for any particular kid or family, any particular story, theme or moral.  Any particular art style or subject.  Not just Ebooks, but also printed premium quality hard copies!</p>",
+      "website_url": "https://pagecub.com/",
+      "category": "Design",
+      "tags": [
+        "Design",
+        "E-commerce",
+        "SaaS",
+        "Other"
+      ],
+      "pricing_model": "Freemium",
+      "published": "Sep 18, 2026",
+      "upvotes": 9,
+      "badge": "PRIORITY",
+      "logo_url": "https://xuhtcmyauadfvrpzqiih.supabase.co/storage/v1/object/public/logos/da86d1ea-e728-4337-87cb-20de267d80b2/1789743086969.webp"
+    },
+    {
+      "slug": "linkedin-mcp-server",
+      "name": "LinkedIn MCP Server",
+      "tagline": "Reach MCP connects your real LinkedIn account to Claude, ChatGPT, Cursor or n8n. Six ready playbooks.",
+      "description": "<p>Reach MCP plugs your real LinkedIn account into Claude or ChatGPT. Ask in plain words: it finds the people who reacted, viewed, or went quiet, writes each message, and waits for your go before sending anything.<br><strong>52 tools to manage your Linkedin accounts.</strong></p>",
+      "website_url": "https://www.reachmcp.com",
+      "category": "SaaS",
+      "tags": [
+        "SaaS",
+        "Marketing",
+        "AI"
+      ],
+      "pricing_model": "Paid",
+      "published": "Sep 17, 2026",
+      "upvotes": 9,
+      "badge": "PRIORITY",
+      "logo_url": null
+    },
+    {
+      "slug": "coregulateai",
+      "name": "CoRegulateAI",
+      "tagline": "The Personalized Operating System for Emotional Regulation",
+      "description": "<p>CoRegulateAI is a therapist-designed emotional regulation platform that combines clinical expertise with AI personalization. Built by a licensed mental health counselor, it helps users manage stress, anxiety, trauma recovery, burnout, and neurodivergent needs through adaptive check-ins, somatic exercises, guided journaling, mindfulness tools, and structured Expert Packs. CoRegulateAI is positioned between static wellness-content apps and high-cost human-delivered care, providing personalized support at an accessible price. Its scalable B2C and B2B2C model includes consumer subscriptions, clinician referrals, practice partnerships, and organizational licensing. Our vision is to become the personalized operating system for emotional regulation.</p>",
+      "website_url": "https://www.coregulateai.com/",
+      "category": "Health Tech",
+      "tags": [
+        "Health Tech",
+        "AI"
+      ],
+      "pricing_model": "Freemium",
+      "published": "Sep 15, 2026",
+      "upvotes": 11,
+      "badge": "PRIORITY",
+      "logo_url": "https://xuhtcmyauadfvrpzqiih.supabase.co/storage/v1/object/public/logos/8ee2630d-9974-435f-b428-4ff8680d9b15/1789502187106.svg"
+    },
+    {
+      "slug": "jern-cloud",
+      "name": "Jern Cloud",
+      "tagline": "Deploy a governed coding agent that operates in isolated cloud environments",
+      "description": "<p><strong>Jern Cloud</strong> is a governed cloud coding agent designed for development teams that require strict security and auditability. It executes autonomous coding sessions on isolated cloud machines under pinned execution policies, strict token caps, and zero credential exposure.</p><p>Every completed session delivers a reviewable pull request directly to your repository along with encrypted execution evidence. Development teams can safely delegate coding tasks without running local tools or sharing persistent API credentials.</p>",
+      "website_url": "https://jern.ai",
+      "category": "Developer Tools",
+      "tags": [
+        "Developer Tools"
+      ],
+      "pricing_model": "Free",
+      "published": "Sep 3, 2026",
+      "upvotes": 26,
+      "badge": "PRIORITY",
+      "logo_url": "https://xuhtcmyauadfvrpzqiih.supabase.co/storage/v1/object/public/logos/7d427b38-5ed5-47e8-b892-4c12c30a6281/1788447628645.svg"
+    },
+    {
+      "slug": "bidflip-lol",
+      "name": "bidflip.lol",
+      "tagline": "It’s not just a game, it’s a war for the top spot. ⚔️",
+      "description": "<p><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"http://Bidflip.lol\"><strong>Bidflip.lol</strong></a> is the ultimate pay-to-rank leaderboard where casual is dead and competition rules. Forget grinding for weeks; this is intense, live-action strategy. Fight for your place on THE board. Which side are you on? 🚀 vs 🛡️ Join the chaos at <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"http://bidflip.lol\"><strong>bidflip.lol</strong></a>. #GamingWar #LeaderboardWarfare<br><br><br><strong>Key features :-</strong></p><ul><li><p>Intense, competitive, pay-to-rank live leaderboard</p></li><li><p>Trackable achievement with unique 'WILD' point scoring.</p></li><li><p>Unlockable prestige: earn prestigious in-game badges like 'Top Contributor.'</p></li><li><p>High-octane strategy: participate in data puzzles and team-based warfare.</p></li><li><p>Integrated vibrant community on Discord for real-time engagement.</p></li></ul><p></p><p></p>",
+      "website_url": "https://bidflip.lol/",
+      "category": "Marketing",
+      "tags": [
+        "Marketing",
+        "SEO",
+        "Developer Tools"
+      ],
+      "pricing_model": "Free",
+      "published": "Sep 2, 2026",
+      "upvotes": 22,
+      "badge": "PRIORITY",
+      "logo_url": null
+    },
+    {
+      "slug": "vigigym",
+      "name": "VigiGym",
+      "tagline": "Your personal training journal. Always with you.",
+      "description": "<p><strong>VigiGym is a focused workout tracker for iPhone and Apple Watch, built for people who train for themselves.</strong></p><p>Create your own routines, log sets and reps, track your progress and explore detailed statistics for strength, volume and consistency. VigiGym supports straight sets, supersets, giant sets, drop sets and pyramids, with 240+ exercises and detailed muscle information.</p><p>The Apple Watch app keeps the essentials right on your wrist, so your phone can stay in your pocket while you train.</p><p>What makes VigiGym different is what it deliberately leaves out: <strong>no social feed, no followers, no likes and no algorithm fighting for your attention.</strong> Your training data stays on your device.</p><p>VigiGym is designed and developed by a single indie developer with one simple philosophy: give you powerful tools when you need them, then get out of your way.</p><p><strong>Built for lifting. Not for scrolling.</strong></p>",
+      "website_url": "https://www.vigigym.com",
+      "category": "Health Tech",
+      "tags": [
+        "Health Tech"
+      ],
+      "pricing_model": "Freemium",
+      "published": "Aug 27, 2026",
+      "upvotes": 29,
+      "badge": "PRIORITY",
+      "logo_url": "https://xuhtcmyauadfvrpzqiih.supabase.co/storage/v1/object/public/logos/13506537-592f-4b20-b7e7-79beb8638f46/1787831477839.webp"
+    },
+    {
+      "slug": "proworx-software",
+      "name": "ProWorx Software",
+      "tagline": "Simple business management software built for owner-operators",
+      "description": "<p>ProWorx Software is built for owner-operators and small service businesses that know how to do the work but need a better way to run the business around it. The platform brings customer requests, estimates, scheduling, job management, invoicing, payments, communications, and reviews into one connected system. </p><p><br>Unlike field service platforms designed primarily for larger, established companies, ProWorx starts with the needs of the smallest operators. It is intentionally simple, easy to implement, and focused on the essential systems needed to run professionally without unnecessary complexity or disconnected tools. <br><br>ProWorx supports businesses such as handyman services, cleaning, lawn care, junk removal, mobile detailing, installation, and specialty trades.</p>",
+      "website_url": "https://proworx.io/product.html",
+      "category": "SaaS",
+      "tags": [
+        "SaaS"
+      ],
+      "pricing_model": "Paid",
+      "published": "Aug 25, 2026",
+      "upvotes": 29,
+      "badge": "PRIORITY",
+      "logo_url": null
+    },
+    {
+      "slug": "youex-ai",
+      "name": "YouEx.ai",
+      "tagline": "Capture, qualify, and work warm leads automatically with AI web agents and CRM",
+      "description": "<p><strong>YouEx.ai</strong> is an all-in-one lead-to-revenue platform designed for B2B sales teams. It unifies an AI web agent, an AI-native CRM, and automated revenue agents into a single system to ensure every inbound visitor gets engaged and processed without delay.</p><p>The platform automatically captures contact information, answers visitor questions, scores intent, and enriches lead records. It also routes qualified prospects to the right reps, drafts personalized follow-up emails, and schedules calendar meetings seamlessly.</p>",
+      "website_url": "https://youex.ai/",
+      "category": "AI",
+      "tags": [
+        "AI",
+        "SaaS",
+        "Marketing"
+      ],
+      "pricing_model": "Free",
+      "published": "Aug 25, 2026",
+      "upvotes": 31,
+      "badge": "PRIORITY",
+      "logo_url": "https://xuhtcmyauadfvrpzqiih.supabase.co/storage/v1/object/public/logos/06bde353-4753-494b-adc2-da52adc66801/1787665793059.png"
+    },
+    {
+      "slug": "launchbuck",
+      "name": "LaunchBuck",
+      "tagline": "Discover the newest AI & SaaS launches",
+      "description": "LaunchBuck is a daily launchpad for AI tools and SaaS products. Founders submit what they've built, the community upvotes and comments on what stands out, and the best launches climb the daily, weekly, and monthly leaderboards — ranked purely by genuine interest, not by who paid the most.\n\nWe built it because most launch directories either bury new products under years of stale listings, or make the actual signal — real upvotes, real reviews, real conversation — hard to find under the noise. LaunchBuck is scoped narrowly to AI and SaaS on purpose: a smaller, more relevant pool means your launch is competing for attention against tools people are actually comparing you to.\n\nEvery live listing gets a permanent, SEO-indexed page, a founder profile, and an embeddable badge for your own site. Submitting is free.</p>\n\n\nLaunchNest is an innovative platform designed for makers, builders, and founders to launch, rank, and gain exposure for their products through a unique community-driven tournament system. It offers a dynamic environment where new products can be listed for free, compete in a bi-weekly bracket, and ultimately be crowned by community votes.\n\n\nThe core concept of LaunchNest revolves around its \"Launch. Rank. Repeat.\" philosophy. Every two weeks, 16 of the most upvoted products are automatically entered into a knockout-style tournament bracket. Over a 14-day cycle, the community engages in head-to-head matchups, voting for their preferred products across the Round of 16, Quarterfinals, Semifinals, and the Championship. This structured competition ensures continuous engagement and provides a fair battleground for products to prove their worth.\n\n\nKey features and benefits for product creators include:\n\n\nFree and Permanent Listing: Makers can add their product in about two minutes without any fees or approval queues, immediately landing on the board. Each listing includes a dedicated page, allowing for upvotes and reviews.\nTournament Entry: The 16 most-upvoted products are automatically drawn into the bi-weekly knockout bracket, offering a prime opportunity for exposure and community validation.\n\n\nWinner's Accolades: Champions of the tournament receive significant recognition, including a prestigious winner’s badge, a permanent place in the Hall of Fame, a permanent listing on the platform, and a valuable dofollow backlink to their website. This dofollow link is a significant SEO benefit, enhancing the product's search engine visibility.\n\n\nFair Voting System: To maintain integrity, voting requires users to be signed in, allows only one vote per matchup (enforced by the database), and mandates that both competing products must be opened before a vote is counted. Hashed IP logging is also used to detect and prevent coordinated voting efforts.\nSEO Enhancement: Initially, listing links are nofollow. However, by adding the free LaunchNest badge to their site and verifying it (ensuring it links back to their listing), product owners can convert their link into a permanent dofollow backlink, boosting their SEO.\n\n\nFlexible Listing Management: Product owners can edit their listing details (name, tagline, description, categories, logo, screenshot) at any time from their dashboard, with changes going live immediately.\n\n\nVerified Reviews: Reviews on LaunchNest are designed to be credible, requiring the reviewer's email to be confirmed and proof that they clicked through to the product from LaunchNest at least once.\n\n\nPromotional Opportunities: For those seeking additional visibility, LaunchNest offers \"Featured\" and \"Spotlight\" options. \"Featured\" pins a product to the top of the directory, while \"Spotlight\" places it prominently on the homepage grid, visible to every visitor. These are one-time payments, not subscriptions.\n\n\nLaunchNest serves as an excellent platform for new and existing products to gain traction, gather community feedback, and achieve significant SEO advantages through its unique tournament model. It's ideal for founders looking for a competitive and engaging way to launch and grow their ventures.",
+      "website_url": "https://launchbuck.com",
+      "category": "Marketing",
+      "tags": [
+        "Marketing",
+        "Productivity"
+      ],
+      "pricing_model": "Freemium",
+      "published": "Aug 19, 2026",
+      "upvotes": 50,
+      "badge": "PRIORITY",
+      "logo_url": null
+    },
+    {
+      "slug": "drawgenie",
+      "name": "DrawGenie",
+      "tagline": "Create custom AI-generated coloring books starring your child",
+      "description": "<p><strong>DrawGenie</strong> is an AI platform that creates personalized coloring books for children based on a name and custom theme. Each book incorporates the child's name onto the cover and weaves custom-drawn illustrations tailored to their world across every page.</p><p>Users can generate print-ready books using free credits without a recurring subscription. Generated books are stored permanently in the user's account and can be downloaded as <strong>high-quality PDFs</strong> to print at home.</p>",
+      "website_url": "https://drawgenie.io/",
+      "category": "AI",
+      "tags": [
+        "AI"
+      ],
+      "pricing_model": "Freemium",
+      "published": "Aug 17, 2026",
+      "upvotes": 68,
+      "badge": "PRIORITY",
+      "logo_url": null
+    },
+    {
+      "slug": "certyneo",
+      "name": "Certyneo",
+      "tagline": "Sovereign eIDAS-compliant electronic signature platform hosted in Europe",
+      "description": "<p><strong>Certyneo</strong> is a sovereign European electronic signature platform designed for sending, signing, and tracking documents securely. Hosted entirely within the European Union, it ensures full compliance with eIDAS standards and GDPR regulations while protecting user data from non-EU legal extraterritoriality.</p><p>The platform includes advanced features such as an <strong>AI contract generator</strong>, qualified electronic signatures (QES), and open standard verification (PAdES LTV). It offers 10-year legal archiving and serves as a cost-effective alternative to traditional signature providers.</p>",
+      "website_url": "https://certyneo.com",
+      "category": "SaaS",
+      "tags": [
+        "SaaS",
+        "Developer Tools",
+        "APIs",
+        "Productivity"
+      ],
+      "pricing_model": "Freemium",
+      "published": "Aug 21, 2026",
+      "upvotes": 33,
+      "badge": "PRIORITY",
+      "logo_url": "https://xuhtcmyauadfvrpzqiih.supabase.co/storage/v1/object/public/logos/71702dc7-5824-4fcb-91ac-732e3fc7035b/1787297781469.png"
+    },
+    {
+      "slug": "reviewturbo",
+      "name": "ReviewTurbo",
+      "tagline": "AI replies for your customer reviews.",
+      "description": "<p>ReviewTurbo adds a 1-Click Reply button next to every review on Google, Yelp, Trustpilot, Google Play and the App Store — on-brand replies in the customer’s language, right where your reviews already are.</p>",
+      "website_url": "https://reviewturbo.app/",
+      "category": "Developer Tools",
+      "tags": [
+        "Developer Tools"
+      ],
+      "pricing_model": "Freemium",
+      "published": "Aug 24, 2026",
+      "upvotes": 61,
+      "badge": "PREMIUM",
+      "logo_url": "https://xuhtcmyauadfvrpzqiih.supabase.co/storage/v1/object/public/logos/93c5f3fa-e795-4cce-b3f2-571ad3b87151/1785491640213.png"
+    },
+    {
+      "slug": "tabreon",
+      "name": "Tabreon",
+      "tagline": "50+ free browser tools for PDF, images, JSON and text. No sign-up, no upload.",
+      "description": "<p>Tabreon is 50+ free, browser-based tools for everyday digital work: JSON/YAML/CSV formatters, PDF merge/split, image resize/compress, QR codes, text utilities, and more. Most tools run entirely client-side, so files and text are processed in your browser and never uploaded to a server. No account, no installs, no watermark spam. A few tools (HEIC/TIFF/SVG conversion) do need a server, and we say so explicitly on those pages.</p>",
+      "website_url": "https://tabreon.com",
+      "category": "Developer Tools",
+      "tags": [],
+      "pricing_model": "Free",
+      "published": null,
+      "upvotes": 0,
+      "badge": null,
+      "logo_url": null
+    },
+    {
+      "slug": "astromystra",
+      "name": "Astromystra",
+      "tagline": "Vedic astrology calculations, interpreted by AI",
+      "description": "<p>AstroMystra combines real astronomical calculations with AI interpretation for Vedic astrology. Get a free birth chart, numerology analysis (Moolank and Bhagyank), compatibility/synastry reports, and daily horoscopes for every zodiac sign, plus an AI chat (Cosmic Oracle) for follow-up questions. Available in English and Hindi.</p>",
+      "website_url": "https://astromystra.com",
+      "category": "AI",
+      "tags": [],
+      "pricing_model": "Free",
+      "published": null,
+      "upvotes": 0,
+      "badge": null,
+      "logo_url": "https://xuhtcmyauadfvrpzqiih.supabase.co/storage/v1/object/public/logos/6650e3a0-bf03-4c36-bb1b-e2ff0c8c69b1/1790104295905.webp"
+    },
+    {
+      "slug": "find-backlinks-for-your-website",
+      "name": "Find backlinks for your website",
+      "tagline": "Free link building for site owners. Find backlinks from verified websites in your niche: match on to",
+      "description": "<p>Struggling to build backlinks? Cold outreach is slow, brokers are expensive, and most link schemes get you penalised. AnyBacklink is a smarter, free way to earn genuine backlinks from relevant sites in your niche.</p><p></p><p>Here's how it works. Add your website and pick three keywords that describe what you do. We match you with verified site owners who share your topics, so every opportunity is actually relevant, not random. You can compare real traffic signals to see who's worth approaching, then message them directly to agree a backlink that suits you both.</p><p></p><p>No brokers taking a cut. No commission. No automated link placements that put your site at risk. Just real website owners helping each other rank, on your terms.</p><p>Relevance comes first: you decide who you link with and where the link goes. Join free, find your first match in minutes, and start building backlinks the way Google actually wants.</p>",
+      "website_url": "https://anybacklink.com/as-seen-on",
+      "category": "SEO",
+      "tags": [],
+      "pricing_model": "Free",
+      "published": null,
+      "upvotes": 0,
+      "badge": null,
+      "logo_url": "https://xuhtcmyauadfvrpzqiih.supabase.co/storage/v1/object/public/logos/b6462f64-5fa1-4295-ba38-a19fccbec8af/1790092764296.png"
+    },
+    {
+      "slug": "zinn-hub",
+      "name": "Zinn Hub®",
+      "tagline": "The Fairer Global Freelance Marketplace for Buyers & Freelancers",
+      "description": "<h2>The Fairer Global Freelance Marketplace</h2><p>Zinn Hub® is a global freelance marketplace connecting businesses with vetted freelancers for SEO, web design, development, content writing, digital marketing, creative services and more.</p><h3>Hire Freelancers Your Way</h3><p>Buy ready-made Zinns®, try Micro Zinns®, post projects and receive proposals, or discover talent through the Freelancer Directory. Verified freelancers provide ID and proof of work, helping buyers find skilled talent with greater confidence.</p><h3>Work Globally Without Language Barriers</h3><p>Zinn Hub® supports 46 languages and 59 currencies, with translations across listings, projects, messages and reviews, plus live call captions and spoken translation.</p><h3>Built for Buyers &amp; Freelancers</h3><p>Buyers pay no platform fees, while freelancers pay 0% commission on their first $500 in sales. Secure payments, escrow, buyer protection and instant payouts support smoother transactions, while AI tools help buyers find talent and freelancers create better Zinns®.</p>",
+      "website_url": "https://zinnhub.com/",
+      "category": "Marketing",
+      "tags": [
+        "Marketing",
+        "E-commerce",
+        "SaaS",
+        "Productivity"
+      ],
+      "pricing_model": "Free",
+      "published": "Sep 22, 2026",
+      "upvotes": 3,
+      "badge": "PRIORITY",
+      "logo_url": null
+    },
+    {
+      "slug": "autodm",
+      "name": "AutoDM",
+      "tagline": "Convert Instagram comments into direct message sales with official Meta APIs. 3,000 free DMs/month o",
+      "description": "<p>AutoDM is an Instagram DM automation tool that turns comments and messages into leads and customers. Automatically reply to comments and send personalized DMs when people use keywords like “PRICE”, “LINK”, or “INFO”. Connect your Instagram through Meta’s official API, create automations in minutes, capture leads, share product links and carousels, track clicks, and manage conversations, all without manually replying to every customer.</p>",
+      "website_url": "https://autodm.live",
+      "category": "SaaS",
+      "tags": [],
+      "pricing_model": "Free",
+      "published": null,
+      "upvotes": 0,
+      "badge": null,
+      "logo_url": "https://xuhtcmyauadfvrpzqiih.supabase.co/storage/v1/object/public/logos/3ec6bffb-fc82-41ff-af1b-da3e42446ed0/1790090245627.webp"
+    },
+    {
+      "slug": "built2winweb-ai-tools",
+      "name": "Built2WinWeb AI Tools",
+      "tagline": "Built2Win is a custom PHP development studio and AI infrastructure provider.",
+      "description": "<p>We build hand‑coded, high‑performance websites that are fast, secure, and fully owned by the client — no page builders, no plugins, no monthly fees.</p><p>Every build ships with a complete AI agent discovery stack: MCP server, llms.txt, A2A handlers, OAuth metadata, and ARD manifests — scoring 100/100 on <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"http://isitagentready.com\">isitagentready.com</a>.</p><p>We also offer WebAgentScan ($9–$100/mo), a SaaS that scores any domain for AI readiness, MCP security, and Domain Rating from licensed Ahrefs and SE Ranking APIs. Our AI Indexing Pack ($599 one‑time) makes any site readable by AI agents in under 30 minutes.</p><p>Sites built by Built2Win rank higher, load faster, and appear in AI search results — driving referral traffic and leads competitors miss.</p>",
+      "website_url": "https://built2winweb.com/",
+      "category": "SaaS",
+      "tags": [],
+      "pricing_model": "Free",
+      "published": null,
+      "upvotes": 0,
+      "badge": null,
+      "logo_url": null
+    },
+    {
+      "slug": "imgextender",
+      "name": "Imgextender",
+      "tagline": "Expand your images beyond the edges without cropping the original.",
+      "description": "<p><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://imgextender.io\">ImgExtender</a> is an AI image extension tool that helps creators expand photos beyond their original borders. Users can upload an image, choose a suitable canvas ratio, and generate additional visual content around the existing composition without cropping out important subjects. With a built-in comparison view, ImgExtender makes it easy to review the extended areas before downloading the final result. It is useful for adapting images to social media layouts, wider designs, thumbnails, and other creative formats.</p>",
+      "website_url": "https://imgextender.io/",
+      "category": "AI",
+      "tags": [],
+      "pricing_model": "Free",
+      "published": null,
+      "upvotes": 0,
+      "badge": null,
+      "logo_url": null
+    },
+    {
+      "slug": "munen",
+      "name": "Munen",
+      "tagline": "Yesterday shapes your screen time today. Munen pauses distracting apps instead of blocking them.",
+      "description": "<p>Munen is a screen-time app for iPhone that changes how it meets you tomorrow, based on how today actually went.</p><p></p><p>Each night it reads on-device signals - app switching, late-night scrolling, long sessions - and places your day in one of five zones. That zone sets tomorrow's pause: a rough day means a firmer wait before a distracting app opens, a good week eases it. Never more than one step per day, and the change lands the next morning, never mid-slip.</p><p></p><p>Nothing is blocked. When a distracting app opens, Munen shows the reason you wrote yourself and the alternative you picked, then lets you decide.</p><p></p><p>You can always see why. The scoring runs on your phone, and usage data, zone and journal never leave the device.</p><p></p><p>The free plan is the full app for up to three apps, no time limit. Premium removes the app limit and adds friction intensity, unlimited history, a daily coach, personalized SOS and a weekly summary of your journal.</p><p></p><p>Built by one person, on the App Store since August.</p>",
+      "website_url": "https://munen.app",
+      "category": "Productivity",
+      "tags": [],
+      "pricing_model": "Free",
+      "published": null,
+      "upvotes": 0,
+      "badge": null,
+      "logo_url": "https://xuhtcmyauadfvrpzqiih.supabase.co/storage/v1/object/public/logos/79bdfe7d-45c7-4989-aea9-31f07a1a65e6/1790029431818.webp"
+    },
+    {
+      "slug": "combozen",
+      "name": "ComboZen",
+      "tagline": "Motivational support for the projects of your life.",
+      "description": "<p>ComboZen is a tool for organising and for personal development, letting you rank your priorities while adapting to your pace.</p><p>ComboZen can help you build daily routines and identify the steps that are doable today for your projects.</p><p>Depending on how far along your goals are, the application prioritises your tasks according to the zone you are in: learning, comfort or stretch.</p><p>It is fully configurable and gives you a dashboard to follow your progress and your watch points. The goals you reach are filed into your achievements if you want to keep the trace, and you can bring them back later if you need to.</p><p>ComboZen sets itself according to your progress, to follow your development as closely as it can.</p>",
+      "website_url": "https://combozen.app",
+      "category": "Productivity",
+      "tags": [],
+      "pricing_model": "Free",
+      "published": null,
+      "upvotes": 0,
+      "badge": null,
+      "logo_url": "https://xuhtcmyauadfvrpzqiih.supabase.co/storage/v1/object/public/logos/0ca19c10-070f-44f0-8014-62a754c98237/1790008156396.webp"
+    },
+    {
+      "slug": "fullstackseo-ai",
+      "name": "fullstackseo.ai",
+      "tagline": "FullStackSEO researches keywords, creates and publishes SEO articles, and tracks your visibility in AI answers.",
+      "description": "<p>FullStackSEO helps founders and small teams build a consistent search presence without managing a separate tool for every step.</p><p>Turn keyword research into a 30-day content plan, choose your article preferences, and generate content with images, internal links, and SEO metadata. Preview and edit articles, manage your publishing calendar, or publish automatically to your connected website through a secure webhook.</p><p>Beyond content creation, FullStackSEO tracks brand mentions, citations, and competitors in sampled AI answers. Site Health reports identify technical SEO issues and broken links so you can prioritize fixes.</p><p>With research, writing, publishing, and visibility tracking in one workspace, FullStackSEO helps lean teams keep their websites active and work toward better discovery in search and AI.</p>",
+      "website_url": "https://www.fullstackseo.ai",
+      "category": "AI",
+      "tags": [],
+      "pricing_model": "Free",
+      "published": null,
+      "upvotes": 0,
+      "badge": null,
+      "logo_url": null
+    },
+    {
+      "slug": "velstash-cache",
+      "name": "Velstash  Cache",
+      "tagline": "Boring infrastructure, honestly priced.",
+      "description": "<p>Velstash Cache offers managed memcached hosting with a dedicated cache instance that is easy to use and cost-effective. It is designed for developers and small teams who need reliable caching infrastructure without the complexities of traditional cloud services.</p><p></p><p>The service provides a free 100MB cache instance with no credit card required, making it accessible for users to try before committing. Velstash Cache is hosted in Europe and aims to simplify caching by eliminating surprise costs and unnecessary configurations.</p><p></p><p>Additional monitoring tools include top-key and key-prefix statistics, showing hit and miss performance across different timeframes. Email alerts can notify users when memory usage or hit rate moves outside configured thresholds.</p><p>Velstash also provides credential management with different permissions for environments or applications. An application can be limited to reading from the cache or prevented from flushing the entire cache.</p><p></p>",
+      "website_url": "https://www.velstash.com",
+      "category": "SaaS",
+      "tags": [],
+      "pricing_model": "Free",
+      "published": null,
+      "upvotes": 0,
+      "badge": null,
+      "logo_url": "https://xuhtcmyauadfvrpzqiih.supabase.co/storage/v1/object/public/logos/98869485-58fd-40ba-8499-8c37a0d7490e/1789981864633.webp"
+    },
+    {
+      "slug": "find-your-complete-moving-guide",
+      "name": "Find Your Complete Moving Guide",
+      "tagline": "Free intelligence for moving between any two countries. Compare visas, living costs, take-home tax,",
+      "description": "<p>MigrantIQ is a platform built to make the experience of moving to and living in a new country simpler.</p><p>For many people, moving abroad is a major life decision. It can open the door to new opportunities, but the process itself can be confusing and overwhelming. There are visas and immigration requirements to understand, documents to prepare, jobs to find, housing to arrange, healthcare systems to learn, and countless everyday tasks that suddenly become unfamiliar.</p><p>The problem is that useful information is often scattered everywhere.</p><p>People might spend hours searching Google, reading government websites, going through Reddit discussions, watching YouTube videos, or asking questions in Facebook groups just to find an answer to one simple question. Even after finding an answer, it can be difficult to know whether the information is current, relevant to their situation, or trustworthy.</p><p></p><p></p>",
+      "website_url": "https://migrantiq.com",
+      "category": "Other",
+      "tags": [],
+      "pricing_model": "Free",
+      "published": null,
+      "upvotes": 0,
+      "badge": null,
+      "logo_url": "https://xuhtcmyauadfvrpzqiih.supabase.co/storage/v1/object/public/logos/ab93353d-7452-4305-b0a2-6bb9a79d5b7a/1789958007023.webp"
+    },
+    {
+      "slug": "wtagent",
+      "name": "WTAgent",
+      "tagline": "Turn ChatGPT Web (including Pro) into Codex. Turn Claude Web into Claude Code. Also DeepSeek, Gemini",
+      "description": "<p>WTAgent is a free, open-source (MIT) command-line coding agent. It lets you use the ChatGPT Web or Claude Web account you already pay for as a terminal coding assistant: it reads local files, edits code, runs shell commands and tests, and verifies results in agentic loops. No model API key, MCP server, tunnel or browser plugin needed. Also supports DeepSeek, Gemini, Grok, Kimi and Zhipu GLM. Install with one npm command on macOS, Linux or Windows (WSL2).</p>",
+      "website_url": "https://xixian42.github.io/wtagent",
+      "category": "AI",
+      "tags": [],
+      "pricing_model": "Free",
+      "published": null,
+      "upvotes": 0,
+      "badge": null,
+      "logo_url": null
+    },
+    {
+      "slug": "greatohm",
+      "name": "GreatOhm",
+      "tagline": "A Vedic guidance app bringing astrology, numerology, vastu, palmistry together for 360* analysis",
+      "description": "<p>GreatOhm is a Vedic life-guidance app by GreatOhm (OPC) Private Limited, bringing astrology, kundli, numerology, Vastu, palmistry, tarot and Nakshatra tools into one account — with a daily 360° Ohm Score and 26 language options. Available on Google Play.</p><p>Website: https://www.greatohm.com/</p><p>Android: https://play.google.com/store/apps/details?id=com.greatohm.mobileapp</p><p>Join us: https://www.greatohm.com/join.html</p>",
+      "website_url": "https://www.greatohm.com",
+      "category": "SaaS",
+      "tags": [],
+      "pricing_model": "Free",
+      "published": null,
+      "upvotes": 0,
+      "badge": null,
+      "logo_url": "https://xuhtcmyauadfvrpzqiih.supabase.co/storage/v1/object/public/logos/c6b26785-1075-4b48-b461-978f1313a23c/1789923426087.webp"
+    },
+    {
+      "slug": "nimitai-nimit-ai",
+      "name": "Nimitai (Nimit AI)",
+      "tagline": "Nimitai (Nimit AI): AI meeting intelligence for founder-led sales teams. Research the buyer, get coa",
+      "description": "<p>Nimitai is the only AI sales platform built to coach reps live, during the call — not after.</p><p></p><p>Sales reps walk into meetings knowing less about the buyer than the buyer knows about them. </p><p>Proper pre-call research takes 5-7 hours; most reps skip it, and the deal goes to whoever prepared better.</p><p></p><p>Nimitai fixes this end to end. </p><p></p><p>Researcher Agent turns a LinkedIn URL into a cited buyer dossier in 90 seconds. Prep Agent rehearses real objections before the call. </p><p>Copilot, our flagship feature, delivers live, in-call coaching by reading vocal and facial signals in real time — the only tool in the category built to coach during the conversation, not analyze it afterward like Gong or Fireflies.</p><p></p><p>Built on our own models, not a wrapped API — which is how we price at $99/seat/month, a fraction of enterprise tools, with no seat minimums.</p>",
+      "website_url": "https://nimitai.com",
+      "category": "AI",
+      "tags": [],
+      "pricing_model": "Free",
+      "published": null,
+      "upvotes": 0,
+      "badge": null,
+      "logo_url": null
+    },
+    {
+      "slug": "genogram-maker",
+      "name": "Genogram Maker",
+      "tagline": "Create a genogram online with our maker and AI generator. Get 5 starter AI credits when you sign up,",
+      "description": "<p>GenogramLab helps you map and understand complex family relationships through an intuitive visual editor. Describe your family in plain language to generate a genogram draft with AI, or start from scratch and manually add family members, relationships, life events, and notes. Capture marriages, divorces, parent-child connections, and emotional ties such as closeness, distance, and conflict. Refine your diagram with drag-and-drop editing, zoom, undo, and redo, and review AI-generated changes before applying them. Signed-in users can save and manage multiple projects, export diagrams as PNG or SVG, and print or save them as PDFs through their browser. Whether you’re preparing a class assignment, supporting a case discussion, or documenting your family history, GenogramLab makes it easier to organize family information into a clear, readable picture.</p>",
+      "website_url": "https://genogramlab.com/",
+      "category": "AI",
+      "tags": [],
+      "pricing_model": "Free",
+      "published": null,
+      "upvotes": 0,
+      "badge": null,
+      "logo_url": null
+    },
+    {
+      "slug": "paygseo",
+      "name": "PAYGSEO",
+      "tagline": "Get clear, evidence-backed SEO decisions for keywords, content, declining pages, competitors, and AI",
+      "description": "<p><strong>SEO tools for your AI agent that turn evidence into growth decisions.</strong></p><p></p><p>PAYGSEO handles the research and analysis behind focused keyword, content, competitor, and visibility workflows. Your agent gets supporting evidence, a clear verdict, and a recommended next action.</p>",
+      "website_url": "https://paygseo.com/",
+      "category": "SEO",
+      "tags": [],
+      "pricing_model": "Free",
+      "published": null,
+      "upvotes": 0,
+      "badge": null,
+      "logo_url": "https://xuhtcmyauadfvrpzqiih.supabase.co/storage/v1/object/public/logos/d10e477b-e299-4139-a99f-bc6b2daa49e3/1789746353113.png"
+    },
+    {
+      "slug": "project-cost-estimator",
+      "name": "Project Cost Estimator",
+      "tagline": "The independent website cost estimate.",
+      "description": "<p>Project Cost Estimator is a free calculator that tells you what a website or web app should cost before you ask anyone for a quote. Pick the project type, platform, features and the developer's market, and nine pricing engines return a cost range with a median, a timeline, the hourly rate behind it and a line-item breakdown. The figures are calibrated against 600+ project quotes and public rate benchmarks across six markets, from South Asia to the United States, and the method is published. We estimate websites; we do not build them, so the number has no reason to be inflated. Around the calculator sit a rate database (72 platform-by-region hourly bands, CC BY 4.0), a cost index by project type, and cost guides for 200+ industries. Paid tools start once real quotes arrive: a dated PDF report ($15), a Quote Analyzer that scores up to five quotes against your reference estimate ($39), and a written expert review within 24 hours ($99). No signup, no sales calls.</p>",
+      "website_url": "https://projectcostestimator.com/",
+      "category": "Developer Tools",
+      "tags": [],
+      "pricing_model": "Free",
+      "published": null,
+      "upvotes": 0,
+      "badge": null,
+      "logo_url": "https://xuhtcmyauadfvrpzqiih.supabase.co/storage/v1/object/public/logos/6c7899e5-e356-4399-bc19-c638ed1d7c52/1789738370769.webp"
+    },
+    {
+      "slug": "speechbubble-studio",
+      "name": "SpeechBubble Studio",
+      "tagline": "Free speech bubble maker — 10+ styles, no signup, PNG/GIF export",
+      "description": "<p>A free online speech bubble maker that runs in the browser — upload a photo, pick from 10+ comic styles (Classic, Meme, Pixel, Neon, Sketchy, Anime), type your text, and download as PNG or GIF. No signup, no watermark, no file-size limits. Also includes a fake text message generator with dark mode, a speech bubble meme generator, and a comic bubble generator.</p>",
+      "website_url": "https://speechbubble.studio/",
+      "category": "Design",
+      "tags": [],
+      "pricing_model": "Free",
+      "published": null,
+      "upvotes": 0,
+      "badge": null,
+      "logo_url": "https://xuhtcmyauadfvrpzqiih.supabase.co/storage/v1/object/public/logos/ade75d80-182e-43b8-84a3-47f6462d5209/1789696280716.png"
+    },
+    {
+      "slug": "pcalen",
+      "name": "PCalen",
+      "tagline": "Generate free printable calendar in seconds. Customize yearly or monthly layouts with holidays, set",
+      "description": "<p>PCalen is a free, browser-based generator for printable calendars, planners, and trackers. Pick a year or month, choose paper size, orientation, and holidays, then download a print-ready PDF or PNG — or print it directly. It covers yearly through daily views, plus undated planners and habit, budget, fitness, and baby trackers.</p><p>It is built for people who prefer paper: families sharing a wall calendar, students and teachers working to term dates, freelancers and small teams, shift workers who need hours, and anyone cutting down on screen time.</p><p>What sets PCalen apart is how little it asks: no account, no signup, no watermark, and no upload of what you create — everything runs locally in your browser. Layouts are engineered print-first, so pages come out at the size you asked for instead of being cut off. Settings work at two levels: site-wide defaults plus per-template options. The site is independent, funded by advertising, and publishes free planning and printing guidance.</p>",
+      "website_url": "https://pcalen.com",
+      "category": "Productivity",
+      "tags": [],
+      "pricing_model": "Free",
+      "published": null,
+      "upvotes": 0,
+      "badge": null,
+      "logo_url": null
+    },
+    {
+      "slug": "capscout",
+      "name": "CapScout",
+      "tagline": "The AI-first platform for finding deals that actually pencil.",
+      "description": "<p><strong>CapScout is an AI-first real estate investment search platform that finds deals worth underwriting—not just properties for sale.</strong> Search any U.S. market using investor-specific criteria, instantly rank opportunities with ScoutScore, then let ScoutSense generate a complete investment thesis, comparable analysis, risks, negotiation targets, and exit strategy recommendations backed by real market data. Model Buy &amp; Hold, BRRRR, and Fix &amp; Flip scenarios, save searches, and share professional reports. Start free with 500 credits.</p>",
+      "website_url": "https://capscout.ai/",
+      "category": "AI",
+      "tags": [],
+      "pricing_model": "Free",
+      "published": null,
+      "upvotes": 0,
+      "badge": null,
+      "logo_url": "https://xuhtcmyauadfvrpzqiih.supabase.co/storage/v1/object/public/logos/76db9b74-0435-4c69-b65d-38f47388ef24/1789673011101.webp"
+    },
+    {
+      "slug": "zonesnow",
+      "name": "ZonesNow",
+      "tagline": "Instantly compare time zones across cities — free, fast, no login.",
+      "description": "<p>ZonesNow is a free, no-login time zone converter for remote workers, distributed teams, and travelers who need an instant answer. Compare cities side-by-side, drag a slider to preview any hour, and see day/night status and UTC offsets at a glance. Built entirely on the browser's native Intl API — no external timezone libraries — so it's fast and always DST-accurate. Add/remove cities and share your exact setup via URL. Unlike bloated legacy converters, it loads instantly and gets straight to the answer.</p>",
+      "website_url": "https://www.zonesnow.com/",
+      "category": "Developer Tools",
+      "tags": [],
+      "pricing_model": "Free",
+      "published": null,
+      "upvotes": 0,
+      "badge": null,
+      "logo_url": "https://xuhtcmyauadfvrpzqiih.supabase.co/storage/v1/object/public/logos/997c6dfb-cf3e-41eb-a543-db8f6db868ec/1789670379524.webp"
+    },
+    {
+      "slug": "deploy-unlimited-small-medium-size-apps-with-fixed-price",
+      "name": "Deploy unlimited small/medium-size apps with fixed price",
+      "tagline": "Database, auth, API, frontends and backends. One platform, one CLI, one bill.",
+      "description": "<p>Replace expensive Supabase, Vercel with full-stack deployment platform with fixed price. You deploy 1, 5 or 10 apps it still the same price.</p>",
+      "website_url": "https://pocketbasecloud.com/",
+      "category": "SaaS",
+      "tags": [],
+      "pricing_model": "Free",
+      "published": null,
+      "upvotes": 0,
+      "badge": null,
+      "logo_url": "https://xuhtcmyauadfvrpzqiih.supabase.co/storage/v1/object/public/logos/018a740b-5128-4ff9-b6ba-807da0a7ba74/1789661511129.webp"
+    },
+    {
+      "slug": "tucky",
+      "name": "Tucky",
+      "tagline": "A native macOS notes app that docks to the screen edge. Notes for free. Sign in for unlimited notes",
+      "description": "<p>Tucky is a native macOS notes app that rests as a thin stripe along the screen edge. It is local and encrypted. Start for free with $0/month for voice, connectors, and the best LLM models.</p>",
+      "website_url": "https://tucky.io/",
+      "category": "AI",
+      "tags": [],
+      "pricing_model": "Free",
+      "published": null,
+      "upvotes": 0,
+      "badge": null,
+      "logo_url": "https://xuhtcmyauadfvrpzqiih.supabase.co/storage/v1/object/public/logos/e3d9245c-bd79-4d72-966e-45bdafe51b55/1789661335836.webp"
+    },
+    {
+      "slug": "vaho",
+      "name": "Vaho",
+      "tagline": "Let you notch breath",
+      "description": "<p>Your Mac's notch is useless, and the market solutions offers limited options, or make it difficult to tailor it to your own needs. Vaho offers a beautiful, configurable and feature rich platform for, not just develop but also enjoy every possibility this dead space has to offer.</p>",
+      "website_url": "https://tryvaho.com",
+      "category": "Productivity",
+      "tags": [],
+      "pricing_model": "Free",
+      "published": null,
+      "upvotes": 0,
+      "badge": null,
+      "logo_url": "https://xuhtcmyauadfvrpzqiih.supabase.co/storage/v1/object/public/logos/849a9f6c-9e32-45c6-9678-e492717efd58/1789660076293.webp"
+    },
+    {
+      "slug": "skrivant",
+      "name": "skrivant",
+      "tagline": "Type a premise, get your novel's full first draft.",
+      "description": "<p>skrivant turns a one-paragraph premise into a complete first draft. It builds the world, the cast and a chapter-by-chapter outline before any prose exists, then writes the chapters while keeping a running record of who knows what and where things are, so chapter 30 still agrees with chapter 1.</p><p>It is a first draft generator. It does not revise, it does not line edit, and it is not trying to hand you a finished book. What it gives you is a complete draft that holds together, which you then cut and rewrite.</p><p></p><p>Chapter one arrives free by email in about ten minutes, no card. The rest is a one-time $3 for a short story, $5 for a novella and $10 for a novel, with no subscription. Exports to PDF, DOCX and Markdown.</p>",
+      "website_url": "https://skrivant.com",
+      "category": "Productivity",
+      "tags": [],
+      "pricing_model": "Free",
+      "published": null,
+      "upvotes": 0,
+      "badge": null,
+      "logo_url": "https://xuhtcmyauadfvrpzqiih.supabase.co/storage/v1/object/public/logos/302add5f-6907-49f3-9546-016174045cc3/1789659745533.png"
+    },
+    {
+      "slug": "kwip",
+      "name": "Kwip",
+      "tagline": "Malta's courier for online shops. Book a pickup when your order's ready, we deliver next day. No contracts, no minimums.",
+      "description": "<p>Kwip is a courier built for small shops and online sellers in Malta.</p><p>When an order is packed, you book a pickup from your dashboard. We collect it and deliver it next day on optimised routes. No cutoff times, no CSV manifests, no contracts and no monthly minimums.</p><h3>What you get</h3><ul><li><p>Clear pricing from €3.99 + VAT per drop, visible before you talk to anyone</p></li><li><p>Weekly invoicing and weekly cash on delivery payouts</p></li><li><p>Two free delivery retries</p></li><li><p>Photo proof of delivery on every drop</p></li><li><p>Gozo delivery available</p></li><li><p>Self-serve signup in a few minutes</p></li></ul><p>Kwip is a tech-first logistics startup. The van does the driving, the software does the planning, so pickups stay flexible instead of rigid.</p>",
+      "website_url": "https://kwip.mt",
+      "category": "E-commerce",
+      "tags": [
+        "E-commerce",
+        "Other"
+      ],
+      "pricing_model": "Paid",
+      "published": "Sep 17, 2026",
+      "upvotes": 8,
+      "badge": "PREMIUM",
+      "logo_url": null
+    },
+    {
+      "slug": "peregrine-os",
+      "name": "Peregrine OS",
+      "tagline": "Peregrine OS turns funding rounds, leadership changes, AOR gaps, and hiring signals into pre-call intelligence",
+      "description": "<p>Peregrine OS is a suite of B2B &amp; consumer intelligence tools built on the <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"http://Flightpath.AI\">Flightpath.AI</a> engine: pre-call prospect intel, account-level pitch briefings, and daily feeds tracking exec hires, funding, AOR gaps, and marketing news — for agency new business and consulting BD teams.</p>",
+      "website_url": "peregrineintell.com",
+      "category": "Marketing",
+      "tags": [
+        "Marketing",
+        "Productivity",
+        "SaaS",
+        "Other"
+      ],
+      "pricing_model": "Paid",
+      "published": "Sep 22, 2026",
+      "upvotes": 5,
+      "badge": "PRIORITY",
+      "logo_url": null
+    },
+    {
+      "slug": "andreas-christodoulou",
+      "name": "Andreas Christodoulou",
+      "tagline": "👔 Entrepreneur - 🤝🏻 Business | Tech | Digital Marketing",
+      "description": "<p>Andreas Christodoulou (best known as \"andreascy\") is a Belgium based Entrepreneur with a strong sense of purpose, vision, and personal control. He works with companies and like-minded achievers providing products and services that improve business. He is driven by their overall success.</p>",
+      "website_url": "https://www.andreascy.com",
+      "category": "SEO",
+      "tags": [],
+      "pricing_model": "Free",
+      "published": null,
+      "upvotes": 0,
+      "badge": null,
+      "logo_url": null
+    },
+    {
+      "slug": "videokr",
+      "name": "Videokr",
+      "tagline": "Hosted video for marketing sites: your player, your leads.",
+      "description": "<p>Videokr is a hosted video platform built for marketing sites rather than media libraries. Add a branded video player to any landing page in minutes and keep visitors on your own domain instead of sending them to YouTube or Vimeo.Turn views into leads with built-in email capture and video analytics. Pay-per-play pricing means you only pay when videos actually play, and the free plan makes it easy to start.Founded in January 2026 and based in Byron, Minnesota, Videokr helps marketing teams ship video without developers or expensive hosting contracts.</p>",
+      "website_url": "https://videokr.com/",
+      "category": "Marketing",
+      "tags": [],
+      "pricing_model": "Free",
+      "published": null,
+      "upvotes": 0,
+      "badge": null,
+      "logo_url": "https://xuhtcmyauadfvrpzqiih.supabase.co/storage/v1/object/public/logos/0aa9a3df-84d6-4408-a038-7dafb9f97ab7/1789569889753.webp"
+    }
+  ],
+  "reviews": [
+    {
+      "product_slug": "pagecub",
+      "title": "PageCub: Custom Illustrated Kids Books Built from Scratch",
+      "rating": 8.8,
+      "published_at": "2026-09-19T10:50:40.046+00:00",
+      "content": "<h3>Key takeaways</h3><ul><li>Generates fully customized personalized children's books built from scratch for any child or family.</li><li>Allows customization over art styles, subject matter, themes, and educational morals.</li><li>Delivers formats in both digital e-books and premium-quality printed hard copies.</li><li>Operates on a freemium model, allowing users to explore the service for free.</li></ul><h3>What it does</h3><p>PageCub is a custom digital and print illustration service that creates personalized children's books built completely from scratch. Designed to make young readers the central hero of their own stories, the platform allows users to tailor every aspect of a book, including specific family members, characters, plotlines, art styles, and educational morals. Rather than relying on simple text swaps over pre-made templates, PageCub focuses on generating distinct narratives and custom artwork customized to a specific child's background or interests.</p><p>The primary problem PageCub addresses is the generic nature of off-the-shelf personalized books. Traditional customized books often insert a child's name into a rigid, non-customizable storyline with static illustrations. PageCub provides a more tailored creative experience where any subject matter, artistic aesthetic, or core theme can be selected to produce a one-of-a-kind keepsake. It expands beyond digital distribution by offering both digital e-books and physical, premium-quality hard copies.</p>"
+    },
+    {
+      "product_slug": "linkedin-mcp-server",
+      "title": "LinkedIn MCP Server: Bringing AI Automation to LinkedIn Management",
+      "rating": 8.8,
+      "published_at": "2026-09-18T18:23:13.382+00:00",
+      "content": "<h3>Key takeaways</h3><ul><li>Integrates actual LinkedIn accounts with AI tools like Claude, ChatGPT, Cursor, and n8n via MCP.</li><li>Provides 52 distinct account management tools alongside 6 ready-made playbooks.</li><li>Enables natural language prompts to surface profile viewers, post engagers, or inactive contacts.</li><li>Includes a safety mechanism requiring human confirmation before sending out drafted messages.</li><li>What It Does</li><li>LinkedIn MCP Server</li><li>(also referred to as Reach MCP) is a software-as-a-service application that links a live LinkedIn account directly with popular AI assistants and automation environments, including</li><li>Claude</li><li>,</li><li>ChatGPT</li><li>,</li><li>Cursor</li><li>, and</li><li>n8n</li><li>. Built around the Model Context Protocol (MCP), it enables users to execute complex LinkedIn outreach and account management workflows using natural conversational prompts.</li><li>Instead of manually parsing interactions or writing outreach line-by-line, users can query the AI in plain language to identify audience segments—such as individuals who reacted to a post, viewed a profile, or became inactive over time. The platform assists in writing personalized messages tailored to these segments while retaining a human-in-the-loop safeguards system that demands explicit user confirmation before any message is transmitted.</li><li>Key Features / How It Works</li><li>The solution provides a robust operational foundation through its inclusion of</li><li>52 tools designed for managing LinkedIn accounts</li><li>. These capabilities allow AI models like Claude or ChatGPT to interact directly with LinkedIn data, executing commands passed down via prompt input.</li><li>Key mechanics and features highlighted by the developer include:</li><li>Natural Language Targeting:</li><li>Commands given in ordinary wording instruct the server to find specific groups, such as users who recently viewed your profile, engaged with your content, or stopped communicating.</li><li>Automated Draft Generation:</li><li>The system drafts outreach messages designed for specific audience segments based on the context surfaced by the tools.</li><li>Human Pre-Approval:</li><li>The platform explicitly waits for user approval before sending out messages, ensuring users maintain final authority over outbound communications.</li><li>Multi-Platform Integration:</li><li>Works across leading conversational and workflow tools, specifically Claude, ChatGPT, Cursor, and n8n.</li><li>Pre-built Workflows:</li><li>Includes 6 ready-to-use playbooks to streamline common LinkedIn management routines.</li><li>Who It's For</li><li>LinkedIn MCP Server is aimed at professionals, creators, sales operators, and growth teams who rely heavily on LinkedIn networking and sales outreach but want to streamline their workflow through artificial intelligence. By bringing LinkedIn data into tools like Claude, ChatGPT, or n8n, it caters to users who already prefer managing their tasks inside AI chat interfaces or automated canvas tools.</li><li>It is especially appropriate for individuals who require granular safety controls during outreach. Because the server enforces a confirmation step before sending messages, teams that are cautious about fully autonomous outreach bots can leverage AI assistance without risking unvetted or accidental message broadcasts.</li><li>Pricing & Value</li><li>LinkedIn MCP Server is offered under a</li><li>Paid</li><li>SaaS model. While specific pricing tiers or subscription figures are not publicly itemized in the initial details, evaluating its value depends on how deeply a user utilizes LinkedIn for deal-making, lead generation, or professional networking.</li><li>For active users, the utility of aggregating 52 specialized tools and 6 automated playbooks into existing workflows in Cursor, n8n, or ChatGPT can save significant manual effort spent switching tabs and writing personalized notes. Organizations and power users that frequently conduct targeted outreach on LinkedIn stand to gain the highest relative efficiency from paying for this server connection.</li><li>Editorial ratings</li><li>Editorial assessment based on the maker's submitted listing — not hands-on testing.</li><li>Ease of use</li><li>9</li><li>Earns a 9 for allowing plain-language prompts to execute LinkedIn actions without complex syntax.</li><li>Value for money</li><li>8</li><li>Receives an 8 as a standard paid SaaS offering whose value scales directly with how heavily a user relies on LinkedIn outreach.</li><li>Innovation</li><li>9</li><li>Earns a 9 for leveraging the Model Context Protocol to bridge live LinkedIn accounts directly into platforms like Claude and Cursor.</li><li>Feature depth</li><li>9</li><li>Scored 9 due to the substantial offering of 52 management tools and 6 built-in playbooks.</li><li>Best for</li><li>Sales professionals, recruiters, and power users who want to manage LinkedIn outreach using natural language inside AI tools like Claude, ChatGPT, or n8n while retaining final approval over outbound messages.</li><li>Not ideal for</li><li>Casual LinkedIn users or individuals who rarely conduct outbound messaging and do not utilize MCP-compatible tools like Claude or Cursor.</li><li>Pros</li><li>Connects directly to major platforms including Claude, ChatGPT, Cursor, and n8n</li><li>Includes 52 distinct LinkedIn management tools and 6 ready-made playbooks</li><li>Enforces a mandatory confirmation step before sending drafted messages</li><li>Allows targeting via natural language queries for post engagers, viewers, and inactive leads</li><li>Cons</li><li>Requires familiarity with MCP-compatible environments or workflow tools like n8n</li><li>Specific pricing tiers and subscription plan details are not detailed in the submission</li><li>No explicit list of supported account limits or messaging quotas is provided</li><li>Verdict</li><li>LinkedIn MCP Server offers an innovative bridge between real LinkedIn accounts and top-tier AI platforms like Claude, ChatGPT, Cursor, and n8n. With 52 management tools, 6 ready playbooks, and a mandatory manual approval step before sending messages, it provides a powerful yet controlled way to execute natural language outreach. It is a compelling option for professionals looking to supercharge their LinkedIn workflow through modern AI integrations.</li><li>Visit</li><li>LinkedIn MCP Server</li><li>↗</li><li>View full listing →</li><li>← Back to LinkedIn MCP Server</li><li>FAQ</li><li>Privacy</li></ul>"
+    },
+    {
+      "product_slug": "coregulateai",
+      "title": "CoRegulateAI Review: Personalized AI Emotional Regulation",
+      "rating": 9,
+      "published_at": "2026-09-16T05:32:03.167+00:00",
+      "content": "<h3>Key takeaways</h3><ul><li>Combines licensed mental health counselor design with adaptive AI personalization.</li><li>Addresses stress, anxiety, trauma recovery, burnout, and neurodivergent needs.</li><li>Includes adaptive check-ins, somatic exercises, guided journaling, and Expert Packs.</li><li>Utilizes a freemium model alongside enterprise and practice licensing options.</li><li>What It Does</li><li>CoRegulateAI is a Health Tech platform designed to function as a personalized operating system for emotional regulation. Created by a licensed mental health counselor, the platform bridges the gap between static, one-size-fits-all wellness content apps and traditional, high-cost human-delivered care. Grounded in clinical expertise and powered by AI personalization, it aims to help users navigate emotional challenges in real time, supporting mental health through structured tools and adaptive guidance.</li><li>By blending professional therapeutic principles with algorithmic adaptability, CoRegulateAI addresses various psychological needs including stress, anxiety, trauma recovery, burnout, and neurodivergent needs. The overarching goal is to make clinical-grade emotional regulation techniques accessible, interactive, and tailored to an individual's specific daily emotional state.</li><li>Key Features / How It Works</li><li>The core functionality of CoRegulateAI relies on a suite of therapeutic tools integrated with an adaptive AI layer. One of its primary components is adaptive check-ins, which assess the user's emotional state to tailor subsequent recommendations and activities.</li><li>To support different aspects of emotional regulation, the platform offers several distinct feature sets:</li><li>Adaptive Check-Ins:</li><li>Interactive assessments that evaluate immediate emotional needs and tailor platform interventions accordingly.</li><li>Somatic Exercises:</li><li>Body-focused grounding techniques designed to help users process stress and regulate physical tension.</li><li>Guided Journaling:</li><li>Structured prompts that encourage reflective writing and cognitive processing.</li><li>Mindfulness Tools:</li><li>Exercises designed to cultivate present-moment awareness and distress tolerance.</li><li>Expert Packs:</li><li>Structured collections of curated content and specialized therapeutic modules addressing specific conditions or goals.</li><li>Together, these tools combine clinical depth with algorithmic personalization, creating an interactive environment rather than a passive media library.</li><li>Who It's For</li><li>CoRegulateAI is built to serve a wide array of users seeking accessible emotional support, as well as institutional healthcare partners. On the individual level, it caters to consumers dealing with stress, anxiety, trauma recovery, burnout, or neurodivergent support needs who require more dynamic guidance than traditional static apps offer.</li><li>Beyond individual consumers, the platform supports multiple B2B and B2B2C use cases. Clinicians and mental health practices can utilize CoRegulateAI as a referral tool or supplementary asset to support clients between therapy sessions. Additionally, organizations can leverage organizational licensing to offer structured emotional regulation tools as part of wellness programs for employees or group members.</li><li>Pricing & Value</li><li>CoRegulateAI operates under a Freemium pricing structure, making basic emotional regulation resources available to users without upfront barriers. This allows individuals to test adaptive check-ins and core features before committing to paid tiers.</li><li>The overall model includes consumer subscriptions, clinician referrals, practice partnerships, and organizational licensing. By occupying a middle ground between static content subscriptions and expensive human care, it provides a scalable, cost-effective alternative for ongoing mental health support across both consumer and enterprise tiers.</li><li>Editorial ratings</li><li>Editorial assessment based on the maker's submitted listing — not hands-on testing.</li><li>Ease of use</li><li>9</li><li>Adaptive check-ins streamline user interaction by tailoring relevant tools to current emotional states.</li><li>Value for money</li><li>9</li><li>A freemium pricing structure positions the product affordably between static apps and high-cost human care.</li><li>Innovation</li><li>9</li><li>Combining clinical therapist expertise with adaptive AI introduces a dynamic approach to emotional regulation.</li><li>Feature depth</li><li>9</li><li>Offers a complete toolkit including somatic work, guided journaling, mindfulness, and specialized Expert Packs.</li><li>Best for</li><li>Individual consumers needing personalized emotional management and mental health practices seeking clinician-backed support tools.</li><li>Not ideal for</li><li>Individuals who strictly require direct, live human therapy sessions or offline paper-based tracking.</li><li>Pros</li><li>Designed directly by a licensed mental health counselor for clinical relevance.</li><li>Features adaptive AI customization rather than static content libraries.</li><li>Covers diverse psychological goals including neurodivergent support and trauma recovery.</li><li>Flexible deployment via consumer subscriptions, practice partnerships, and enterprise licensing.</li><li>Cons</li><li>Specific limits of the free tier compared to paid subscriptions are not explicitly detailed.</li><li>Exact pricing figures for individual consumer tiers and enterprise licensing are not provided.</li><li>Verdict</li><li>CoRegulateAI offers a promising blend of clinical expertise and AI personalization to fill the gap between static wellness apps and expensive therapeutic care. With features catering to both individual users and organizational partners, it provides a structured, adaptable framework for mental health. It stands out as a well-rounded option for anyone seeking scalable emotional regulation tools.</li><li>Visit</li><li>CoRegulateAI</li><li>↗</li><li>View full listing →</li><li>← Back to CoRegulateAI</li><li>FAQ</li><li>Privacy</li></ul>"
+    },
+    {
+      "product_slug": "jern-cloud",
+      "title": "Jern Cloud Review: Governed Cloud AI Coding for Security-Conscious Teams",
+      "rating": 9.3,
+      "published_at": "2026-09-04T05:08:24.807+00:00",
+      "content": "<h3>Key takeaways</h3><ul><li>Executes autonomous coding sessions in isolated cloud environments to eliminate local setup.</li><li>Features strict governance including pinned execution policies, token caps, and zero credential exposure.</li><li>Delivers reviewable pull requests accompanied by encrypted execution evidence directly to your repository.</li><li>Offered under a free pricing model for low-risk adoption and evaluation.</li><li>What Jern Cloud Does</li><li>As autonomous developer tools become more prevalent, security and policy governance remain significant friction points for engineering teams.</li><li>Jern Cloud</li><li>addresses this challenge by delivering a governed cloud coding agent engineered specifically for development teams requiring elevated security and auditability. Rather than running autonomous agents locally on developer workstations or granting third-party software persistent credentials, Jern Cloud executes coding tasks entirely in isolated cloud environments.</li><li>By shifting agent execution off local machines and into controlled cloud infrastructure, Jern Cloud allows organizations to delegate development tasks safely. The platform actively mitigates the risks associated with AI code generation by enforcing explicit execution boundaries. Every task runs under defined governance rules, helping ensure that autonomous code production remains predictable, secure, and compliant with team standards.</li><li>Key Features and Workflow</li><li>The core functionality of Jern Cloud revolves around governed, cloud-native automation. Instead of requiring local installations or exposing sensitive runtime configurations, the platform executes sessions on dedicated cloud machines. This architecture ensures that execution happens in a clean sandbox without touching local environments or local secret stores.</li><li>Key governance capabilities offered during execution include:</li><li>Pinned Execution Policies:</li><li>Tasks are bound to fixed, predefined execution rules to maintain strict control over agent behavior.</li><li>Strict Token Caps:</li><li>Built-in limits regulate resource and token usage to prevent unconstrained agent loops.</li><li>Zero Credential Exposure:</li><li>Development sessions complete without sharing or embedding persistent API keys.</li><li>Automated Pull Request Delivery:</li><li>Once code changes are generated, Jern Cloud packages them into a reviewable pull request sent directly to your code repository.</li><li>Encrypted Execution Evidence:</li><li>Each completed session provides encrypted audit logs alongside the pull request, ensuring full visibility into what the agent executed.</li><li>This workflow transforms agent-assisted coding into a structured, fully auditable pipeline step that fits seamlessly into existing code review practices.</li><li>Target Audience and Use Cases</li><li>Jern Cloud is designed for software development teams, tech leads, and security-minded engineering departments that want to harness autonomous AI tools without compromising repository integrity or data privacy. It caters directly to teams operating under regulatory or internal compliance mandates where unmonitored local script execution is prohibited.</li><li>Typical use cases involve delegating scoped software updates, bug fixes, or boilerplate implementation tasks to the agent. Because results arrive as standard pull requests paired with encrypted execution evidence, team members can evaluate the agent's work through normal code review channels before merging. Teams wanting to avoid local tool maintenance and key distribution will find Jern Cloud's hosted model particularly useful.</li><li>Pricing and Value Proposition</li><li>Jern Cloud is currently available under a</li><li>Free</li><li>pricing model. This allows development teams to assess cloud-based agent automation without incurring upfront software overhead or subscription commitments.</li><li>The value proposition centers on risk reduction and process control. By combining isolated execution, zero credential exposure, token boundaries, and encrypted audit trails into a free offering, Jern Cloud provides a practical entry point for teams seeking enterprise-grade security controls in their AI developer tools.</li><li>Editorial ratings</li><li>Editorial assessment based on the maker's submitted listing — not hands-on testing.</li><li>Ease of use</li><li>9</li><li>Eliminates local setup and maintenance by executing coding sessions entirely in isolated cloud sandboxes.</li><li>Value for money</li><li>10</li><li>Delivers isolated cloud execution and encrypted audit governance at a free tier cost.</li><li>Innovation</li><li>9</li><li>Combines autonomous coding agents with pinned execution policies and encrypted execution evidence.</li><li>Feature depth</li><li>9</li><li>Includes robust governance tools like token caps, PR automation, credential protection, and evidence logs.</li><li>Best for</li><li>Development teams wanting to delegate coding tasks to autonomous AI agents inside isolated cloud sandboxes with strict security controls.</li><li>Not ideal for</li><li>Individual developers seeking an unmanaged local IDE extension that runs without cloud policy limits.</li><li>Pros</li><li>Executes coding sessions on isolated cloud machines to prevent local environment contamination.</li><li>Enforces security boundaries through pinned execution policies and strict token caps.</li><li>Protects sensitive infrastructure with zero persistent credential exposure.</li><li>Provides full auditability with encrypted execution evidence delivered alongside pull requests.</li><li>Available under a free pricing tier.</li><li>Cons</li><li>Details on specific repository host integrations are not specified in the provided facts.</li><li>Limits on free cloud runtime hours or concurrent task execution are not detailed.</li><li>Verdict</li><li>Jern Cloud presents a well-governed approach to autonomous software development by pairing isolated cloud execution with strict policy enforcement. Features like zero credential exposure, token caps, and encrypted audit trails address critical security concerns inherent in AI coding workflows. For engineering teams seeking auditable, safe code delegation delivered straight to pull requests, Jern Cloud is a strong tool worth evaluating.</li><li>Visit</li><li>Jern Cloud</li><li>↗</li><li>View full listing →</li><li>← Back to Jern Cloud</li><li>FAQ</li><li>Privacy</li></ul>"
+    },
+    {
+      "product_slug": "bidflip-lol",
+      "title": "bidflip.lol: An Honest Look at the Pay-to-Rank Leaderboard",
+      "rating": 8.5,
+      "published_at": "2026-09-03T18:29:48.863+00:00",
+      "content": "<h3>Key takeaways</h3><ul><li>A live-action, pay-to-rank competitive leaderboard platform built around high-octane rivalry.</li><li>Features unique 'WILD' point scoring alongside unlockable prestige badges like 'Top Contributor.'</li><li>Integrates data puzzles and faction-based team warfare (🚀 vs 🛡️) for added strategic depth.</li><li>Completely free to join with real-time community interaction hosted on Discord.</li></ul><h3>What it does</h3><p>bidflip.lol</p><p>is a fast-paced, pay-to-rank leaderboard platform designed for intense online competition. Rather than forcing users through weeks of repetitive grinding, it turns ranking into a live-action strategic battle. Participants fight directly for visibility and supremacy on a central leaderboard, choosing sides in faction-driven matchups such as 🚀 versus 🛡️. By blending competitive dynamics with real-time board shifts, the platform replaces passive tracking with an active, chaotic contest for the top spot.</p>"
+    },
+    {
+      "product_slug": "vigigym",
+      "title": "VigiGym: A Distraction-Free Workout Journal for iOS and Apple Watch",
+      "rating": 8.5,
+      "published_at": "2026-08-27T15:46:52.938+00:00",
+      "content": "<h3>Key takeaways</h3><ul><li>Dedicated fitness logging app for iPhone and Apple Watch with zero social features or feeds</li><li>Supports varied set types including straight sets, supersets, giant sets, drop sets, and pyramids</li><li>Includes a database of over 240 exercises with detailed muscle information and progress stats</li><li>Stores all user training data locally on device with a freemium pricing model</li></ul><h3>What it does</h3><p>VigiGym is a dedicated workout tracking application designed specifically for iPhone and Apple Watch users who prioritize personal fitness tracking over social interaction. Built for individuals who train independently, the software offers a streamlined digital journal for recording exercises, monitoring performance metrics, and building routine structures. Rather than transforming workout logging into a social media feed, VigiGym concentrates entirely on direct utility and training analysis.</p><p>Many modern health and fitness applications incorporate social timelines, follower counts, likes, and engagement algorithms designed to maximize time spent inside the app. VigiGym takes a fundamentally different design approach by deliberately eliminating all social features. There are no public profiles to maintain, no activity feeds to scroll through, and no community interaction mechanics competing for attention during rest intervals. Furthermore, all training data remains directly on the user's device, emphasizing personal privacy and local data retention.</p>"
+    },
+    {
+      "product_slug": "proworx-software",
+      "title": "ProWorx Software: Streamlined Operations for Solo Service Businesses",
+      "rating": 8.5,
+      "published_at": "2026-08-26T16:12:28.435+00:00",
+      "content": "<h3>Key takeaways</h3><ul><li>Unifies intake, estimates, scheduling, invoicing, payments, and reviews in one system.</li><li>Built specifically for owner-operators and small service teams rather than enterprise firms.</li><li>Eliminates administrative friction across handyman, cleaning, lawn care, detailing, and trade services.</li><li>Designed for easy setup and simple day-to-day operations without software complexity.</li><li>What It Does</li><li>Running a trade or field service business requires technical skill, but managing the operational side—from quoting jobs to collecting payments—can quickly overwhelm solo operators and micro-teams.</li><li>ProWorx Software</li><li>addresses this challenge by providing a unified business management platform specifically designed for owner-operators and small service providers. Rather than forcing trade professionals to stitch together multiple single-purpose apps or adopt complex enterprise software, ProWorx consolidates the entire client lifecycle into one intuitive system.</li><li>By bringing customer requests, job execution, billing, and reputation management under one roof, the software eliminates administrative friction and helps small operators maintain a professional image. The platform aims to solve the common issue of missed leads, delayed invoices, and disorganized scheduling that often plagues growing service businesses.</li><li>Key Features / How It Works</li><li>ProWorx Software structures its functionality around the day-to-day workflow of field service operators. The platform connects essential operational tools into an end-to-end workflow:</li><li>Customer Requests & Intake:</li><li>Capture incoming service inquiries efficiently to ensure new business opportunities are logged immediately.</li><li>Estimates & Quoting:</li><li>Generate and deliver professional estimates to prospects, accelerating job approvals and clarifying service scopes.</li><li>Scheduling & Job Management:</li><li>Organize daily routes, assign work, and track active jobs from initial booking through completion.</li><li>Invoicing & Payments:</li><li>Convert completed jobs directly into digital invoices and collect payments online to streamline cash flow.</li><li>Client Communications:</li><li>Maintain clear messaging with customers across the entire project lifespan to reduce misunderstandings and keep clients informed.</li><li>Reviews Management:</li><li>Gather customer feedback and build online reputation directly after service delivery.</li><li>Because these tools are interconnected, data flows naturally from intake to final payment without requiring double entry or switching between separate communication, invoicing, and scheduling apps.</li><li>Who It's For</li><li>ProWorx Software is engineered specifically for owner-operators, solo trade professionals, and small service teams who handle both field execution and administrative work. It serves a broad range of residential and commercial specialty trades where fast communication and clean invoicing are critical.</li><li>Target industries explicitly supported by the platform include:</li><li>Handyman services and general maintenance contractors</li><li>Residential and commercial cleaning operators</li><li>Lawn care and landscaping professionals</li><li>Junk removal and hauling crews</li><li>Mobile detailing specialists</li><li>Equipment installation technicians and specialty trade contractors</li><li>It is especially suited for operators who want a straightforward implementation without the extensive setup times or feature bloat common in enterprise field service suites.</li><li>Pricing & Value</li><li>ProWorx Software operates under a straight</li><li>Paid</li><li>model tailored for commercial software deployment. By focusing strictly on essential tools needed by small operators, the platform aims to maximize return on investment by reducing lost time, eliminating software redundancies, and speeding up client payments.</li><li>For micro-businesses currently juggling multiple paid subscriptions for invoicing, scheduling, and messaging, adopting a single integrated platform can offer significant efficiency gains. Potential users should evaluate their need for all-in-one simplicity versus highly customized enterprise workflows when considering the commitment to a paid operational tool.</li><li>Editorial ratings</li><li>Editorial assessment based on the maker's submitted listing — not hands-on testing.</li><li>Ease of use</li><li>9</li><li>Prioritizes quick implementation and minimal operational complexity for solo operators.</li><li>Value for money</li><li>8</li><li>Delivers solid value by consolidating scheduling, invoicing, and messaging into a single paid platform.</li><li>Innovation</li><li>8</li><li>Offers an intentionally streamlined approach focused on the unique needs of micro-service operators.</li><li>Feature depth</li><li>9</li><li>Covers the complete service workflow from initial request and estimate to payment and review generation.</li><li>Best for</li><li>Owner-operators and small service providers in trades like handyman work, cleaning, lawn care, and mobile detailing who need an easy, all-in-one business management platform.</li><li>Not ideal for</li><li>Large field service enterprises that require deeply customized enterprise workflows, complex multi-tier dispatching, or heavy corporate integrations.</li><li>Pros</li><li>Combines requests, estimates, scheduling, invoicing, payments, communications, and reviews in one app</li><li>Designed specifically for small operators without unnecessary enterprise bloat</li><li>Supports a wide variety of service trades out of the box</li><li>Simplifies job tracking and speeds up payment collection</li><li>Cons</li><li>As a paid platform, exact tier structures and pricing details require direct inquiry</li><li>May lack high-end enterprise customization options for large multi-fleet operations</li><li>Verdict</li><li>ProWorx Software offers a practical, purpose-built management hub for small service operators who want to professionalize their operations without getting bogged down in enterprise complexity. By pairing simple scheduling and messaging with integrated invoicing and review tools, it equips solo workers and small crews with everything needed to run a smooth business. Service providers looking to replace fragmented tools with one tailored system will find ProWorx to be a strong contender.</li><li>Visit</li><li>ProWorx Software</li><li>↗</li><li>View full listing →</li><li>← Back to ProWorx Software</li><li>FAQ</li><li>Privacy</li></ul>"
+    },
+    {
+      "product_slug": "youex-ai",
+      "title": "YouEx.ai: An Honest Look at the AI Lead-to-Revenue Platform",
+      "rating": 9,
+      "published_at": "2026-08-26T16:11:04.246+00:00",
+      "content": "<h3>Key takeaways</h3><ul><li>Unifies an AI web agent, AI-native CRM, and automated revenue agents into a single lead-to-revenue system.</li><li>Engages website visitors automatically to capture contact details, answer questions, and score intent.</li><li>Enriches lead records, routes qualified prospects, drafts personalized follow-ups, and schedules meetings.</li><li>Offers a free pricing tier for B2B sales teams looking to automate inbound lead processing.</li><li>What It Does</li><li>YouEx.ai</li><li>positions itself as an all-in-one lead-to-revenue platform purpose-built for B2B sales teams. The primary challenge it addresses is the friction and delay often associated with managing inbound website traffic. In traditional B2B sales workflows, prospective buyers visit a website, fill out a contact form, and wait hours or days for a response, during which interest frequently wanes. YouEx.ai eliminates this lag by unifying an AI web agent, an AI-native customer relationship management (CRM) database, and automated revenue agents into a single operational system.</li><li>By bringing these three components together, the platform aims to ensure that every single inbound visitor gets engaged immediately upon arrival and processed through the sales funnel without delay. Instead of juggling disconnected chat widgets, separate lead scoring spreadsheets, third-party enrichment tools, and external CRMs, B2B sales organizations can manage the entire journey from visitor capture to meeting scheduling within one continuous workflow.</li><li>Key Features / How It Works</li><li>The core capability of YouEx.ai relies on its automated end-to-end processing pipeline. When a prospect lands on a company's website, the embedded</li><li>AI web agent</li><li>actively engages the visitor. It automatically captures essential contact information and interacts conversationally by answering specific visitor questions in real time. As the conversation progresses, the platform continuously evaluates the visitor's interactions to score their buying intent.</li><li>Once initial contact is established, YouEx.ai enriches the lead record with additional context and automatically logs the details directly into its</li><li>AI-native CRM</li><li>. The workflow then transitions to intelligent routing and outbound execution through automated revenue agents:</li><li>Lead Enrichment and Intent Scoring:</li><li>Automatically gathers visitor data and measures purchasing intent to separate high-priority buyers from general browser traffic.</li><li>Smart Lead Routing:</li><li>Instantly matches and directs qualified prospects to the appropriate sales representatives based on predefined rules or attributes.</li><li>Personalized Communication Drafts:</li><li>Generates tailored follow-up emails designed to maintain momentum with newly qualified prospects.</li><li>Seamless Meeting Scheduling:</li><li>Coordinates calendar availability to book meetings directly without requiring manual back-and-forth communication.</li><li>This automated sequence allows sales teams to maintain immediate engagement with warm leads while dramatically reducing the manual administrative tasks usually required after a visitor submits an inquiry.</li><li>Who It's For</li><li>YouEx.ai is tailored specifically for B2B sales teams that handle inbound digital traffic and need to convert visitor interest into qualified sales opportunities quickly. It is ideal for sales operations leaders, business development representatives, and account executives who want to streamline lead qualification and eliminate manual lead data entry.</li><li>Teams that experience high volumes of website visitors or operate in fast-moving industries will benefit from having automated revenue agents handle initial inquiries and administrative routing. Furthermore, organizations seeking a consolidated stack rather than maintaining disparate tools for website chat, CRM logging, email drafting, and calendar scheduling will find YouEx.ai's unified structure particularly suited to their operations.</li><li>Pricing & Value</li><li>YouEx.ai is listed under a</li><li>Free</li><li>pricing model. For B2B sales teams, a free entry point offers significant value by allowing teams to deploy and evaluate an AI-native CRM and web agent without immediate capital expenditure.</li><li>By replacing or consolidating multiple point solutions—such as standalone chat tools, lead enrichment software, and scheduling assistants—the platform provides immediate efficiency gains. Teams can test the platform's ability to capture visitor intent, enrich lead records, and schedule calendar appointments directly on live traffic before deciding on broader team deployment.</li><li>Editorial ratings</li><li>Editorial assessment based on the maker's submitted listing — not hands-on testing.</li><li>Ease of use</li><li>9</li><li>Earns a 9 for unifying visitor capture, routing, and meeting scheduling into a single cohesive system that reduces administrative friction.</li><li>Value for money</li><li>9</li><li>Earns a 9 due to offering comprehensive AI-driven lead automation and CRM functionality under a free model.</li><li>Innovation</li><li>9</li><li>Earns a 9 for pairing an interactive AI web agent directly with autonomous revenue agents and an AI-native CRM.</li><li>Feature depth</li><li>9</li><li>Earns a 9 by delivering a broad feature set covering real-time Q&A, intent scoring, lead enrichment, email generation, and calendar booking.</li><li>Best for</li><li>B2B sales teams looking to automatically capture, qualify, and route inbound website leads through a single AI-driven CRM system.</li><li>Not ideal for</li><li>B2C businesses or teams with non-inbound sales workflows that do not require website visitor engagement or automated lead qualification.</li><li>Pros</li><li>Unifies web chat, CRM, intent scoring, and scheduling into one single platform.</li><li>Engages visitors immediately to minimize inbound lead response times.</li><li>Automates administrative work like lead enrichment, email drafting, and meeting setup.</li><li>Available under a free pricing tier, reducing barriers to adoption.</li><li>Cons</li><li>No explicit details provided on specific integrations with existing third-party sales tools.</li><li>Customization depth for AI agent responses and intent scoring criteria is unspecified in the provided details.</li><li>Verdict</li><li>YouEx.ai offers a compelling, automated solution for B2B sales teams struggling with inbound lead delay and manual data entry. By combining a web agent, AI-native CRM, and automated revenue capabilities into one system, it streamlines the journey from visitor arrival to scheduled meeting. Given its free pricing tier, it is a low-risk option well worth exploring for teams seeking to improve lead qualification and response speeds.</li><li>Visit</li><li>YouEx.ai</li><li>↗</li><li>View full listing →</li><li>← Back to YouEx.ai</li><li>FAQ</li><li>Privacy</li></ul>"
+    },
+    {
+      "product_slug": "launchbuck",
+      "title": "LaunchBuck: An Editorial Review of the AI & SaaS Launchpad",
+      "rating": 7.5,
+      "published_at": "2026-08-21T12:17:10.746+00:00",
+      "content": "<h3>Key takeaways</h3><ul><li>Free launch directory tailored specifically for AI tools and SaaS products.</li><li>Combines daily, weekly, and monthly leaderboards with a bi-weekly 16-product knockout tournament.</li><li>Includes anti-gaming voting rules and mandatory click-through verifications for reviews.</li><li>Provides SEO incentives like dofollow backlinks through embeddable site badges or winning tournaments.</li><li>What LaunchBuck Offers</li><li>LaunchBuck is a launch directory tailored specifically to AI tools and SaaS products. The platform allows founders to submit their products for free without approval queues, instantly securing a permanent listing page. Focused explicitly on the AI and SaaS sectors, LaunchBuck aims to provide a relevant environment where products compete directly against similar software tools rather than getting lost in generic directories.</li><li>How the Tournament and Ranking Systems Work</li><li>Listings are initially ranked on daily, weekly, and monthly leaderboards driven by community upvotes and comments. Beyond standard leaderboards, the platform features a bi-weekly tournament system. Every two weeks, the 16 most-upvoted products are drawn into a knockout-style competition spanning a 14-day cycle across four rounds: Round of 16, Quarterfinals, Semifinals, and the Championship.</li><li>To preserve ranking integrity, voting requires an active account, restricts users to one vote per matchup, and ensures voters open both competing product pages before recording a vote. The system also utilizes hashed IP logging to detect coordinated voting efforts. Verified reviews similarly require email confirmation and verified click-through tracking. Winners receive a dedicated Hall of Fame placement, a winner's badge, and a permanent dofollow backlink. Founders can also convert standard links into dofollow backlinks by displaying an embeddable badge on their own sites, or purchase one-time Featured or Spotlight placements for higher visibility.</li><li>Who LaunchBuck Is For</li><li>This directory is designed for software makers, indie builders, and SaaS founders who want to showcase new products, gain community feedback, and build initial SEO authority. Because this review is based on submitted listing information as part of a paid Priority placement rather than hands-on platform testing, founders should evaluate the directory directly to confirm active traffic and community engagement.</li><li>Editorial ratings</li><li>Editorial assessment based on the maker's submitted listing — not hands-on testing.</li><li>Ease of use</li><li>8</li><li>Value for money</li><li>8</li><li>Innovation</li><li>7</li><li>Feature depth</li><li>7</li><li>Best for</li><li>Ideal for AI and SaaS founders seeking a free product listing, community upvotes, and potential SEO backlinks through badges or tournament wins.</li><li>Not ideal for</li><li>Not ideal for non-software businesses or creators looking for guaranteed sales conversions without actively engaging in community voting.</li><li>Pros</li><li>Free and instant listing submission with permanent dedicated pages</li><li>Structured bi-weekly tournament bracket that gives top products additional exposure</li><li>Built-in anti-abuse protections including hashed IP logging and required click-throughs</li><li>Offers clear SEO incentives such as dofollow backlinks via badge verification</li><li>One-time promotional upgrades (Featured and Spotlight) without recurring subscriptions</li><li>Cons</li><li>Real-world traffic and active user count are unverified as this review is based on submitted listing facts</li><li>Dofollow backlink benefits depend on embedding a badge on your own website or winning a tournament</li><li>Niche focus restricts listings strictly to AI and SaaS tools</li><li>Verdict</li><li>LaunchBuck offers an engaging launch directory concept for AI and SaaS products, combining standard leaderboards with a structured knockout tournament and SEO backlink incentives. Because this review was prepared as part of a paid Priority placement based on the maker's submitted details rather than hands-on testing, prospective users should visit the platform directly to gauge active voter engagement and confirm promotional terms before submitting.</li><li>Visit</li><li>LaunchBuck</li><li>↗</li><li>View full listing →</li><li>← Back to LaunchBuck</li><li>FAQ</li><li>Privacy</li></ul>"
+    },
+    {
+      "product_slug": "drawgenie",
+      "title": "DrawGenie: Personalized AI Coloring Books for Kids",
+      "rating": 7.3,
+      "published_at": "2026-08-21T08:59:06.071+00:00",
+      "content": "<h3>Key takeaways</h3><ul><li>Generates customized coloring books starring a child based on their name and theme.</li><li>Provides high-quality, print-ready PDF downloads for home printing.</li><li>Stores generated books permanently in user accounts for easy re-downloading.</li><li>Uses a freemium credit model with no required recurring subscription.</li><li>DrawGenie</li><li>brings personal flair to traditional children's activity books by leveraging artificial intelligence to generate customized coloring pages. Users begin by providing a child's name and selecting a custom theme. The platform then constructs a personalized coloring book featuring the child's name directly on the front cover, accompanied by tailored, custom-drawn illustrations that reflect their world across every single page.</li><li>Custom Coloring Pages Built for Home Printing</li><li>Rather than requiring physical fulfillment or shipping wait times, DrawGenie focuses on fast digital delivery. Each generated book is rendered into a high-quality, print-ready PDF file that can be immediately printed using a standard home printer. Furthermore, every completed book is saved permanently within the user's account, allowing parents, relatives, or educators to re-download and reprint extra copies whenever required.</li><li>Flexible Credit System Without Subscriptions</li><li>DrawGenie operates under a freemium pricing structure, allowing users to start generating print-ready books using free credits. Because the service avoids enforcing a recurring subscription fee, users can create books on an ad-hoc basis without incurring ongoing monthly costs. This structure makes the platform particularly accessible for one-off gifts, party favors, or targeted learning activities.</li><li>Who Benefits Most From DrawGenie</li><li>This platform is well suited for parents, grandparents, and early childhood educators seeking custom, creative materials for kids. By allowing customization around specific child names and tailored themes, DrawGenie offers a novel way to blend storytelling and art activities for young learners.</li><li>Editorial ratings</li><li>Editorial assessment based on the maker's submitted listing — not hands-on testing.</li><li>Ease of use</li><li>8</li><li>Value for money</li><li>8</li><li>Innovation</li><li>7</li><li>Feature depth</li><li>6</li><li>Best for</li><li>Parents, relatives, and educators looking to create custom printable coloring books starring a specific child.</li><li>Not ideal for</li><li>Users who want pre-printed physical books delivered by mail or those without access to a home printer.</li><li>Pros</li><li>Personalizes both the cover and interior illustrations with the child's name and custom theme.</li><li>Delivers high-quality, print-ready PDF files immediately upon generation.</li><li>Stores created books permanently in the user's account for repeated downloads.</li><li>Freemium credit model allows testing without requiring a monthly subscription.</li><li>Cons</li><li>Requires users to handle their own printing at home.</li><li>Specific credit allocation details beyond the free tier are not detailed in the submission.</li><li>Verdict</li><li>DrawGenie offers a fun and practical way to create personalized activity materials for children using custom names and themes. Its print-ready PDF format and permanent account storage make managing past creations hassle-free. For parents and teachers looking for unique activity pages without being tied to a monthly subscription, it is a convenient digital tool worth trying out.</li><li>Visit</li><li>DrawGenie</li><li>↗</li><li>View full listing →</li><li>← Back to DrawGenie</li><li>FAQ</li><li>Privacy</li></ul>"
+    },
+    {
+      "product_slug": "certyneo",
+      "title": "Certyneo Review: Sovereign European eSignatures and AI Contract Generation",
+      "rating": 7,
+      "published_at": "2026-08-21T08:35:36.484+00:00",
+      "content": "<h3>Key takeaways</h3><ul><li>Hosted entirely in the European Union to guarantee eIDAS and GDPR compliance.</li><li>Protects user document data against non-EU legal extraterritoriality.</li><li>Features qualified electronic signatures (QES), PAdES LTV verification, and 10-year legal archiving.</li><li>Includes an integrated AI contract generator alongside document sending and tracking.</li><li>Offered as a freemium SaaS model serving as a cost-effective alternative to legacy providers.</li><li>EU-Hosted Signatures and Data Sovereignty</li><li>Certyneo</li><li>is a sovereign European electronic signature platform designed to help users send, sign, and track documents securely. Hosted entirely within the European Union, the software places strong emphasis on regulatory compliance and data protection. Please note that this review is based on self-reported details provided by the maker through a paid Priority listing on LaunchKiwi, rather than hands-on software testing. According to the maker's submitted listing, Certyneo ensures full adherence to eIDAS standards and GDPR regulations while actively safeguarding user data from non-EU legal extraterritoriality.</li><li>Advanced Features and Security Standards</li><li>To streamline document creation and execution, Certyneo goes beyond basic signing capabilities by offering an</li><li>AI contract generator</li><li>directly within the platform. For formal agreements requiring strict legal certainty, it supports qualified electronic signatures (QES) alongside open standard verification using PAdES LTV. Furthermore, Certyneo provides a 10-year legal archiving service to ensure signed files remain verifiably stored and legally sound over extended periods. By integrating document generation, tracking, and long-term storage, the platform covers the full document lifecycle within secure sovereign borders.</li><li>Target Audience and Pricing Model</li><li>Positioned as a cost-effective alternative to traditional electronic signature vendors, Certyneo operates under a freemium pricing structure. It is tailored specifically for European businesses, legal professionals, and organizations that prioritize strict EU data hosting, formal eIDAS compliance, and long-term agreement retention without relying on external non-EU infrastructure.</li><li>Editorial ratings</li><li>Editorial assessment based on the maker's submitted listing — not hands-on testing.</li><li>Ease of use</li><li>7</li><li>Value for money</li><li>7</li><li>Innovation</li><li>7</li><li>Feature depth</li><li>7</li><li>Best for</li><li>European organizations and legal teams seeking an eIDAS-compliant, EU-hosted eSignature tool with long-term legal archiving.</li><li>Not ideal for</li><li>Teams outside the European Union or those requiring heavily tested legacy integrations without a focus on EU data sovereignty.</li><li>Pros</li><li>Hosted entirely in the EU for strict eIDAS and GDPR compliance.</li><li>Protects document data from non-EU legal extraterritoriality.</li><li>Includes an AI contract generator for drafting agreements.</li><li>Supports qualified electronic signatures (QES) and PAdES LTV verification.</li><li>Provides 10-year legal archiving under a freemium pricing model.</li><li>Cons</li><li>Real-world workflow efficiency is unverified as coverage is based on submitted listing details.</li><li>Specific tier limits and feature restrictions on the free plan are not detailed.</li><li>Customer support channels and documentation details were not explicitly provided.</li><li>Verdict</li><li>Certyneo presents a well-rounded option for European businesses seeking secure document signing, QES support, long-term archiving, and AI contract generation within EU borders. Because this overview is based strictly on the maker's submission rather than independent hands-on evaluation, prospective users should confirm specific plan limits and feature details directly on Certyneo's site before migrating critical document workflows.</li><li>Visit</li><li>Certyneo</li><li>↗</li><li>View full listing →</li><li>← Back to Certyneo</li><li>FAQ</li><li>Privacy</li></ul>"
+    },
+    {
+      "product_slug": "reviewturbo",
+      "title": "ReviewTurbo: AI-Powered Customer Review Replies Examined",
+      "rating": 6.8,
+      "published_at": "2026-08-20T20:14:58.368+00:00",
+      "content": "<h3>Key takeaways</h3><ul><li>Inserts a 1-Click Reply button directly next to reviews on major platforms.</li><li>Supports Google, Yelp, Trustpilot, Google Play, and the App Store.</li><li>Generates multi-language, on-brand AI responses inline.</li><li>Available under a freemium pricing model.</li><li>What ReviewTurbo Offers</li><li>ReviewTurbo is a tool listed in the Developer Tools category designed to streamline online reputation management. According to the details provided by the maker for this Priority placement review—which is based on submitted listing information rather than direct hands-on testing—the tool focuses on simplifying how businesses respond to public feedback.</li><li>The core concept centers on placing a 1-Click Reply button directly beside reviews on major platforms. Supported platforms listed by the creator include Google, Yelp, Trustpilot, Google Play, and the Apple App Store, allowing users to handle feedback across multiple channels from a single workflow.</li><li>How It Works and Key Capabilities</li><li>Instead of requiring managers to draft individual responses from scratch or copy-paste templates across various platform dashboards, ReviewTurbo aims to bring AI assistance right to where the reviews exist. The tool claims to generate on-brand replies tailored to the specific context of each review.</li><li>Additionally, it highlights language flexibility by generating responses in the customer's native language. This localized, single-click interface is intended to drastically reduce the time spent managing public feedback while maintaining a consistent brand tone across app stores and review sites.</li><li>Who ReviewTurbo Is Built For</li><li>Because ReviewTurbo operates across major web review sites and mobile app storefronts, it appears tailored for businesses, community managers, and app developers who deal with regular incoming customer feedback. Teams managing multi-regional audiences may also find the automatic multi-language capability relevant to their daily operations.</li><li>As ReviewTurbo operates on a freemium pricing structure, potential users can evaluate its basic features before committing financially. However, because specific plan limits, AI customization controls, and setup requirements are not detailed in the submission, prospective users should test the tool directly to confirm it fits their needs.</li><li>Editorial ratings</li><li>Editorial assessment based on the maker's submitted listing — not hands-on testing.</li><li>Ease of use</li><li>7</li><li>Value for money</li><li>7</li><li>Innovation</li><li>7</li><li>Feature depth</li><li>6</li><li>Best for</li><li>Businesses, app developers, and support teams looking for an inline, AI-driven way to respond to reviews across platforms like Google, Yelp, and app stores.</li><li>Not ideal for</li><li>Teams that prefer manually writing every review response or who do not manage feedback on the specific supported platforms.</li><li>Pros</li><li>Direct inline response interface with a 1-Click Reply button.</li><li>Broad platform coverage including Google, Yelp, Trustpilot, Google Play, and the App Store.</li><li>Automatically generates responses in the customer's language.</li><li>Freemium pricing model allows for preliminary testing.</li><li>Cons</li><li>Real-world AI response quality and customization controls remain unverified without hands-on testing.</li><li>Specific freemium tier limits and paid pricing figures are not disclosed in the listing.</li><li>Support channels, documentation depth, and technical requirements were not provided.</li><li>Verdict</li><li>ReviewTurbo presents a practical concept for simplifying review management through inline, multi-language AI responses across top feedback platforms. Because this editorial coverage is based on the maker's submitted listing for a Priority placement rather than hands-on testing, details like actual AI quality and support responsiveness remain unverified. Interested users should take advantage of the freemium offering to test response accuracy and check usage limits before fully adopting it.</li><li>Visit</li><li>ReviewTurbo</li><li>↗</li><li>View full listing →</li><li>← Back to ReviewTurbo</li><li>FAQ</li><li>Privacy</li></ul>"
+    }
+  ]
+}

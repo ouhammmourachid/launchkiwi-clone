@@ -1,16 +1,25 @@
 /**
- * app/reviews/page.tsx — Reviews listing page
- * ReviewCard is imported from the shared component.
- * All review data comes from data/site.ts.
+ * app/reviews/page.tsx — Editorial reviews listing (published reviews from PocketBase).
  */
 
+import type { Metadata } from "next";
 import Link from "next/link";
+import { connection } from "next/server";
 
 import { ContentShell } from "@/components/layout/content-shell";
 import { ReviewCard } from "@/components/reviews/review-card";
-import { reviewsData } from "@/data/site";
+import { EmptyState } from "@/components/ui/panel";
+import { listPublishedReviews } from "@/lib/api/reviews";
 
-export default function ReviewsPage() {
+export const metadata: Metadata = {
+  title: "Reviews",
+  description: "Editorial write-ups of Priority-tier listings on LaunchKiwi.",
+};
+
+export default async function ReviewsPage() {
+  await connection();
+  const reviews = await listPublishedReviews();
+
   return (
     <ContentShell>
       <div className="space-y-8 pb-12">
@@ -28,11 +37,15 @@ export default function ReviewsPage() {
           </section>
 
           {/* Review cards grid */}
-          <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {reviewsData.map((review) => (
-              <ReviewCard key={review.id} review={review} />
-            ))}
-          </section>
+          {reviews.length > 0 ? (
+            <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {reviews.map((review) => (
+                <ReviewCard key={review.id} review={review} />
+              ))}
+            </section>
+          ) : (
+            <EmptyState title="No reviews published yet" />
+          )}
 
           {/* Priority upsell callout */}
           <section className="rounded-[24px] border border-[#2a301e] bg-[#171a10] p-6 sm:p-8 shadow-md">

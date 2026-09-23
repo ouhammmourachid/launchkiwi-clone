@@ -1,46 +1,129 @@
-import { getPB } from '@/lib/pb/client';
-import { z } from 'zod';
-import {
-  Product, ProductSchema, ProductCreateSchema,
-  ListResponseSchema,
-} from '@/lib/types/pocketbase';
+import { PRODUCT_EXPAND, toProductDetail, toProductSummary } from "@/lib/api/mappers";
+import { PRODUCT_SORTS, type ProductSort } from "@/lib/catalog-options";
+import { getPB } from "@/lib/pb/client";
+import { isNotFound } from "@/lib/pb/errors";
+import type { Paginated, ProductDetail, ProductSummary } from "@/lib/types/models";
+import type { PricingModel } from "@/lib/types/records";
+import { paragraphsToHtml } from "@/lib/utils/format";
+import type { ProductSubmitInput } from "@/lib/validation/schemas";
 
-export async function getProducts(options?: {
-  page?: number; perPage?: number; filter?: string; sort?: string;
-}): Promise<{ success: boolean; error?: string; data?: { page: number; perPage: number; totalItems: number; totalPages: number; items: Product[] } }> {
+export interface ProductQuery {
+  search?: string;
+  category?: string;
+  pricing?: PricingModel;
+  sort?: ProductSort;
+  launchedAfter?: Date;
+  launchedBefore?: Date;
+  page?: number;
+  perPage?: number;
+}
+
+const DAY_MS = 24 * 60 * 60 * 1000;
+const daysAgo = (days: number) => new Date(Date.now() - days * DAY_MS);
+
+function buildFilter(q: ProductQuery): string {
+  const pb = getPB();
+  const parts = [pb.filter("status = {:status}", { status: "published" })];
+  if (q.search) {
+    parts.push(pb.filter("(name ~ {:s} || tagline ~ {:s} || tags.name ?~ {:s} || category.name ~ {:s})", { s: q.search }));
+  }
+  if (q.category) parts.push(pb.filter("category.slug = {:category}", { category: q.category }));
+  if (q.pricing) parts.push(pb.filter("pricing_model = {:pricing}", { pricing: q.pricing }));
+  if (q.sort === "trending") parts.push(pb.filter("launch_date >= {:since}", { since: daysAgo(30) }));
+  if (q.launchedAfter) parts.push(pb.filter("launch_date >= {:after}", { after: q.launchedAfter }));
+  if (q.launchedBefore) parts.push(pb.filter("launch_date < {:before}", { before: q.launchedBefore }));
+  return parts.join(" && ");
+}
+
+export async function listProducts(q: ProductQuery = {}, sortOverride?: string): Promise<Paginated<ProductSummary>> {
+  const res = await getPB()
+    .collection("products")
+    .getList(q.page ?? 1, q.perPage ?? 20, {
+      filter: buildFilter(q),
+      sort: sortOverride ?? PRODUCT_SORTS[q.sort ?? "new"].sort,
+      expand: PRODUCT_EXPAND,
+    });
+  return {
+    items: res.items.map(toProductSummary),
+    page: res.page,
+    totalPages: res.totalPages,
+    totalItems: res.totalItems,
+  };
+}
+
+/** Home page sections: paid placements pin to the top of the current week. */
+export async function getLaunchSections(limit = 15) {
+  const [thisWeek, lastWeek, earlier] = await Promise.all([
+    listProducts({ launchedAfter: daysAgo(7), perPage: limit }, "-priority_level,-upvotes,-launch_date"),
+    listProducts({ launchedAfter: daysAgo(14), launchedBefore: daysAgo(7), perPage: limit, sort: "top" }),
+    listProducts({ launchedAfter: daysAgo(30), launchedBefore: daysAgo(14), perPage: limit, sort: "top" }),
+  ]);
+  return { thisWeek, lastWeek, earlier };
+}
+
+/** Paid (Premium/Priority) listings for sidebars. */
+export async function getFeaturedProducts(limit = 5, offset = 0): Promise<ProductSummary[]> {
+  const res = await getPB()
+    .collection("products")
+    .getList(1, limit + offset, {
+      filter: 'status = "published" && priority_level > 0',
+      sort: "-priority_level,-launch_date",
+      expand: PRODUCT_EXPAND,
+    });
+  return res.items.slice(offset).map(toProductSummary);
+}
+
+export async function getProductBySlug(slug: string): Promise<ProductDetail | null> {
   try {
     const pb = getPB();
-    const res = await pb.collection('products').getList(options?.page ?? 1, options?.perPage ?? 20, {
-      filter: options?.filter,
-      sort: options?.sort,
-    });
-    const parsed = ListResponseSchema(ProductSchema).parse(res);
-    return { success: true, data: parsed };
-  } catch (err: any) {
-    return { success: false, error: err?.message || 'Failed to fetch products' };
+    const record = await pb
+      .collection("products")
+      .getFirstListItem(pb.filter("slug = {:slug} && status = 'published'", { slug }), { expand: PRODUCT_EXPAND });
+    return toProductDetail(record);
+  } catch (err) {
+    if (isNotFound(err)) return null;
+    throw err;
   }
 }
 
-export async function getProductBySlug(slug: string): Promise<{ success: boolean; error?: string; data?: Product }> {
-  try {
-    const pb = getPB();
-    const record = await pb.collection('products').getFirstListItem(`slug = "${slug}"`);
-    const parsed = ProductSchema.parse(record);
-    return { success: true, data: parsed };
-  } catch (err: any) {
-    return { success: false, error: err?.message || 'Product not found' };
-  }
+export async function getRelatedProducts(product: ProductSummary, limit = 4): Promise<ProductSummary[]> {
+  if (!product.category) return [];
+  const res = await listProducts({ category: product.category.slug, sort: "top", perPage: limit + 1 });
+  return res.items.filter((p) => p.id !== product.id).slice(0, limit);
 }
 
-export async function searchProducts(query: string): Promise<{ success: boolean; error?: string; data?: { items: Product[] } }> {
-  try {
-    const pb = getPB();
-    const res = await pb.collection('products').getFullList({
-      filter: `name ~ "${query}" || tagline ~ "${query}" || description ~ "${query}"`,
-    });
-    const parsed = z.array(ProductSchema).parse(res);
-    return { success: true, data: { items: parsed } };
-  } catch (err: any) {
-    return { success: false, error: err?.message || 'Search failed' };
-  }
+export async function listProductsByMaker(makerId: string): Promise<ProductSummary[]> {
+  const pb = getPB();
+  const items = await pb.collection("products").getFullList({
+    filter: pb.filter("maker = {:maker}", { maker: makerId }),
+    sort: "-created",
+    expand: PRODUCT_EXPAND,
+  });
+  return items.map(toProductSummary);
+}
+
+/** Free self-serve launch. Server hooks set status, slug and counters. */
+export async function submitProduct(input: ProductSubmitInput, logo: File | null): Promise<ProductSummary> {
+  const record = await getPB()
+    .collection("products")
+    .create(
+      {
+        name: input.name,
+        slug: input.name,
+        website_url: input.websiteUrl,
+        tagline: input.tagline,
+        description: paragraphsToHtml(input.description),
+        category: input.category,
+        pricing_model: input.pricing,
+        ...(logo ? { logo } : {}),
+      },
+      { expand: PRODUCT_EXPAND },
+    );
+  return toProductSummary(record);
+}
+
+/** Fresh upvote count, used to reconcile optimistic UI after a vote. */
+export async function getUpvoteCount(productId: string): Promise<number> {
+  const record = await getPB().collection("products").getOne(productId, { fields: "upvotes" });
+  return record.upvotes ?? 0;
 }

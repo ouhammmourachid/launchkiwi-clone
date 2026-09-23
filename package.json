@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "pb": "./pb/pocketbase serve --dir pb/pb_data --http 127.0.0.1:8090",
+    "seed": "node --env-file=.env.local scripts/seed.mjs",
+    "scrape:launchkiwi": "node scripts/scrape-launchkiwi.mjs"
   },
   "dependencies": {
     "next": "16.3.5",

@@ -8,12 +8,10 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { UserMenu } from "@/components/auth/user-menu";
+import { HeaderSearch } from "@/components/layout/header-search";
+import { KiwiLogo } from "@/components/layout/nav-icons";
 import { navLinks } from "@/data/site";
-import {
-  KiwiLogo,
-  SearchIcon,
-  SunIcon,
-} from "@/components/layout/nav-icons";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -30,7 +28,7 @@ export function SiteHeader() {
 
           <nav className="hidden items-center gap-5 md:flex">
             {navLinks.map((link) => {
-              const isActive = pathname === link.href;
+              const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`);
               return (
                 <Link
                   key={link.href}
@@ -50,33 +48,12 @@ export function SiteHeader() {
 
         {/* Search bar */}
         <div className="hidden flex-1 items-center justify-center px-6 lg:flex">
-          <div className="relative w-full max-w-[360px]">
-            <span className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-[#78826b]">
-              <SearchIcon />
-            </span>
-            <input
-              type="text"
-              placeholder="Search projects, tools or tags..."
-              className="w-full rounded-full border border-[#23291b] bg-[#141810] py-2 pl-9 pr-4 text-xs text-white placeholder:text-[#6e7760] outline-none focus:border-[#86ba28] transition"
-            />
-          </div>
+          <HeaderSearch />
         </div>
 
         {/* Actions */}
         <div className="flex items-center gap-3">
-          <button
-            type="button"
-            className="flex h-8 w-8 items-center justify-center rounded-full border border-[#23291b] bg-[#141810] transition hover:bg-[#1a2015]"
-            aria-label="Toggle theme"
-          >
-            <SunIcon />
-          </button>
-          <button
-            type="button"
-            className="text-xs font-semibold text-[#c5ceb8] transition hover:text-white px-2 py-1"
-          >
-            Sign In
-          </button>
+          <UserMenu />
           <Link
             href="/launch"
             className="inline-flex items-center gap-1.5 rounded-full bg-[#86ba28] px-3.5 py-1.5 text-xs font-bold text-[#0a0d06] transition hover:bg-[#96cc2e] shadow-sm"

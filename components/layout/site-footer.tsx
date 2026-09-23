@@ -3,14 +3,19 @@
  * Global site footer: brand column, link groups, community stats, legal bar.
  */
 
-"use client";
-
 import Link from "next/link";
+import { connection } from "next/server";
 
+import { BackToTopButton } from "@/components/layout/back-to-top-button";
+import { KiwiLogo, MailIcon, RssIcon } from "@/components/layout/nav-icons";
 import { footerGroups } from "@/data/site";
-import { KiwiLogo, MailIcon, RssIcon, ArrowUpIcon } from "@/components/layout/nav-icons";
+import { getSiteStats } from "@/lib/api/catalog";
+import { formatNumber } from "@/lib/utils/format";
 
-export function SiteFooter() {
+export async function SiteFooter() {
+  await connection();
+  const stats = await getSiteStats().catch(() => null);
+
   return (
     <footer className="border-t border-[#1b1f14] bg-[#080a06] px-4 pb-10 pt-12 text-[#c5ceb8]">
       <div className="mx-auto grid max-w-[1480px] gap-8 px-2 sm:px-6 md:grid-cols-12">
@@ -62,11 +67,11 @@ export function SiteFooter() {
           <h4 className="text-[10px] font-bold uppercase tracking-widest text-[#a6b194]">COMMUNITY</h4>
           <div className="rounded-xl border border-[#22271a] bg-[#12150d] p-3.5 text-center">
             <div className="text-[9px] uppercase tracking-widest text-[#727c65] font-bold">TOTAL VOTES</div>
-            <div className="mt-1 text-2xl font-black text-white">11030</div>
+            <div className="mt-1 text-2xl font-black text-white">{stats ? formatNumber(stats.upvotes) : "—"}</div>
           </div>
           <div className="rounded-xl border border-[#22271a] bg-[#12150d] p-3.5 text-center">
             <div className="text-[9px] uppercase tracking-widest text-[#727c65] font-bold">PRODUCTS LISTED</div>
-            <div className="mt-1 text-2xl font-black text-white">358 +</div>
+            <div className="mt-1 text-2xl font-black text-white">{stats ? formatNumber(stats.products) : "—"}</div>
           </div>
         </div>
 
@@ -83,14 +88,7 @@ export function SiteFooter() {
           <Link href="/cookies" className="transition hover:text-white">Cookies</Link>
           <span>•</span>
           <Link href="/contact" className="transition hover:text-white">Contact</Link>
-          <button
-            type="button"
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            aria-label="Back to top"
-            className="ml-1 flex h-7 w-7 items-center justify-center rounded-full border border-[#22271a] bg-[#141810] text-[#9aa48c] transition hover:bg-[#1a2015] hover:text-white cursor-pointer"
-          >
-            <ArrowUpIcon />
-          </button>
+          <BackToTopButton />
         </div>
       </div>
     </footer>

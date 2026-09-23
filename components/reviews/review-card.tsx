@@ -4,63 +4,46 @@
  */
 
 import Link from "next/link";
-import type { ReviewItem } from "@/data/site";
-import { ProductIcon } from "@/components/ui/product-icon";
 
-interface ReviewCardProps {
-  review: ReviewItem;
-}
+import { ProductLogo } from "@/components/products/product-logo";
+import { RatingPill } from "@/components/reviews/review-article";
+import type { ReviewSummary } from "@/lib/types/models";
+import { formatDate } from "@/lib/utils/format";
 
-export function ReviewCard({ review }: ReviewCardProps) {
+export function ReviewCard({ review }: { review: ReviewSummary }) {
+  const { product } = review;
+  if (!product) return null;
+
   return (
-    <div className="group flex flex-col justify-between rounded-[20px] border border-[#22271a] bg-[#13160e] p-5 transition hover:border-[#38412b] shadow-md">
+    <article className="group relative flex flex-col justify-between rounded-[20px] border border-[#22271a] bg-[#13160e] p-5 transition hover:border-[#38412b] shadow-md">
       <div>
-        {/* Card header */}
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-3 min-w-0">
-            <ProductIcon type={review.iconType} />
+            <ProductLogo name={product.name} logoUrl={product.logoUrl} />
             <div className="min-w-0">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-[#86ba28] block truncate">
-                {review.badge}
-              </span>
-              <span className="text-xs text-[#78826b] block mt-0.5 truncate">
-                {review.date}
-              </span>
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#86ba28] block truncate">{product.name}</span>
+              <span className="text-xs text-[#78826b] block mt-0.5 truncate">{formatDate(review.publishedAt)}</span>
             </div>
           </div>
-
-          {/* Rating pill */}
-          <div className="shrink-0 rounded-xl border border-[#262c1c] bg-[#161a10] px-3 py-1 text-center">
-            <span className="text-sm font-black text-[#86ba28] leading-none block">
-              {review.rating}
-            </span>
-            <span className="text-[9px] font-semibold text-[#5e6652] block -mt-0.5">
-              /10
-            </span>
-          </div>
+          <RatingPill rating={review.rating} />
         </div>
 
-        {/* Review title */}
         <h3 className="mt-4 text-base sm:text-lg font-black tracking-tight text-white leading-snug group-hover:text-[#86ba28] transition">
           {review.title}
         </h3>
 
-        {/* Description snippet */}
-        <p className="mt-2.5 text-xs text-[#9aa48c] leading-relaxed line-clamp-2">
-          {review.description}
-        </p>
+        <p className="mt-2.5 text-xs text-[#9aa48c] leading-relaxed line-clamp-2">{product.tagline}</p>
       </div>
 
-      {/* CTA */}
       <div className="mt-4 pt-2">
         <Link
-          href={`/reviews/${review.slug}`}
-          className="inline-flex items-center gap-1 text-xs font-bold text-[#86ba28] transition hover:underline"
+          href={`/p/${product.slug}#review`}
+          className="inline-flex items-center gap-1 text-xs font-bold text-[#86ba28] transition hover:underline after:absolute after:inset-0"
         >
           <span>Read review</span>
           <span>→</span>
         </Link>
       </div>
-    </div>
+    </article>
   );
 }

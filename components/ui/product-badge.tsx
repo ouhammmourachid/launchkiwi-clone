@@ -3,13 +3,9 @@
  * Renders the PRIORITY or PREMIUM badge pill on a product listing row.
  */
 
-import type { Product } from "@/data/site";
+import type { ProductBadge as Badge } from "@/lib/types/models";
 
-interface ProductBadgeProps {
-  badge: Product["badge"];
-}
-
-export function ProductBadge({ badge }: ProductBadgeProps) {
+export function ProductBadge({ badge }: { badge: Badge | null }) {
   if (badge === "PRIORITY") {
     return (
       <span className="inline-flex items-center gap-1 rounded bg-[#282310] border border-[#483e18] px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-[#eab308]">

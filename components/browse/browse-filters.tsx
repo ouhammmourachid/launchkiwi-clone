@@ -1,0 +1,157 @@
+/**
+ * browse-filters.tsx
+ * Search box, sort select and category / pricing chips for /browse.
+ * Every change rewrites the URL; the server page re-renders the results.
+ */
+
+"use client";
+
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState, useTransition } from "react";
+
+import { PRICE_FILTERS, PRODUCT_SORTS, type ProductSort } from "@/lib/catalog-options";
+import type { CategoryOption } from "@/lib/types/models";
+import type { PricingModel } from "@/lib/types/records";
+
+const SEARCH_DEBOUNCE_MS = 350;
+
+interface Current {
+  search?: string;
+  category?: string;
+  pricing?: PricingModel;
+  sort: ProductSort;
+}
+
+interface BrowseFiltersProps {
+  categories: CategoryOption[];
+  totalItems: number;
+  current: Current;
+}
+
+export function BrowseFilters({ categories, totalItems, current }: BrowseFiltersProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const [isPending, startTransition] = useTransition();
+  const [search, setSearch] = useState(current.search ?? "");
+  const [syncedSearch, setSyncedSearch] = useState(current.search);
+
+  // The URL changed from elsewhere (e.g. the header search): adopt it, unless
+  // the user has typed something newer that hasn't been pushed yet.
+  if (current.search !== syncedSearch) {
+    setSyncedSearch(current.search);
+    if (search.trim() === (syncedSearch ?? "")) setSearch(current.search ?? "");
+  }
+
+  const navigate = (patch: Partial<Record<"q" | "category" | "pricing" | "sort", string | undefined>>) => {
+    const next = new URLSearchParams();
+    const merged = { q: current.search, category: current.category, pricing: current.pricing, sort: current.sort, ...patch };
+    for (const [key, value] of Object.entries(merged)) {
+      if (value && !(key === "sort" && value === "new")) next.set(key, value);
+    }
+    // Any filter change resets pagination.
+    const query = next.toString();
+    startTransition(() => router.replace(query ? `${pathname}?${query}` : pathname, { scroll: false }));
+  };
+
+  // Debounced search-as-you-type.
+  useEffect(() => {
+    if (search === (current.search ?? "")) return;
+    const timer = setTimeout(() => navigate({ q: search || undefined }), SEARCH_DEBOUNCE_MS);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- navigate is recreated each render; only the text matters
+  }, [search]);
+
+  return (
+    <section className="rounded-[24px] border border-[#22271a] bg-[#13160e] p-6 shadow-lg" aria-busy={isPending}>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <div className="flex items-center gap-2">
+            <span className="text-xl">🚀</span>
+            <h1 className="text-2xl font-black text-white tracking-tight">Browse Products</h1>
+          </div>
+          <p className="mt-1 text-xs text-[#8c967d]">
+            {isPending ? "Updating…" : `${totalItems} product${totalItems === 1 ? "" : "s"} found.`}
+          </p>
+        </div>
+
+        <label className="flex items-center gap-2">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-[#656e58]">SORT:</span>
+          <select
+            value={current.sort}
+            onChange={(e) => navigate({ sort: e.target.value })}
+            className="rounded-full border border-[#23291c] bg-[#0a0c07] px-3 py-1.5 text-xs font-semibold text-white outline-none focus:border-[#86ba28] cursor-pointer"
+          >
+            {Object.entries(PRODUCT_SORTS).map(([value, { label }]) => (
+              <option key={value} value={value}>
+                {label}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+
+      <div className="relative mt-5">
+        <span className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-[#4e5642]">🔍</span>
+        <input
+          type="search"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          aria-label="Search products"
+          placeholder="Search names, taglines, categories, tags..."
+          className="w-full rounded-xl border border-[#1e2417] bg-[#070905] py-3 pl-10 pr-4 text-xs text-white placeholder:text-[#4e5642] outline-none focus:border-[#86ba28] transition shadow-inner"
+        />
+      </div>
+
+      <div className="mt-5">
+        <div className="text-[10px] font-bold uppercase tracking-widest text-[#727c65] mb-2.5">CATEGORY</div>
+        <div className="flex flex-wrap items-center gap-1.5">
+          <FilterChip label="All" active={!current.category} onClick={() => navigate({ category: undefined })} />
+          {categories.map((cat) => (
+            <FilterChip
+              key={cat.slug}
+              label={cat.name}
+              count={cat.count}
+              active={current.category === cat.slug}
+              onClick={() => navigate({ category: cat.slug })}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-4 flex flex-wrap items-center gap-3">
+        <span className="text-[10px] font-bold uppercase tracking-widest text-[#727c65]">PRICE:</span>
+        <div className="flex flex-wrap items-center gap-1.5">
+          <FilterChip label="All" active={!current.pricing} onClick={() => navigate({ pricing: undefined })} />
+          {PRICE_FILTERS.map((price) => (
+            <FilterChip key={price} label={price} active={current.pricing === price} onClick={() => navigate({ pricing: price })} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+interface FilterChipProps {
+  label: string;
+  count?: number;
+  active: boolean;
+  onClick: () => void;
+}
+
+function FilterChip({ label, count, active, onClick }: FilterChipProps) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-pressed={active}
+      className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-semibold transition cursor-pointer ${
+        active
+          ? "bg-[#86ba28] text-[#0a0d06] font-bold"
+          : "bg-[#13170e] border border-[#23291c] text-[#a6b194] hover:border-[#38412b] hover:text-white"
+      }`}
+    >
+      <span>{label}</span>
+      {count !== undefined && <span className={`text-[10px] ${active ? "text-[#0a0d06]/70" : "text-[#656e58]"}`}>{count}</span>}
+    </button>
+  );
+}
