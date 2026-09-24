@@ -33,6 +33,11 @@ export function htmlToParagraphs(html: string): string[] {
     .filter(Boolean);
 }
 
+/** Visible character count of rich-text HTML (what the editor counter shows). */
+export function htmlTextLength(html: string): number {
+  return htmlToParagraphs(html).join(" ").length;
+}
+
 /** Wraps plain text (one paragraph per blank-line block) as escaped HTML. */
 export function paragraphsToHtml(text: string): string {
   const escape = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -42,4 +47,10 @@ export function paragraphsToHtml(text: string): string {
     .filter(Boolean)
     .map((p) => `<p>${escape(p).replace(/\n/g, "<br>")}</p>`)
     .join("");
+}
+
+/** "$0" for free plans, otherwise the plan price in its currency ("$15"). */
+export function formatPlanPrice(plan: { price: number; currency: string }): string {
+  if (plan.price === 0) return "$0";
+  return new Intl.NumberFormat("en-US", { style: "currency", currency: plan.currency, maximumFractionDigits: 0 }).format(plan.price);
 }

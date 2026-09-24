@@ -46,8 +46,10 @@ onRecordCreateRequest((e) => {
   r.set("clicks", 0);
   r.set("submitted_at", now);
   r.set("approved_at", now);
-  r.set("published_at", now);
-  r.set("launch_date", now);
+  // Free launches wait for a queue slot; a paid upgrade moves the date up.
+  const launchDate = u.nextFreeLaunchDate(e.app);
+  r.set("published_at", launchDate);
+  r.set("launch_date", launchDate);
 
   e.next();
 
@@ -76,6 +78,12 @@ onRecordCreateRequest((e) => {
     e.app.logger().error("product submission bookkeeping failed", "product", r.id, "error", String(err));
   }
 }, "products");
+
+// Next free queue slot, shown on the launch form.
+routerAdd("GET", "/api/launch-queue", (e) => {
+  const u = require(`${__hooks}/utils.js`);
+  return e.json(200, { nextFreeDate: u.nextFreeLaunchDate(e.app).string() });
+});
 
 // Makers may edit their listing copy, but not moderation fields or counters.
 onRecordUpdateRequest((e) => {

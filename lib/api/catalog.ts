@@ -16,6 +16,22 @@ export async function listAllCategories(): Promise<CategoryOption[]> {
   return items.map((c) => ({ id: c.id, name: c.name, slug: c.slug, count: 0 }));
 }
 
+/** Tag ids keyed by slug, so category picks can also tag the product. */
+export async function listTagIdsBySlug(): Promise<Record<string, string>> {
+  const items = await getPB().collection("tags").getFullList({ fields: "id,slug" });
+  return Object.fromEntries(items.map((t) => [t.slug, t.id]));
+}
+
+/** Day the next free (queued) launch would go live, or null if unknown. */
+export async function getNextFreeLaunchDate(): Promise<string | null> {
+  try {
+    const { nextFreeDate } = await getPB().send<{ nextFreeDate: string }>("/api/launch-queue", { cache: "no-store" });
+    return nextFreeDate || null;
+  } catch {
+    return null;
+  }
+}
+
 export async function getSiteStats(): Promise<SiteStats> {
   const [stats] = await getPB().collection("site_stats").getFullList();
   return {

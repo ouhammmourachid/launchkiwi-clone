@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "pb": "./pb/pocketbase serve --dir pb/pb_data --http 127.0.0.1:8090",
+    "pb": "node --env-file-if-exists=pb/.env scripts/pb.mjs",
+    "lemonsqueezy:ids": "node --env-file-if-exists=pb/.env scripts/lemonsqueezy-ids.mjs",
     "seed": "node --env-file=.env.local scripts/seed.mjs",
     "scrape:launchkiwi": "node scripts/scrape-launchkiwi.mjs"
   },

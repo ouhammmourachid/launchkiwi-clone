@@ -1,73 +1,49 @@
 /**
- * app/launch/page.tsx — Free product submission.
- * The hero URL box on the home page forwards here as /launch?url=…
+ * app/launch/page.tsx — Launch a product (free queue or paid tier).
+ * The hero URL box on the home page forwards here as /launch?url=…,
+ * and pricing links can preselect a tier with /launch?plan=premium.
  */
 
 import type { Metadata } from "next";
-import Link from "next/link";
 
 import { SubmitProductForm } from "@/components/launch/submit-product-form";
-import { ContentShell } from "@/components/layout/content-shell";
-import { Panel } from "@/components/ui/panel";
-import { listAllCategories } from "@/lib/api/catalog";
+import { getNextFreeLaunchDate, listAllCategories, listPricingPlans, listTagIdsBySlug } from "@/lib/api/catalog";
 
 export const metadata: Metadata = {
-  title: "Launch your product",
-  description: "Submit your product for free and get a permanent listing on LaunchDunes.",
+  title: "Launch your project",
+  description: "Submit your indie project or solo startup to LaunchDunes to get indexed, gain traffic and collect feedback.",
 };
-
-const steps = [
-  "Add your product URL and basic details.",
-  "Pick a category and pricing model.",
-  "Publish instantly and start collecting upvotes and feedback.",
-];
 
 type SearchParams = Promise<Record<string, string | string[] | undefined>>;
 
 export default async function LaunchPage({ searchParams }: { searchParams: SearchParams }) {
-  const { url } = await searchParams;
-  const categories = await listAllCategories();
+  const { url, plan } = await searchParams;
+  const [categories, plans, tagIdsBySlug, nextFreeDate] = await Promise.all([
+    listAllCategories(),
+    listPricingPlans(),
+    listTagIdsBySlug(),
+    getNextFreeLaunchDate(),
+  ]);
 
   return (
-    <ContentShell>
-      <div className="space-y-6 pb-12">
-        <section className="pt-2">
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-sun">Launch</p>
-          <h1 className="mt-2 text-3xl font-black tracking-tight text-white md:text-4xl">Submit your product</h1>
-          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-dune-300">
-            Get a free permanent product listing and bring early adopters, builders, and product enthusiasts to your launch.
+    <div className="mx-auto max-w-[1240px] px-4 py-8 md:py-12">
+      <div className="overflow-hidden rounded-[24px] border border-dune-850 bg-dune-940 shadow-lg">
+        <header className="bg-sun px-6 py-7 text-on-sun md:px-8">
+          <h1 className="text-2xl font-black tracking-tight md:text-3xl">Launch Your Project</h1>
+          <p className="mt-1.5 text-sm font-medium opacity-80">
+            Submit your indie project or solo startup to index, gain traffic, and collect feedback.
           </p>
-        </section>
+        </header>
 
-        <div className="grid gap-6 lg:grid-cols-[1.3fr_0.7fr]">
-          <SubmitProductForm categories={categories} initialUrl={typeof url === "string" ? url : ""} />
-
-          <aside className="space-y-4">
-            <Panel className="p-6">
-              <h2 className="text-lg font-bold text-white">How it works</h2>
-              <ol className="mt-4 space-y-3">
-                {steps.map((step, index) => (
-                  <li key={step} className="flex gap-3 text-sm text-dune-100">
-                    <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-sun text-xs font-bold text-on-sun">
-                      {index + 1}
-                    </span>
-                    {step}
-                  </li>
-                ))}
-              </ol>
-            </Panel>
-            <Panel className="p-6">
-              <h2 className="text-sm font-bold text-white">Want more visibility?</h2>
-              <p className="mt-2 text-xs leading-relaxed text-dune-300">
-                Premium and Priority listings get pinned, featured badges and an editorial review.
-              </p>
-              <Link href="/pricing" className="mt-3 inline-block text-xs font-bold text-sun hover:underline">
-                See pricing →
-              </Link>
-            </Panel>
-          </aside>
-        </div>
+        <SubmitProductForm
+          categories={categories}
+          plans={plans}
+          tagIdsBySlug={tagIdsBySlug}
+          nextFreeDate={nextFreeDate}
+          initialUrl={typeof url === "string" ? url : ""}
+          initialPlan={typeof plan === "string" ? plan : undefined}
+        />
       </div>
-    </ContentShell>
+    </div>
   );
 }

@@ -72,6 +72,32 @@ function currentLaunchWeek(app) {
   }
 }
 
+/** Free launches go live in a daily queue; paid plans skip it. */
+const FREE_LAUNCHES_PER_DAY = 3;
+
+/** "2026-09-24 00:00:00.000Z" for the UTC day `offset` days from today. */
+function utcDay(offset) {
+  const d = new Date();
+  d.setUTCHours(0, 0, 0, 0);
+  d.setUTCDate(d.getUTCDate() + offset);
+  return d.toISOString().replace("T", " ");
+}
+
+/** The first day (from tomorrow) with a free queue slot left. */
+function nextFreeLaunchDate(app) {
+  for (let offset = 1; offset < 3650; offset++) {
+    const taken = app.countRecords(
+      "products",
+      $dbx.exp("launch_date >= {:from} AND launch_date < {:to} AND priority_level = 0 AND submission_type = 'self_submitted'", {
+        from: utcDay(offset),
+        to: utcDay(offset + 1),
+      }),
+    );
+    if (taken < FREE_LAUNCHES_PER_DAY) return new DateTime(utcDay(offset));
+  }
+  return new DateTime(utcDay(3650));
+}
+
 /** Fields only admins may set on a product (counters, moderation, paid perks). */
 const PROTECTED_PRODUCT_FIELDS = [
   "maker",
@@ -104,6 +130,7 @@ module.exports = {
   uniqueSlug,
   bumpUpvotes,
   currentLaunchWeek,
+  nextFreeLaunchDate,
   visitorId,
   MAX_GUEST_VOTES_PER_IP,
   PROTECTED_PRODUCT_FIELDS,

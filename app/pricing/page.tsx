@@ -1,7 +1,7 @@
 /**
  * app/pricing/page.tsx — Pricing page
- * Plans come from the `pricing_plans` collection. Checkout isn't built yet,
- * so paid plans show a disabled "coming soon" button.
+ * Plans come from the `pricing_plans` collection. Paid plans go to /upgrade,
+ * where the maker picks a product and pays through Lemon Squeezy.
  */
 
 import type { Metadata } from "next";
@@ -12,16 +12,12 @@ import { ContentShell } from "@/components/layout/content-shell";
 import { buttonClasses } from "@/components/ui/button";
 import { listPricingPlans } from "@/lib/api/catalog";
 import type { PricingPlan } from "@/lib/types/models";
+import { formatPlanPrice } from "@/lib/utils/format";
 
 export const metadata: Metadata = {
   title: "Pricing",
   description: "Launch free, or skip the queue with Premium and Priority listings.",
 };
-
-function formatPrice(plan: PricingPlan) {
-  if (plan.price === 0) return "$0";
-  return new Intl.NumberFormat("en-US", { style: "currency", currency: plan.currency, maximumFractionDigits: 0 }).format(plan.price);
-}
 
 function PlanCard({ plan }: { plan: PricingPlan }) {
   const isFree = plan.price === 0;
@@ -38,7 +34,7 @@ function PlanCard({ plan }: { plan: PricingPlan }) {
         )}
       </div>
       <div className="mt-4 flex items-end gap-2">
-        <span className="text-4xl font-black text-white">{formatPrice(plan)}</span>
+        <span className="text-4xl font-black text-white">{formatPlanPrice(plan)}</span>
         <span className="pb-1 text-xs text-dune-500">one-time</span>
       </div>
       <p className="mt-3 text-sm leading-relaxed text-dune-300">{plan.description}</p>
@@ -55,9 +51,12 @@ function PlanCard({ plan }: { plan: PricingPlan }) {
           Launch for free
         </Link>
       ) : (
-        <button type="button" disabled className={buttonClasses({ variant: "secondary", className: "mt-6 w-full" })}>
-          Checkout coming soon
-        </button>
+        <Link
+          href={`/upgrade?plan=${plan.slug}`}
+          className={buttonClasses({ variant: plan.highlighted ? "primary" : "secondary", className: "mt-6 w-full" })}
+        >
+          Get {plan.name}
+        </Link>
       )}
     </div>
   );

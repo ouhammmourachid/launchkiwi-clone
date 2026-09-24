@@ -5,10 +5,26 @@ import { useRouter } from "next/navigation";
 
 import { useAuth } from "@/hooks/use-auth";
 import { useToast } from "@/hooks/use-toast";
+import { createCheckout } from "@/lib/api/checkout";
 import { submitProduct } from "@/lib/api/products";
 import { queryKeys } from "@/lib/query-keys";
 import type { ProductSubmitInput } from "@/lib/validation/schemas";
 
+export interface LaunchRequest {
+  input: ProductSubmitInput;
+  files: { logo: File; screenshot: File };
+  categorySlugs: string[];
+  tagIdsBySlug: Record<string, string>;
+  /** Paid plan slug, or null for the free queue. */
+  paidPlan: string | null;
+  /** "YYYY-MM-DD" chosen for a paid launch. */
+  launchDate: string;
+}
+
+/**
+ * Creates the product (queued as a free launch), then — for a paid tier —
+ * hands off to the Lemon Squeezy checkout, whose webhook applies the plan.
+ */
 export function useSubmitProduct() {
   const { user } = useAuth();
   const { toast } = useToast();
@@ -16,11 +32,26 @@ export function useSubmitProduct() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ input, logo }: { input: ProductSubmitInput; logo: File | null }) => submitProduct(input, logo),
-    onSuccess: (product) => {
+    mutationFn: async (req: LaunchRequest) => {
+      const product = await submitProduct(req.input, req.files, req.categorySlugs, req.tagIdsBySlug);
       void queryClient.invalidateQueries({ queryKey: queryKeys.myProducts(user?.id) });
-      toast(`🚀 ${product.name} is live!`);
-      router.push(`/p/${product.slug}`);
+      if (!req.paidPlan) return { product, checkoutUrl: null };
+      try {
+        return { product, checkoutUrl: await createCheckout(req.paidPlan, product.id, req.launchDate) };
+      } catch (err) {
+        // The launch exists (queued for free) — let the maker pay from /upgrade later.
+        toast(`${product.name} is queued as a free launch. You can upgrade it from your account.`);
+        router.push(`/upgrade?plan=${req.paidPlan}&product=${product.id}`);
+        throw err;
+      }
+    },
+    onSuccess: ({ product, checkoutUrl }) => {
+      if (checkoutUrl) {
+        window.location.assign(checkoutUrl);
+        return;
+      }
+      toast(`🚀 ${product.name} is in the launch queue!`);
+      router.push("/account");
     },
   });
 }

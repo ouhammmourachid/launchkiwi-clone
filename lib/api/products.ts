@@ -4,7 +4,6 @@ import { getPB } from "@/lib/pb/client";
 import { isNotFound } from "@/lib/pb/errors";
 import type { Paginated, ProductDetail, ProductSummary } from "@/lib/types/models";
 import type { PricingModel } from "@/lib/types/records";
-import { paragraphsToHtml } from "@/lib/utils/format";
 import type { ProductSubmitInput } from "@/lib/validation/schemas";
 
 export interface ProductQuery {
@@ -23,7 +22,8 @@ const daysAgo = (days: number) => new Date(Date.now() - days * DAY_MS);
 
 function buildFilter(q: ProductQuery): string {
   const pb = getPB();
-  const parts = [pb.filter("status = {:status}", { status: "published" })];
+  // Queued / scheduled launches stay hidden until their launch date.
+  const parts = [pb.filter("status = {:status} && launch_date <= @now", { status: "published" })];
   if (q.search) {
     parts.push(pb.filter("(name ~ {:s} || tagline ~ {:s} || tags.name ?~ {:s} || category.name ~ {:s})", { s: q.search }));
   }
@@ -66,7 +66,7 @@ export async function getFeaturedProducts(limit = 5, offset = 0): Promise<Produc
   const res = await getPB()
     .collection("products")
     .getList(1, limit + offset, {
-      filter: 'status = "published" && priority_level > 0',
+      filter: 'status = "published" && priority_level > 0 && launch_date <= @now',
       sort: "-priority_level,-launch_date",
       expand: PRODUCT_EXPAND,
     });
@@ -102,8 +102,17 @@ export async function listProductsByMaker(makerId: string): Promise<ProductSumma
   return items.map(toProductSummary);
 }
 
-/** Free self-serve launch. Server hooks set status, slug and counters. */
-export async function submitProduct(input: ProductSubmitInput, logo: File | null): Promise<ProductSummary> {
+/**
+ * Self-serve launch. Server hooks set status, slug, counters and the queued
+ * launch date. The first category is the primary one; all picks also become
+ * tags when a tag with the same slug exists.
+ */
+export async function submitProduct(
+  input: ProductSubmitInput,
+  files: { logo: File; screenshot: File },
+  categorySlugs: string[],
+  tagIdsBySlug: Record<string, string>,
+): Promise<ProductSummary> {
   const record = await getPB()
     .collection("products")
     .create(
@@ -112,10 +121,12 @@ export async function submitProduct(input: ProductSubmitInput, logo: File | null
         slug: input.name,
         website_url: input.websiteUrl,
         tagline: input.tagline,
-        description: paragraphsToHtml(input.description),
-        category: input.category,
+        description: input.description,
+        category: input.categories[0],
+        tags: categorySlugs.map((slug) => tagIdsBySlug[slug]).filter(Boolean),
         pricing_model: input.pricing,
-        ...(logo ? { logo } : {}),
+        logo: files.logo,
+        screenshots: [files.screenshot],
       },
       { expand: PRODUCT_EXPAND },
     );

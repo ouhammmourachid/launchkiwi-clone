@@ -14,13 +14,13 @@ import { useEffect } from "react";
 import { UserAvatar } from "@/components/auth/user-avatar";
 import { ProductList } from "@/components/products/product-list";
 import { Button, buttonClasses } from "@/components/ui/button";
-import { Panel } from "@/components/ui/panel";
+import { Alert, Panel } from "@/components/ui/panel";
 import { useAuth } from "@/hooks/use-auth";
 import { useFavoriteProducts } from "@/hooks/use-favorites";
 import { listProductsByMaker } from "@/lib/api/products";
 import { queryKeys } from "@/lib/query-keys";
 
-export function AccountDashboard() {
+export function AccountDashboard({ paymentSucceeded = false }: { paymentSucceeded?: boolean }) {
   const { user, isReady, signOut } = useAuth();
   const router = useRouter();
 
@@ -32,6 +32,9 @@ export function AccountDashboard() {
     queryKey: queryKeys.myProducts(user?.id),
     queryFn: () => listProductsByMaker(user!.id),
     enabled: !!user,
+    // The Lemon Squeezy webhook usually lands a few seconds after the redirect;
+    // keep refreshing briefly so the new badge shows up without a reload.
+    refetchInterval: (query) => (paymentSucceeded && query.state.dataUpdateCount < 6 ? 5000 : false),
   });
   const favorites = useFavoriteProducts();
 
@@ -39,6 +42,9 @@ export function AccountDashboard() {
 
   return (
     <div className="space-y-6 pb-12">
+      {paymentSucceeded && (
+        <Alert tone="success">Payment received, thank you! Your upgrade will show on your launch within a few seconds.</Alert>
+      )}
       <Panel className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-4">
           <UserAvatar user={user} size={56} />
@@ -51,6 +57,11 @@ export function AccountDashboard() {
           <Link href="/launch" className={buttonClasses({ size: "sm" })}>
             🚀 New launch
           </Link>
+          {!!myProducts.data?.length && (
+            <Link href="/pricing" className={buttonClasses({ variant: "secondary", size: "sm" })}>
+              ⚡ Upgrade a launch
+            </Link>
+          )}
           <Button variant="secondary" size="sm" onClick={signOut}>
             Sign out
           </Button>

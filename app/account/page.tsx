@@ -5,10 +5,14 @@ import { ContentShell } from "@/components/layout/content-shell";
 
 export const metadata: Metadata = { title: "My account" };
 
-export default function AccountPage() {
+type SearchParams = Promise<Record<string, string | string[] | undefined>>;
+
+export default async function AccountPage({ searchParams }: { searchParams: SearchParams }) {
+  // Lemon Squeezy sends buyers back to /account?payment=success.
+  const { payment } = await searchParams;
   return (
     <ContentShell>
-      <AccountDashboard />
+      <AccountDashboard paymentSucceeded={payment === "success"} />
     </ContentShell>
   );
 }
