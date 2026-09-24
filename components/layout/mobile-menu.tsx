@@ -114,7 +114,7 @@ function MobileAuth({ pathname, onClose }: { pathname: string; onClose: () => vo
   if (!isReady) return <div className="h-11" aria-hidden />;
 
   if (!user) {
-    const next = pathname !== "/login" && pathname !== "/register" ? `?next=${encodeURIComponent(pathname)}` : "";
+    const next = pathname !== "/login" ? `?next=${encodeURIComponent(pathname)}` : "";
     return (
       <Link href={`/login${next}`} onClick={onClose} className={buttonClasses({ variant: "secondary", className: "w-full rounded-xl!" })}>
         Sign In / Register

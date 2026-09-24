@@ -1,28 +1,35 @@
 /**
  * app/p/[slug]/page.tsx — Product detail
- * Listing details, editorial review (if any), comments and related products.
+ * Laid out after launchkiwi.com: a dark hero band (breadcrumb, logo, name,
+ * tagline, actions, upvote), then the preview / about / review teaser /
+ * comments column beside a details + categories + featured sidebar, then
+ * more products. The full review lives at /p/<slug>/review.
  */
 
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { cache } from "react";
 
 import { CommentSection } from "@/components/comments/comment-section";
-import { ContentShell } from "@/components/layout/content-shell";
+import { ExternalLinkIcon, GlobeIcon, GridIcon, VerifiedIcon } from "@/components/layout/nav-icons";
 import { FavoriteButton } from "@/components/products/favorite-button";
-import { ProductList } from "@/components/products/product-list";
 import { ProductLogo } from "@/components/products/product-logo";
 import { UpvoteButton } from "@/components/products/upvote-button";
+import { ReviewTeaser } from "@/components/reviews/review-article";
 import { buttonClasses } from "@/components/ui/button";
+import { CardTitle } from "@/components/ui/card-title";
 import { Panel } from "@/components/ui/panel";
 import { ProductBadge } from "@/components/ui/product-badge";
-import { ReviewArticle } from "@/components/reviews/review-article";
-import { getProductBySlug, getRelatedProducts } from "@/lib/api/products";
+import { getFeaturedProducts, getProductBySlug, getRelatedProducts } from "@/lib/api/products";
 import { getReviewForProduct } from "@/lib/api/reviews";
-import { displayHost, formatDate } from "@/lib/utils/format";
+import type { ProductSummary } from "@/lib/types/models";
+import { displayHost, formatDate, formatNumber } from "@/lib/utils/format";
 
 type Params = Promise<{ slug: string }>;
+
+const FEATURED_LIMIT = 4;
 
 // Shared by generateMetadata and the page within one request.
 const loadProduct = cache(getProductBySlug);
@@ -33,7 +40,11 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   return {
     title: product.name,
     description: product.tagline,
-    openGraph: { title: product.name, description: product.tagline, images: product.logoUrl ? [product.logoUrl] : [] },
+    openGraph: {
+      title: product.name,
+      description: product.tagline,
+      images: product.screenshotUrl ? [product.screenshotUrl] : product.logoUrl ? [product.logoUrl] : [],
+    },
   };
 }
 
@@ -41,63 +52,114 @@ export default async function ProductPage({ params }: { params: Params }) {
   const product = await loadProduct((await params).slug);
   if (!product) notFound();
 
-  const [review, related] = await Promise.all([getReviewForProduct(product.id), getRelatedProducts(product)]);
-
-  const details = [
-    { label: "Category", value: product.category?.name },
-    { label: "Website", value: displayHost(product.websiteUrl) },
-    { label: "Pricing", value: product.pricing },
-    { label: "Launched", value: formatDate(product.launchedAt) },
-  ].filter((d): d is { label: string; value: string } => !!d.value);
+  const [review, related, featured] = await Promise.all([
+    getReviewForProduct(product.id),
+    getRelatedProducts(product),
+    getFeaturedProducts(FEATURED_LIMIT + 1).catch(() => []),
+  ]);
+  const featuredOthers = featured.filter((p) => p.id !== product.id).slice(0, FEATURED_LIMIT);
+  const websiteRel = product.dofollow ? "noopener" : "nofollow noopener";
+  const chips = [...new Set([product.category?.name, ...product.tags].filter((c): c is string => !!c))];
 
   return (
-    <ContentShell>
-      <div className="space-y-6 pb-12">
-        <nav aria-label="Breadcrumb" className="text-xs text-dune-500">
-          <Link href="/browse" className="hover:text-white">
-            All launches
-          </Link>
-          {product.category && (
-            <>
-              <span className="mx-1.5">/</span>
-              <Link href={`/browse?category=${product.category.slug}`} className="hover:text-white">
-                {product.category.name}
-              </Link>
-            </>
-          )}
-        </nav>
+    <div className="pb-14">
+      {/* Hero: themed surface with a soft sun glow, no dark band. */}
+      <section className="relative overflow-hidden">
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-[radial-gradient(55%_70%_at_20%_0%,color-mix(in_oklab,var(--color-sun)_16%,transparent),transparent_70%),radial-gradient(40%_60%_at_90%_10%,color-mix(in_oklab,var(--color-ember)_10%,transparent),transparent_70%)]"
+          aria-hidden
+        />
+        <div className="relative mx-auto max-w-[1140px] px-4 pt-8 sm:pt-10">
+          <nav aria-label="Breadcrumb" className="text-[11px] font-semibold uppercase tracking-[0.12em] text-dune-500">
+            <ol className="flex flex-wrap items-center gap-2">
+              <li>
+                <Link href="/" className="transition hover:text-sun">
+                  Home
+                </Link>
+              </li>
+              {product.category && (
+                <>
+                  <li aria-hidden className="text-dune-700">/</li>
+                  <li>
+                    <Link href={`/browse?category=${product.category.slug}`} className="transition hover:text-sun">
+                      {product.category.name}
+                    </Link>
+                  </li>
+                </>
+              )}
+              <li aria-hidden className="text-dune-700">/</li>
+              <li aria-current="page" className="truncate text-white">
+                {product.name}
+              </li>
+            </ol>
+          </nav>
 
-        <Panel className="p-6 sm:p-8">
-          <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
-            <ProductLogo name={product.name} logoUrl={product.logoUrl} size="lg" />
-            <div className="min-w-0 flex-1">
-              <div className="flex flex-wrap items-center gap-2">
-                <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-white">{product.name}</h1>
+          <div className="mt-6 flex flex-col items-start gap-4 sm:flex-row sm:gap-6">
+            <div className="shrink-0 rounded-[22px] bg-dune-940 p-1.5 ring-1 ring-dune-850">
+              <ProductLogo name={product.name} logoUrl={product.logoUrl} size="xl" />
+            </div>
+
+            <div className="min-w-0 flex-1 pt-1">
+              <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5">
+                <h1 className="font-display text-3xl font-black tracking-tight text-white sm:text-[42px] sm:leading-none">{product.name}</h1>
+                {product.verified && (
+                  <span title="Verified maker" className="text-sun">
+                    <VerifiedIcon className="h-5 w-5 sm:h-6 sm:w-6" />
+                    <span className="sr-only">Verified</span>
+                  </span>
+                )}
                 <ProductBadge badge={product.badge} />
               </div>
-              <p className="mt-2 text-sm text-dune-300 leading-relaxed">{product.tagline}</p>
+              <p className="mt-3 max-w-[580px] text-sm leading-relaxed text-dune-300 sm:text-base">{product.tagline}</p>
 
-              <div className="mt-5 flex flex-wrap items-center gap-2.5">
-                <a href={product.websiteUrl} target="_blank" rel={product.dofollow ? "noopener" : "nofollow noopener"} className={buttonClasses({ size: "sm" })}>
-                  Visit site ↗
+              <div className="mt-6 flex flex-wrap items-center gap-2.5">
+                <a
+                  href={product.websiteUrl}
+                  target="_blank"
+                  rel={websiteRel}
+                  className={buttonClasses({ className: "rounded-xl hover:-translate-y-px" })}
+                >
+                  <GlobeIcon className="h-4 w-4" />
+                  Visit Site
                 </a>
-                <FavoriteButton productId={product.id} />
                 {review && (
-                  <a href="#review" className="text-xs font-bold text-sun hover:underline">
+                  <Link href={`/p/${product.slug}/review`} className={buttonClasses({ variant: "secondary", className: "rounded-xl hover:border-sun/50" })}>
                     Read our review →
-                  </a>
+                  </Link>
                 )}
+                <FavoriteButton productId={product.id} />
               </div>
             </div>
-            <UpvoteButton productId={product.id} productName={product.name} upvotes={product.upvotes} size="lg" />
-          </div>
-        </Panel>
 
-        <div className="grid gap-6 lg:grid-cols-[1fr_260px]">
-          <div className="space-y-6 min-w-0">
+            <div className="hidden sm:block">
+              <UpvoteButton productId={product.id} productName={product.name} upvotes={product.upvotes} size="lg" />
+            </div>
+          </div>
+
+          <div className="mt-8 h-px bg-gradient-to-r from-transparent via-dune-850 to-transparent" aria-hidden />
+        </div>
+      </section>
+
+      <div className="mx-auto max-w-[1140px] px-4 pt-8">
+        <div className="grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-8">
+          <div className="min-w-0 space-y-6">
+            {product.screenshotUrl && (
+              <Panel className="overflow-hidden p-1.5">
+                <Image
+                  src={product.screenshotUrl}
+                  alt={`${product.name} preview`}
+                  width={1280}
+                  height={800}
+                  unoptimized
+                  preload
+                  className="h-auto w-full rounded-[18px]"
+                />
+              </Panel>
+            )}
+
             <Panel className="p-6">
-              <h2 className="text-sm font-black uppercase tracking-widest text-dune-200">About</h2>
-              <div className="mt-3 space-y-3 text-sm leading-relaxed text-dune-100">
+              <CardTitle>About {product.name}</CardTitle>
+              <div className="mt-4 space-y-3 text-[15px] leading-relaxed text-dune-100">
                 {product.description.length > 0 ? (
                   product.description.map((paragraph, i) => <p key={i}>{paragraph}</p>)
                 ) : (
@@ -106,41 +168,129 @@ export default async function ProductPage({ params }: { params: Params }) {
               </div>
             </Panel>
 
-            {review && <ReviewArticle review={review} />}
+            {review && <ReviewTeaser review={review} productSlug={product.slug} />}
 
             <CommentSection productId={product.id} />
           </div>
 
-          <aside className="space-y-6">
-            <Panel className="p-5">
-              <h2 className="text-sm font-black uppercase tracking-widest text-dune-200">Details</h2>
-              <dl className="mt-3 space-y-2.5 text-xs">
-                {details.map((d) => (
-                  <div key={d.label} className="flex justify-between gap-3">
-                    <dt className="text-dune-500">{d.label}</dt>
-                    <dd className="truncate font-semibold text-white">{d.value}</dd>
-                  </div>
-                ))}
+          <aside className="space-y-6 lg:sticky lg:top-20 lg:self-start">
+            <Panel className="p-6">
+              <CardTitle>Details</CardTitle>
+              <dl className="mt-4 space-y-3 text-sm">
+                {product.category && (
+                  <DetailRow label="Category">
+                    <Link href={`/browse?category=${product.category.slug}`} className="font-semibold text-sun hover:underline">
+                      {product.category.name}
+                    </Link>
+                  </DetailRow>
+                )}
+                <DetailRow label="Website">
+                  <a href={product.websiteUrl} target="_blank" rel={websiteRel} className="inline-flex items-center gap-1 font-semibold text-sun hover:underline">
+                    {displayHost(product.websiteUrl)}
+                    <ExternalLinkIcon className="h-3 w-3" />
+                  </a>
+                </DetailRow>
+                {product.pricing && <DetailRow label="Pricing">{product.pricing}</DetailRow>}
+                <DetailRow label="Published">{formatDate(product.launchedAt)}</DetailRow>
               </dl>
-              {product.tags.length > 0 && (
-                <div className="mt-4 flex flex-wrap gap-1.5">
-                  {product.tags.map((tag) => (
+              <div className="mt-5 border-t border-dune-850 pt-5 text-center">
+                <p className="text-3xl font-black tabular-nums text-white">{formatNumber(product.upvotes)}</p>
+                <p className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-dune-500">Upvotes</p>
+                <div className="mt-3 flex justify-center sm:hidden">
+                  <UpvoteButton productId={product.id} productName={product.name} upvotes={product.upvotes} size="lg" />
+                </div>
+              </div>
+            </Panel>
+
+            {chips.length > 0 && (
+              <Panel className="p-6">
+                <CardTitle>Categories</CardTitle>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {chips.map((chip) => (
                     <Link
-                      key={tag}
-                      href={`/browse?q=${encodeURIComponent(tag)}`}
-                      className="rounded-full border border-dune-850 bg-dune-950 px-2.5 py-0.5 text-[10px] font-semibold text-dune-200 hover:text-white"
+                      key={chip}
+                      href={chip === product.category?.name ? `/browse?category=${product.category.slug}` : `/browse?q=${encodeURIComponent(chip)}`}
+                      className="rounded-full bg-sun/[0.12] px-3 py-1 text-xs font-semibold text-sun transition hover:bg-sun/[0.2] light:text-sun-deep"
                     >
-                      {tag}
+                      {chip}
                     </Link>
                   ))}
                 </div>
-              )}
-            </Panel>
+              </Panel>
+            )}
+
+            {featuredOthers.length > 0 && (
+              <Panel className="p-6">
+                <CardTitle>Featured</CardTitle>
+                <ul className="mt-4 space-y-3">
+                  {featuredOthers.map((p) => (
+                    <li key={p.id}>
+                      <Link href={`/p/${p.slug}`} className="group flex items-center gap-3">
+                        <ProductLogo name={p.name} logoUrl={p.logoUrl} size="sm" />
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-center gap-1.5">
+                            <span className="product-name truncate text-sm font-semibold">{p.name}</span>
+                            <ProductBadge badge={p.badge} />
+                          </div>
+                          <p className="truncate text-xs text-dune-400">{p.tagline}</p>
+                        </div>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </Panel>
+            )}
           </aside>
         </div>
 
-        {related.length > 0 && <ProductList title="More in this category" products={related} showRank={false} />}
+        {related.length > 0 && (
+          <section className="mt-12">
+            <h2 className="flex items-center gap-2 text-xl font-black tracking-tight text-white">
+              <GridIcon className="h-4 w-4 text-sun" />
+              More Products
+            </h2>
+            <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {related.map((p) => (
+                <MoreProductCard key={p.id} product={p} />
+              ))}
+            </div>
+          </section>
+        )}
       </div>
-    </ContentShell>
+    </div>
+  );
+}
+
+function DetailRow({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className="flex items-center justify-between gap-3">
+      <dt className="text-dune-500">{label}</dt>
+      <dd className="truncate text-right font-medium text-white">{children}</dd>
+    </div>
+  );
+}
+
+function MoreProductCard({ product }: { product: ProductSummary }) {
+  const chips = [product.category?.name, ...product.tags].filter((c): c is string => !!c).slice(0, 3);
+  return (
+    <Link
+      href={`/p/${product.slug}`}
+      className="product-item group flex flex-col rounded-[24px] border border-dune-850 p-5 transition hover:-translate-y-0.5 hover:border-sun/40"
+    >
+      <div className="flex items-center gap-3">
+        <ProductLogo name={product.name} logoUrl={product.logoUrl} size="sm" />
+        <h3 className="product-name truncate text-base font-bold">{product.name}</h3>
+      </div>
+      {chips.length > 0 && (
+        <div className="mt-3 flex flex-wrap gap-1.5">
+          {[...new Set(chips)].map((chip) => (
+            <span key={chip} className="rounded-md bg-dune-900 px-2 py-0.5 text-[11px] font-medium text-dune-300">
+              {chip}
+            </span>
+          ))}
+        </div>
+      )}
+      <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-dune-300">{product.tagline}</p>
+    </Link>
   );
 }

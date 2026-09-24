@@ -11,6 +11,7 @@
     "pb": "node --env-file-if-exists=pb/.env scripts/pb.mjs",
     "lemonsqueezy:ids": "node --env-file-if-exists=pb/.env scripts/lemonsqueezy-ids.mjs",
     "seed": "node --env-file=.env.local scripts/seed.mjs",
+    "db:reset": "node --env-file=.env.local --env-file-if-exists=pb/.env scripts/db-reset.mjs",
     "scrape:launchkiwi": "node scripts/scrape-launchkiwi.mjs"
   },
   "dependencies": {

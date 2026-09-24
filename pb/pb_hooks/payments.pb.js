@@ -1,7 +1,8 @@
 /// <reference path="../pb_data/types.d.ts" />
 
 /**
- * Paid listing upgrades through Lemon Squeezy.
+ * Paid listing upgrades through Lemon Squeezy (spotlight ad orders are
+ * fulfilled here too; see ads.pb.js).
  *
  *  POST /api/checkout                 { plan: "premium", product: "<id>" } → { url }
  *  POST /api/lemonsqueezy/webhook     order_created / order_refunded from Lemon Squeezy
@@ -48,13 +49,17 @@ routerAdd(
     payment.set("status", "pending");
     e.app.save(payment);
 
+    // Lemon Squeezy turns "" into null and rejects it, so omit an empty date.
+    const custom = { payment_id: payment.id };
+    if (launchDate) custom.launch_date = launchDate;
+
     let checkout;
     try {
       checkout = ls.createCheckout({
         variantId: variantId,
         email: e.auth.email(),
         name: e.auth.getString("name"),
-        custom: { payment_id: payment.id, launch_date: launchDate },
+        custom: custom,
         redirectUrl: ls.env("APP_URL", "http://localhost:3000") + "/account?payment=success",
       });
     } catch (err) {
@@ -95,6 +100,12 @@ routerAdd("POST", "/api/lemonsqueezy/webhook", (e) => {
     return e.json(200, { ignored: "unknown payment" });
   }
 
+  if (payment.getString("payment_type") === "advertising") {
+    const ads = require(`${__hooks}/ads.js`);
+    e.app.runInTransaction((txApp) => ads.fulfil(txApp, payment, event, order, attrs));
+    return e.json(200, { ok: true });
+  }
+
   e.app.runInTransaction((txApp) => {
     const product = txApp.findRecordById("products", payment.getString("product"));
     payment.set("provider_payment_id", String(order.id));
@@ -130,3 +141,4 @@ routerAdd("POST", "/api/lemonsqueezy/webhook", (e) => {
 
   return e.json(200, { ok: true });
 });
+

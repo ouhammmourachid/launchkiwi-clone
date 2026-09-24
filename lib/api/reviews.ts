@@ -1,7 +1,7 @@
-import { PRODUCT_EXPAND, toReviewSummary } from "@/lib/api/mappers";
+import { PRODUCT_EXPAND, toReviewDetail, toReviewSummary } from "@/lib/api/mappers";
 import { getPB } from "@/lib/pb/client";
 import { isNotFound } from "@/lib/pb/errors";
-import type { ReviewSummary } from "@/lib/types/models";
+import type { ReviewDetail, ReviewSummary } from "@/lib/types/models";
 
 const REVIEW_EXPAND = `product,${PRODUCT_EXPAND.split(",").map((f) => `product.${f}`).join(",")}`;
 
@@ -15,7 +15,7 @@ export async function listPublishedReviews(): Promise<ReviewSummary[]> {
   return items.map(toReviewSummary);
 }
 
-export async function getReviewForProduct(productId: string): Promise<ReviewSummary | null> {
+export async function getReviewForProduct(productId: string): Promise<ReviewDetail | null> {
   try {
     const pb = getPB();
     const record = await pb
@@ -23,7 +23,7 @@ export async function getReviewForProduct(productId: string): Promise<ReviewSumm
       .getFirstListItem(pb.filter('product = {:product} && status = "published"', { product: productId }), {
         sort: "-published_at",
       });
-    return toReviewSummary(record);
+    return toReviewDetail(record);
   } catch (err) {
     if (isNotFound(err)) return null;
     throw err;

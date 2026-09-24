@@ -1,29 +1,41 @@
 /**
  * review-article.tsx
- * Full editorial review shown on a product page.
- * Content is admin-authored HTML (user reviews stay "pending" and are never listed).
+ * Teaser for a product's editorial review, shown on the product page and
+ * linking to the full review at /p/<slug>/review.
  */
 
+import Link from "next/link";
+
+import { CheckIcon } from "@/components/layout/nav-icons";
+import { CardTitle } from "@/components/ui/card-title";
 import { Panel } from "@/components/ui/panel";
-import type { ReviewSummary } from "@/lib/types/models";
+import type { ReviewDetail } from "@/lib/types/models";
 import { formatDate } from "@/lib/utils/format";
 
-export function ReviewArticle({ review }: { review: ReviewSummary }) {
+export function ReviewTeaser({ review, productSlug }: { review: ReviewDetail; productSlug: string }) {
   return (
     <Panel id="review" className="scroll-mt-24 p-6">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <span className="text-[10px] font-bold uppercase tracking-widest text-sun">Editorial review</span>
-          <h2 className="mt-1 text-lg font-black tracking-tight text-white">{review.title}</h2>
+          <CardTitle>Editorial review</CardTitle>
+          <h2 className="mt-3 text-lg font-black tracking-tight text-white">{review.title}</h2>
           <p className="mt-1 text-xs text-dune-500">{formatDate(review.publishedAt)}</p>
         </div>
         <RatingPill rating={review.rating} />
       </div>
-      <div
-        className="mt-4 space-y-3 text-sm leading-relaxed text-dune-100 [&_h3]:mt-5 [&_h3]:text-xs [&_h3]:font-black [&_h3]:uppercase [&_h3]:tracking-widest [&_h3]:text-dune-200 [&_li]:ml-4 [&_li]:list-disc [&_li]:mt-1.5"
-        dangerouslySetInnerHTML={{ __html: review.contentHtml }}
-      />
-      <p className="mt-5 text-[11px] text-dune-600">Editorial assessment based on the maker&apos;s submitted listing — not hands-on testing.</p>
+      {review.takeaways.length > 0 && (
+        <ul className="mt-4 space-y-2">
+          {review.takeaways.map((t) => (
+            <li key={t} className="flex items-start gap-2.5 text-sm leading-relaxed text-dune-100">
+              <CheckIcon className="mt-1 h-3.5 w-3.5 shrink-0 text-sun" />
+              {t}
+            </li>
+          ))}
+        </ul>
+      )}
+      <Link href={`/p/${productSlug}/review`} className="mt-5 inline-flex items-center gap-1 text-sm font-bold text-sun hover:underline">
+        Read the full review →
+      </Link>
     </Panel>
   );
 }

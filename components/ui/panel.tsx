@@ -8,7 +8,7 @@ import type { HTMLAttributes, ReactNode } from "react";
 
 export function Panel({ className = "", children, ...props }: HTMLAttributes<HTMLElement>) {
   return (
-    <section className={`rounded-[24px] border border-dune-850 bg-dune-940 shadow-lg ${className}`} {...props}>
+    <section className={`rounded-[24px] border border-dune-850 bg-dune-940 ${className}`} {...props}>
       {children}
     </section>
   );

@@ -6,6 +6,7 @@
 
 "use client";
 
+import { ChevronUpIcon } from "@/components/layout/nav-icons";
 import { useUpvote } from "@/hooks/use-upvote";
 
 interface UpvoteButtonProps {
@@ -18,7 +19,7 @@ interface UpvoteButtonProps {
 export function UpvoteButton({ productId, productName, upvotes, size = "md" }: UpvoteButtonProps) {
   const { count, voted, toggle, isPending } = useUpvote(productId, upvotes);
 
-  const dims = size === "lg" ? "h-14 min-w-[64px] px-4 text-base" : "h-10 min-w-[42px] px-2.5 text-xs";
+  const dims = size === "lg" ? "h-14 min-w-[64px] rounded-xl px-4 text-base" : "h-11 min-w-11 rounded-lg px-1.5 text-[11px]";
   const state = voted
     ? "border-sun bg-sun text-on-sun"
     : "border-dune-800 bg-dune-925 text-white hover:border-sun hover:text-sun";
@@ -30,10 +31,10 @@ export function UpvoteButton({ productId, productName, upvotes, size = "md" }: U
       disabled={isPending}
       aria-pressed={voted}
       aria-label={`${voted ? "Remove upvote from" : "Upvote"} ${productName} (${count} upvotes)`}
-      className={`flex flex-col items-center justify-center rounded-xl border font-bold transition cursor-pointer disabled:cursor-wait ${dims} ${state}`}
+      className={`flex shrink-0 flex-col items-center justify-center border font-bold transition cursor-pointer disabled:cursor-wait ${dims} ${state}`}
     >
-      <span className="text-[10px] leading-none">▲</span>
-      <span className="leading-tight tabular-nums">{count}</span>
+      <ChevronUpIcon className={size === "lg" ? "h-4 w-4" : "h-3.5 w-3.5"} />
+      <span className="leading-none tabular-nums">{count}</span>
     </button>
   );
 }

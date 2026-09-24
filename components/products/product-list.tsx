@@ -32,9 +32,9 @@ export function ProductList({
   showRank = true,
 }: ProductListProps) {
   return (
-    <Panel className="overflow-hidden shadow-none">
+    <Panel className="overflow-hidden ">
       {title && <SectionHeader title={title} subtitle={subtitle} />}
-      <div>
+      <div className="divide-y divide-dune-900">
         {products.length > 0 ? (
           products.map((product, index) => (
             <ProductRow key={product.id} product={product} index={startIndex + index} showRank={showRank} />

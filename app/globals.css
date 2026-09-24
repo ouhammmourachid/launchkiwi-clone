@@ -116,6 +116,34 @@
   }
 }
 
+/*
+ * Product names that link to a product page: white ink at rest, sun on hover or
+ * keyboard focus. Works on the name itself or anywhere inside a `group` card/row,
+ * so every listing on the site behaves the same. (`white` is the dark headline ink
+ * in the light theme, so the rule holds there too.)
+ */
+@utility product-name {
+  color: var(--color-white);
+  transition: color 150ms ease;
+
+  &:hover,
+  :where(.group):hover &,
+  :where(.group):focus-visible &,
+  :where(.group):has(:focus-visible) & {
+    color: var(--color-sun);
+  }
+}
+
+@utility product-item {
+  background-color: var(--product-item);
+  transition: background-color 150ms ease;
+
+  &:hover,
+  &:has(:focus-visible) {
+    background-color: var(--product-item-hover);
+  }
+}
+
 /* iOS zooms into any focused field under 16px, so phones keep form text at 16px. */
 @media (max-width: 639px) {
   input,
@@ -173,6 +201,20 @@
   color-scheme: dark;
 }
 
+/*
+ * Product list items (rows and cards). Dark: a raised warm sand surface that
+ * warms toward sun on hover. Light: a white card that takes a pale sun tint.
+ */
+:root {
+  --product-item: var(--color-dune-925);
+  --product-item-hover: color-mix(in oklab, var(--color-sun) 10%, var(--color-dune-925));
+}
+
+:root[data-theme="light"] {
+  --product-item: #ffffff;
+  --product-item-hover: color-mix(in oklab, var(--color-sun) 12%, #ffffff);
+}
+
 ::selection {
   background: rgba(242, 163, 58, 0.35);
 }
@@ -201,10 +243,60 @@
   animation: dune-drift 80s linear infinite;
 }
 
+/* A light sweep across the paid-placement badge text. */
+@keyframes shine {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+.animate-shine {
+  background-size: 200% 100%;
+  animation: shine 2.5s ease-in-out infinite;
+}
+
+/*
+ * Logo hover ("Wind Ripple"): the logo grows first, then two gusts roll through the ridges
+ * bottom to top, each pushing them out and letting them settle back.
+ */
+@keyframes dune-ripple {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(3px); }
+}
+
+.dunes-logo {
+  transform-origin: left center;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.dunes-logo:hover,
+:focus-visible > .dunes-logo {
+  transform: scale(1.06);
+}
+
+.dunes-logo:hover path,
+:focus-visible > .dunes-logo path {
+  animation: dune-ripple 0.55s ease-in-out 0.3s 2;
+}
+
+.dunes-logo:hover path:nth-child(2),
+:focus-visible > .dunes-logo path:nth-child(2) { animation-delay: 0.36s; }
+
+.dunes-logo:hover path:nth-child(3),
+:focus-visible > .dunes-logo path:nth-child(3) { animation-delay: 0.42s; }
+
 @media (prefers-reduced-motion: reduce) {
   .animate-card-pop,
   .animate-dune-drift,
-  .animate-dune-drift-slow { animation: none; }
+  .animate-dune-drift-slow,
+  .animate-shine { animation: none; }
+
+  .dunes-logo { transition: none; }
+
+  .dunes-logo:hover,
+  :focus-visible > .dunes-logo { transform: none; }
+
+  .dunes-logo:hover path,
+  :focus-visible > .dunes-logo path { animation: none; }
 }
 
 /* Launch form description editor. */

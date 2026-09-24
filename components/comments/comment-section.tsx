@@ -12,6 +12,7 @@ import { useState, type FormEvent } from "react";
 
 import { UserAvatar } from "@/components/auth/user-avatar";
 import { Button } from "@/components/ui/button";
+import { CardTitle } from "@/components/ui/card-title";
 import { EmptyState, Panel } from "@/components/ui/panel";
 import { useAuth } from "@/hooks/use-auth";
 import { useComments } from "@/hooks/use-comments";
@@ -52,9 +53,9 @@ export function CommentSection({ productId }: { productId: string }) {
 
   return (
     <Panel className="p-6">
-      <h2 className="text-sm font-black uppercase tracking-widest text-dune-200">
-        Comments {comments.length > 0 && <span className="text-dune-600">({comments.length})</span>}
-      </h2>
+      <CardTitle>
+        Comments {comments.length > 0 && <span className="font-medium tracking-normal text-dune-600">({comments.length})</span>}
+      </CardTitle>
 
       {isReady && (
         <form onSubmit={handleSubmit} className="mt-4" noValidate>

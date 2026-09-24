@@ -41,7 +41,7 @@ export function AuthModal({ children }: { children: ReactNode }) {
       }}
       onClick={onBackdropClick}
       aria-label="Account"
-      className="animate-card-pop m-auto w-[calc(100%-2rem)] max-w-md overflow-visible rounded-[24px] border border-dune-850 bg-dune-940 p-0 text-dune-50 shadow-2xl backdrop:bg-black/70 backdrop:backdrop-blur-sm"
+      className="animate-card-pop m-auto w-[calc(100%-2rem)] max-w-md overflow-visible rounded-[24px] border border-dune-850 bg-dune-940 p-0 text-dune-50 backdrop:bg-black/70 backdrop:backdrop-blur-sm"
     >
       <div className="relative">
         <button

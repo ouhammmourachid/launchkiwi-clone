@@ -27,7 +27,7 @@ export default async function LaunchPage({ searchParams }: { searchParams: Searc
 
   return (
     <div className="mx-auto max-w-[1240px] px-4 py-8 md:py-12">
-      <div className="overflow-hidden rounded-[24px] border border-dune-850 bg-dune-940 shadow-lg">
+      <div className="overflow-hidden rounded-[24px] border border-dune-850 bg-dune-940">
         <header className="bg-sun px-6 py-7 text-on-sun md:px-8">
           <h1 className="text-2xl font-black tracking-tight md:text-3xl">Launch Your Project</h1>
           <p className="mt-1.5 text-sm font-medium opacity-80">

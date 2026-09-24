@@ -1,0 +1,23 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "components/products/product-row.tsx"
+        ],
+        "createdAt": "2026-09-24T15:26:03.172Z",
+        "reason": "Claude: user asked to mimic launchkiwi's listing, whose paid rows use border-l-4 border-l-premium; the gold left edge is the reference design"
+      },
+      {
+        "rule": "bounce-easing",
+        "value": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+        "createdAt": "2026-09-24T16:06:41.163Z",
+        "reason": "User chose the previewed 'Wind Ripple' logo hover, which was shown and described as a springy overshoot"
+      }
+    ]
+  }
+}

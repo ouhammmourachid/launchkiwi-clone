@@ -1,27 +1,32 @@
 /**
  * product-badge.tsx
- * Renders the PRIORITY or PREMIUM badge pill on a product listing row.
+ * Renders the PRIORITY or PREMIUM badge pill on a product listing row:
+ * a black chip with gold text that a light sweep runs across.
  */
 
-import { PinIcon, StarIcon } from "@/components/layout/nav-icons";
+import { CrownIcon, RocketIcon } from "@/components/layout/nav-icons";
 import type { ProductBadge as Badge } from "@/lib/types/models";
 
+const BADGES = {
+  PRIORITY: { label: "Priority", Icon: RocketIcon, color: "#eab308" },
+  PREMIUM: { label: "Premium", Icon: CrownIcon, color: "#d4af37" },
+} as const;
+
 export function ProductBadge({ badge }: { badge: Badge | null }) {
-  if (badge === "PRIORITY") {
-    return (
-      <span className="inline-flex items-center gap-1 rounded border border-[#483e18] bg-black px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-[#eab308]">
-        <PinIcon />
-        Priority
+  if (!badge) return null;
+  const { label, Icon, color } = BADGES[badge];
+
+  return (
+    <span className="inline-flex shrink-0 items-center gap-1 overflow-hidden rounded bg-black px-1.5 py-px uppercase tracking-wide">
+      <span style={{ color }}>
+        <Icon className="h-[9px] w-[9px]" />
       </span>
-    );
-  }
-  if (badge === "PREMIUM") {
-    return (
-      <span className="inline-flex items-center gap-1 rounded border border-[#3e3920] bg-black px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-[#d4af37]">
-        <StarIcon />
-        Premium
+      <span
+        className="animate-shine bg-clip-text text-[9px] font-bold text-transparent"
+        style={{ backgroundImage: `linear-gradient(110deg, ${color} 35%, #fff 50%, ${color} 65%)` }}
+      >
+        {label}
       </span>
-    );
-  }
-  return null;
+    </span>
+  );
 }

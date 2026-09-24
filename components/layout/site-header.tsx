@@ -107,7 +107,7 @@ export function SiteHeader() {
           <Link
             href="/launch"
             aria-label="Launch your project"
-            className="inline-flex h-9 items-center justify-center gap-1.5 whitespace-nowrap rounded-full bg-sun px-3 text-xs font-bold text-on-sun shadow-sm transition hover:bg-sun-bright sm:h-auto sm:px-3.5 sm:py-1.5"
+            className="inline-flex h-9 items-center justify-center gap-1.5 whitespace-nowrap rounded-full bg-sun px-3 text-xs font-bold text-on-sun transition hover:bg-sun-bright sm:h-auto sm:px-3.5 sm:py-1.5"
           >
             <RocketIcon className="h-4 w-4 sm:h-3.5 sm:w-3.5" />
             <span className="hidden lg:inline">Launch your project</span>

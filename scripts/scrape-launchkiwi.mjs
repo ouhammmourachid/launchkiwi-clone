@@ -4,12 +4,13 @@
  * writes it to pb/seed/launchkiwi.json. The seed script (scripts/seed.mjs)
  * reads that file, so scraping only needs to run once.
  *
- * Usage: node scripts/scrape-launchkiwi.mjs [--limit 60]
+ * Usage: node scripts/scrape-launchkiwi.mjs [--limit 60] [--reviews-only]
+ *   --reviews-only  re-scrape reviews and keep the products already in the file
  *
  * Test data only — requests are sequential with a small delay to be polite.
  */
 
-import { writeFile, mkdir } from "node:fs/promises";
+import { readFile, writeFile, mkdir } from "node:fs/promises";
 import path from "node:path";
 
 const BASE = "https://launchkiwi.com";
@@ -17,6 +18,7 @@ const OUT_FILE = path.resolve("pb/seed/launchkiwi.json");
 const DELAY_MS = 350;
 const limitArg = process.argv.indexOf("--limit");
 const LIMIT = limitArg > -1 ? Number(process.argv[limitArg + 1]) : 60;
+const REVIEWS_ONLY = process.argv.includes("--reviews-only");
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -105,19 +107,47 @@ function parseProduct(slug, html) {
   };
 }
 
+/** Plain text of an HTML fragment. */
+const text = (html = "") => decode(html.replace(/<[^>]+>/g, "")).replace(/\s+/g, " ").trim();
+
+/** The slice of `html` from `marker` up to the next `endMarker`. */
+function sectionAfter(html, marker, endMarker) {
+  const i = html.indexOf(marker);
+  if (i < 0) return "";
+  const end = html.indexOf(endMarker, i);
+  return html.slice(i, end > i ? end : undefined);
+}
+
+const listItems = (html) => [...html.matchAll(/<li[^>]*>([\s\S]*?)<\/li>/g)].map((m) => text(m[1])).filter(Boolean);
+
+/** Text of the `<p>` that follows a small uppercase label ("Best for", "Verdict"…). */
+const labelled = (html, label) =>
+  text(html.match(new RegExp(`>${label}</p>\\s*(?:<blockquote[^>]*>)?\\s*<p[^>]*>([\\s\\S]*?)</p>`))?.[1]);
+
 function parseReview(slug, html) {
   const ld = jsonLd(html).find((d) => d["@type"] === "Review");
   if (!ld) return null;
-  const lines = textLines(html);
-  const start = lines.indexOf("What it does");
-  const end = lines.indexOf("Key features / how it works");
-  const takeawaysStart = lines.indexOf("Key takeaways");
-  const takeaways = takeawaysStart > -1 ? lines.slice(takeawaysStart + 1, start) : [];
-  const body = start > -1 ? lines.slice(start + 1, end > start ? end : start + 3) : [];
-  const content = [
-    takeaways.length ? `<h3>Key takeaways</h3><ul>${takeaways.map((t) => `<li>${t}</li>`).join("")}</ul>` : "",
-    body.length ? `<h3>What it does</h3>${body.map((p) => `<p>${p}</p>`).join("")}` : "",
-  ].join("");
+  const article = html.match(/<article[\s\S]*?<\/article>/)?.[0] ?? "";
+
+  const takeaways = listItems(sectionAfter(article, ">Key takeaways</h2>", "</ul>"));
+  // The long-form body is the prose block: <h2>/<p>/<ul> only, no classes kept.
+  const prose = article.match(/<div class="prose[^"]*">([\s\S]*?)<\/div><section/)?.[1] ?? "";
+  const content = decode(prose.replace(/ class="[^"]*"/g, ""));
+
+  const ratings = sectionAfter(article, ">Editorial ratings</h2>", "</section>");
+  // One row per criterion; older reviews have no explanatory note under the bar.
+  const scores = ratings
+    .split(/(?=<span[^>]*w-32)/)
+    .slice(1)
+    .map((row) => ({
+      label: text(row.match(/^<span[^>]*>([^<]+)<\/span>/)?.[1]),
+      score: Number(row.match(/text-right[^>]*>([\d.]+)</)?.[1]),
+      note: text(row.match(/<\/span><\/div><p[^>]*>([\s\S]*?)<\/p>/)?.[1]),
+    }))
+    .filter((s) => s.label && Number.isFinite(s.score));
+
+  const pros = listItems(sectionAfter(article, ">Pros</p>", "</ul>"));
+  const cons = listItems(sectionAfter(article, ">Cons</p>", "</ul>"));
 
   return {
     product_slug: slug,
@@ -125,16 +155,20 @@ function parseReview(slug, html) {
     rating: Number(ld.reviewRating?.ratingValue) || null,
     published_at: ld.datePublished,
     content,
+    takeaways,
+    scores,
+    best_for: labelled(article, "Best for"),
+    not_ideal_for: labelled(article, "Not ideal for"),
+    pros,
+    cons,
+    verdict: labelled(article, "Verdict"),
   };
 }
 
-async function main() {
+async function scrapeProducts(reviewSlugs) {
   console.log(`Fetching sitemap…`);
   const sitemap = await getHtml(`${BASE}/sitemap.xml`);
   const productSlugs = [...sitemap.matchAll(/<loc>https:\/\/launchkiwi\.com\/p\/([^<]+)<\/loc>/g)].map((m) => m[1]);
-
-  const reviewsHtml = await getHtml(`${BASE}/reviews`);
-  const reviewSlugs = [...new Set([...reviewsHtml.matchAll(/href="\/p\/([^"/]+)\/review"/g)].map((m) => m[1]))];
 
   // Reviewed products first so every review has a product to attach to.
   const slugs = [...new Set([...reviewSlugs, ...productSlugs])].slice(0, Math.max(LIMIT, reviewSlugs.length));
@@ -151,6 +185,16 @@ async function main() {
     await sleep(DELAY_MS);
   }
   console.log();
+  return products;
+}
+
+async function main() {
+  const reviewsHtml = await getHtml(`${BASE}/reviews`);
+  const reviewSlugs = [...new Set([...reviewsHtml.matchAll(/href="\/p\/([^"/]+)\/review"/g)].map((m) => m[1]))];
+
+  const products = REVIEWS_ONLY
+    ? JSON.parse(await readFile(OUT_FILE, "utf8")).products
+    : await scrapeProducts(reviewSlugs);
 
   const reviews = [];
   for (const slug of reviewSlugs) {

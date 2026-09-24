@@ -1,7 +1,7 @@
 /**
  * app/pricing/page.tsx — Pricing page
- * Plans come from the `pricing_plans` collection. Paid plans go to /upgrade,
- * where the maker picks a product and pays through Lemon Squeezy.
+ * Plans come from the `pricing_plans` collection. Each plan links to /launch
+ * with that tier preselected.
  */
 
 import type { Metadata } from "next";
@@ -9,58 +9,14 @@ import Link from "next/link";
 import { connection } from "next/server";
 
 import { ContentShell } from "@/components/layout/content-shell";
+import { PlanCard } from "@/components/pricing/plan-card";
 import { buttonClasses } from "@/components/ui/button";
 import { listPricingPlans } from "@/lib/api/catalog";
-import type { PricingPlan } from "@/lib/types/models";
-import { formatPlanPrice } from "@/lib/utils/format";
 
 export const metadata: Metadata = {
   title: "Pricing",
   description: "Launch free, or skip the queue with Premium and Priority listings.",
 };
-
-function PlanCard({ plan }: { plan: PricingPlan }) {
-  const isFree = plan.price === 0;
-  return (
-    <div
-      className={`flex flex-col rounded-[24px] border p-6 shadow-lg ${
-        plan.highlighted ? "border-sun bg-dune-925 shadow-[0_0_25px_rgba(242,163,58,0.12)]" : "border-dune-850 bg-dune-940"
-      }`}
-    >
-      <div className="flex items-center justify-between gap-2">
-        <p className="text-xs font-bold uppercase tracking-[0.16em] text-sun">{plan.name}</p>
-        {plan.highlighted && (
-          <span className="rounded-full bg-sun px-2 py-0.5 text-[9px] font-black uppercase tracking-wider text-on-sun">Best value</span>
-        )}
-      </div>
-      <div className="mt-4 flex items-end gap-2">
-        <span className="text-4xl font-black text-white">{formatPlanPrice(plan)}</span>
-        <span className="pb-1 text-xs text-dune-500">one-time</span>
-      </div>
-      <p className="mt-3 text-sm leading-relaxed text-dune-300">{plan.description}</p>
-      <ul className="mt-5 flex-1 space-y-2 text-xs text-dune-100">
-        {plan.features.map((feature) => (
-          <li key={feature} className="flex items-start gap-2">
-            <span className="text-sun">✓</span>
-            {feature}
-          </li>
-        ))}
-      </ul>
-      {isFree ? (
-        <Link href="/launch" className={buttonClasses({ className: "mt-6 w-full" })}>
-          Launch for free
-        </Link>
-      ) : (
-        <Link
-          href={`/upgrade?plan=${plan.slug}`}
-          className={buttonClasses({ variant: plan.highlighted ? "primary" : "secondary", className: "mt-6 w-full" })}
-        >
-          Get {plan.name}
-        </Link>
-      )}
-    </div>
-  );
-}
 
 export default async function PricingPage() {
   await connection();
@@ -79,7 +35,18 @@ export default async function PricingPage() {
 
         <div className="grid gap-4 md:grid-cols-3">
           {plans.map((plan) => (
-            <PlanCard key={plan.id} plan={plan} />
+            <PlanCard
+              key={plan.id}
+              plan={plan}
+              action={
+                <Link
+                  href={`/launch?plan=${plan.slug}`}
+                  className={buttonClasses({ variant: plan.price === 0 ? "inverse" : "primary", className: "w-full" })}
+                >
+                  {plan.price === 0 ? "Launch for free" : `Get ${plan.name}`}
+                </Link>
+              }
+            />
           ))}
         </div>
       </div>

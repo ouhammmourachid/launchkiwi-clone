@@ -63,7 +63,7 @@ export function BrowseFilters({ categories, totalItems, current }: BrowseFilters
   }, [search]);
 
   return (
-    <section className="rounded-[24px] border border-dune-850 bg-dune-940 p-4 shadow-lg sm:p-6" aria-busy={isPending}>
+    <section className="rounded-[24px] border border-dune-850 bg-dune-940 p-4 sm:p-6" aria-busy={isPending}>
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
         <div>
           <div className="flex items-center gap-2">
@@ -101,7 +101,7 @@ export function BrowseFilters({ categories, totalItems, current }: BrowseFilters
           onChange={(e) => setSearch(e.target.value)}
           aria-label="Search products"
           placeholder="Search names, taglines, categories, tags..."
-          className="w-full rounded-xl border border-dune-900 bg-dune-990 py-3 pl-10 pr-4 text-xs text-white placeholder:text-dune-700 outline-none focus:border-sun transition shadow-inner"
+          className="w-full rounded-xl border border-dune-900 bg-dune-990 py-3 pl-10 pr-4 text-xs text-white placeholder:text-dune-700 outline-none focus:border-sun transition"
         />
       </div>
 

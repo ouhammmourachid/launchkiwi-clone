@@ -1,5 +1,5 @@
 import { getPB } from "@/lib/pb/client";
-import type { Comment, MyLaunch, ProductDetail, ProductSummary, ReviewSummary, SessionUser } from "@/lib/types/models";
+import type { Comment, EditableLaunch, MyLaunch, ProductDetail, ProductSummary, ReviewDetail, ReviewSummary, SessionUser } from "@/lib/types/models";
 import type { CommentRecord, ProductRecord, ReviewRecord, UserRecord } from "@/lib/types/records";
 import { htmlToParagraphs } from "@/lib/utils/format";
 
@@ -39,11 +39,23 @@ export function toMyLaunch(record: ProductRecord): MyLaunch {
   };
 }
 
+export function toEditableLaunch(record: ProductRecord): EditableLaunch {
+  return {
+    ...toMyLaunch(record),
+    descriptionHtml: record.description ?? "",
+    categoryId: record.category || null,
+    tagRefs: (record.expand?.tags ?? []).map((t) => ({ id: t.id, slug: t.slug })),
+    screenshotUrl: fileUrl(record, record.screenshots?.[0] ?? ""),
+  };
+}
+
 export function toProductDetail(record: ProductRecord): ProductDetail {
   return {
     ...toProductSummary(record),
     description: htmlToParagraphs(record.description ?? ""),
     makerId: record.maker,
+    screenshotUrl: fileUrl(record, record.screenshots?.[0] ?? ""),
+    verified: !!record.verified,
   };
 }
 
@@ -56,6 +68,19 @@ export function toReviewSummary(record: ReviewRecord): ReviewSummary {
     publishedAt: record.published_at || record.created,
     contentHtml: record.content,
     product: product ? toProductSummary(product) : null,
+  };
+}
+
+export function toReviewDetail(record: ReviewRecord): ReviewDetail {
+  return {
+    ...toReviewSummary(record),
+    takeaways: record.takeaways ?? [],
+    scores: record.scores ?? [],
+    bestFor: record.best_for ?? "",
+    notIdealFor: record.not_ideal_for ?? "",
+    pros: record.pros ?? [],
+    cons: record.cons ?? [],
+    verdict: record.verdict ?? "",
   };
 }
 

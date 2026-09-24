@@ -8,8 +8,7 @@ import { connection } from "next/server";
 
 import { ContentShell } from "@/components/layout/content-shell";
 import { FeaturedGrid } from "@/components/layout/featured-grid";
-import { LoadMoreProducts } from "@/components/products/load-more-products";
-import { ProductList } from "@/components/products/product-list";
+import { LaunchSection } from "@/components/products/launch-section";
 import { SubmitForm } from "@/components/ui/submit-form";
 import { heroFeatures, marketingStats } from "@/data/site";
 import { getSiteStats } from "@/lib/api/catalog";
@@ -79,7 +78,7 @@ function HeroDunes() {
 
 function HeroSection({ stats }: { stats: SiteStats }) {
   return (
-    <section className="relative overflow-hidden rounded-[24px] border border-dune-850 bg-dune-940 px-4 pt-5 pb-8 sm:px-10 sm:pt-6 sm:pb-10 text-center shadow-lg">
+    <section className="relative overflow-hidden rounded-[24px] border border-dune-850 bg-dune-940 px-4 pt-5 pb-8 sm:px-10 sm:pt-6 sm:pb-10 text-center">
       <HeroDunes />
       <div className="relative">
         <HeroBadge />
@@ -125,23 +124,43 @@ export default async function HomePage() {
 
         <FeaturedGrid />
 
-        <ProductList
-          title="This Week's Hunts"
-          subtitle={`${thisWeek.totalItems} launches this week`}
-          products={thisWeek.items}
-          emptyTitle="No launches yet this week"
-          emptyContent={
-            <Link href="/launch" className="font-bold text-sun hover:underline">
-              Be the first to launch →
-            </Link>
-          }
-        />
+        <div className="space-y-8">
+          <LaunchSection
+            section="thisWeek"
+            title="This Week's Hunts"
+            subtitle={`${thisWeek.totalItems} launches this week`}
+            dot="live"
+            initial={thisWeek}
+            moreLabel="View more"
+            emptyTitle="No launches yet this week"
+            emptyContent={
+              <Link href="/launch" className="font-bold text-sun hover:underline">
+                Be the first to launch →
+              </Link>
+            }
+          />
 
-        <ProductList title="Last Week's Hunts" subtitle="Sorted by upvote count" products={lastWeek.items} emptyTitle="Nothing launched last week" />
+          <LaunchSection
+            section="lastWeek"
+            title="Past Week Hunts"
+            subtitle="Launches from last week"
+            dot="recent"
+            initial={lastWeek}
+            moreLabel="View older projects"
+            emptyTitle="Nothing launched last week"
+          />
 
-        <ProductList title="Earlier This Month" subtitle="Sorted by upvote count" products={earlier.items} emptyTitle="Nothing launched earlier this month" />
-
-        <LoadMoreProducts />
+          <LaunchSection
+            section="earlier"
+            title="Past Month Hunts"
+            subtitle="Sorted by upvote count"
+            dot="past"
+            initial={earlier}
+            moreLabel="View all historical projects"
+            emptyTitle="Nothing launched earlier this month"
+            exhaustedLink={{ href: "/browse?sort=top", label: "View all historical projects" }}
+          />
+        </div>
       </div>
     </ContentShell>
   );

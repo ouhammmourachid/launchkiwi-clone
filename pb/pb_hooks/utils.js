@@ -210,6 +210,10 @@ function publishProduct(app, product, launchDate, plan) {
 
 /** Fields only admins may set on a product (counters, moderation, paid perks). */
 const PROTECTED_PRODUCT_FIELDS = [
+  // Identity: the name, URL and slug are fixed once submitted.
+  "name",
+  "website_url",
+  "slug",
   "maker",
   "status",
   "submission_type",

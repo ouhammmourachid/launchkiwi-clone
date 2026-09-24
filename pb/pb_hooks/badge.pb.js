@@ -1,7 +1,7 @@
 /// <reference path="../pb_data/types.d.ts" />
 
 /**
- * "Launched on LaunchDunes" badge: token lookup, on-demand verification and
+ * "Featured on LaunchDunes" badge: token lookup, on-demand verification and
  * the daily re-check that keeps free launches' dofollow links honest.
  */
 

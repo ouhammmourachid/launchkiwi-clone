@@ -5,7 +5,7 @@
 
 import Image from "next/image";
 
-const SIZES = { xs: 34, sm: 36, md: 44, lg: 64 } as const;
+const SIZES = { xs: 34, sm: 36, md: 44, row: 48, lg: 64, xl: 80 } as const;
 const MONOGRAM_COLORS = ["#f2a33a", "#0284c7", "#7c3aed", "#ea580c", "#0d9488", "#db2777", "#ca8a04", "#4f46e5"];
 
 interface ProductLogoProps {

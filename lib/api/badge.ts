@@ -29,6 +29,6 @@ export function verifyBadge(productId: string): Promise<BadgeCheckResult> {
 export function badgeSnippet(origin: string, slug: string, token: string): string {
   return (
     `<a href="${origin}/p/${slug}?ref=badge" target="_blank" data-launch-badge="${token}">` +
-    `<img src="${origin}/badge.svg" alt="Launched on LaunchDunes" width="200" height="54" /></a>`
+    `<img src="${origin}/badge.svg" alt="Featured on LaunchDunes" width="236" height="60" /></a>`
   );
 }

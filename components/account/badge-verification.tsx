@@ -41,6 +41,7 @@ export function BadgeVerification({ launch, userId }: { launch: MyLaunch; userId
       setFailure(null);
       toast(`✅ Badge verified! ${launch.name} is in the launch queue with a dofollow link.`);
       void queryClient.invalidateQueries({ queryKey: queryKeys.myProducts(userId) });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.myLaunch(launch.id) });
     },
     onError: (err) => setFailure(getErrorMessage(err)),
   });
@@ -54,7 +55,7 @@ export function BadgeVerification({ launch, userId }: { launch: MyLaunch; userId
   return (
     <Panel className="space-y-4 p-6">
       <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-        <h2 className="text-base font-black text-white">Verify {launch.name} to go live</h2>
+        <h3 className="font-display text-base font-black text-white">Verify {launch.name} to go live</h3>
         <span className="text-[10px] font-black uppercase tracking-wider text-sun">Hidden · awaiting badge</span>
       </div>
       <p className="text-xs leading-relaxed text-dune-300">
@@ -65,7 +66,7 @@ export function BadgeVerification({ launch, userId }: { launch: MyLaunch; userId
       <div className="flex flex-col items-start gap-3 rounded-xl border border-dashed border-dune-850 bg-dune-970 p-4 sm:flex-row sm:items-center sm:justify-between">
         <span className="text-[10px] font-bold uppercase tracking-widest text-dune-500">Badge preview</span>
         {/* eslint-disable-next-line @next/next/no-img-element -- the exact asset makers embed, shown as-is */}
-        <img src="/badge.svg" alt="Launched on LaunchDunes" width={200} height={54} />
+        <img src="/badge.svg" alt="Featured on LaunchDunes" width={236} height={60} />
       </div>
 
       <div className="relative">
@@ -83,8 +84,8 @@ export function BadgeVerification({ launch, userId }: { launch: MyLaunch; userId
         <Button size="sm" loading={verify.isPending} onClick={() => verify.mutate()}>
           Check my badge
         </Button>
-        <Link href={`/upgrade?plan=premium&product=${launch.id}`} className={buttonClasses({ variant: "secondary", size: "sm" })}>
-          <BoltIcon /> Skip the badge with Premium
+        <Link href={`/upgrade?product=${launch.id}`} className={buttonClasses({ variant: "secondary", size: "sm" })}>
+          <BoltIcon /> Skip the badge
         </Link>
       </div>
     </Panel>

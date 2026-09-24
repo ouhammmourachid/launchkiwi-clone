@@ -8,8 +8,9 @@
 "use client";
 
 import Link from "next/link";
-import { useId, useState, type ChangeEvent, type FormEvent, type ReactNode } from "react";
+import { useId, useState, type FormEvent } from "react";
 
+import { border, CategoryPicker, checkImage, FieldError, INPUT, Label, PricingPicker, UploadBox } from "@/components/launch/form-fields";
 import { RichTextEditor } from "@/components/launch/rich-text-editor";
 import { Button, buttonClasses } from "@/components/ui/button";
 import { Alert } from "@/components/ui/panel";
@@ -22,8 +23,6 @@ import {
   DESCRIPTION_MAX,
   DESCRIPTION_MIN,
   fieldErrors,
-  LAUNCH_PRICING_MODELS,
-  LOGO_MAX_BYTES,
   LOGO_MIME_TYPES,
   MAX_CATEGORIES,
   productSubmitSchema,
@@ -44,10 +43,6 @@ interface SubmitProductFormProps {
   initialPlan?: string;
 }
 
-const INPUT =
-  "w-full rounded-xl border bg-dune-990 px-3.5 py-3 text-sm text-white placeholder:text-dune-700 outline-none transition focus:border-sun";
-const border = (error?: string) => (error ? "border-[#7f2d26]" : "border-dune-900");
-
 const shortDate = new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
 
 /** Today as "YYYY-MM-DD" in the visitor's timezone (what <input type=date> uses). */
@@ -56,107 +51,11 @@ function todayIso(): string {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 }
 
-function Label({ htmlFor, children, hint, required }: { htmlFor?: string; children: ReactNode; hint?: ReactNode; required?: boolean }) {
-  return (
-    <label htmlFor={htmlFor} className="mb-2 flex flex-wrap items-baseline gap-x-2 text-sm font-semibold text-dune-50">
-      <span>
-        {children}
-        {required && <span className="ml-0.5 text-danger">*</span>}
-      </span>
-      {hint && <span className="text-[11px] font-normal text-dune-500">{hint}</span>}
-    </label>
-  );
-}
-
-function FieldError({ id, children }: { id?: string; children?: string }) {
-  if (!children) return null;
-  return (
-    <p id={id} className="mt-1.5 text-[11px] font-medium text-danger">
-      {children}
-    </p>
-  );
-}
-
-const UploadIcon = () => (
-  <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-    <path d="M12 19V5M5 12l7-7 7 7" />
-  </svg>
-);
-
 const BoltIcon = () => (
   <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
     <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />
   </svg>
 );
-
-interface UploadBoxProps {
-  label: string;
-  hint: string;
-  cta: string;
-  subCta?: string;
-  accept: string[];
-  file: File | null;
-  /** Returns whether the file was accepted. */
-  onFile: (file: File | null) => boolean;
-  error?: string;
-  square?: boolean;
-}
-
-function UploadBox({ label, hint, cta, subCta, accept, file, onFile, error, square }: UploadBoxProps) {
-  const id = useId();
-  const [preview, setPreview] = useState<string | null>(null);
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const next = e.target.files?.[0] ?? null;
-    const accepted = onFile(next);
-    if (preview) URL.revokeObjectURL(preview);
-    setPreview(accepted && next ? URL.createObjectURL(next) : null);
-  };
-
-  return (
-    <div>
-      <Label htmlFor={id} hint={hint} required>
-        {label}
-      </Label>
-      <label
-        htmlFor={id}
-        className={`flex min-h-24 cursor-pointer flex-col items-center justify-center gap-1 rounded-xl border-2 border-dashed px-4 py-5 text-center transition hover:border-sun hover:bg-dune-940 focus-within:border-sun ${
-          error ? "border-[#7f2d26]" : "border-dune-850"
-        }`}
-      >
-        {preview ? (
-          // eslint-disable-next-line @next/next/no-img-element -- local object URL preview
-          <img src={preview} alt="" className={`${square ? "h-16 w-16 rounded-xl" : "h-24 w-full max-w-60 rounded-lg"} object-cover`} />
-        ) : (
-          <>
-            <span className="inline-flex items-center gap-1.5 text-sm text-dune-300">
-              <UploadIcon />
-              {cta}
-            </span>
-            {subCta && <span className="text-[11px] text-dune-600">{subCta}</span>}
-          </>
-        )}
-        {file && <span className="max-w-full truncate text-[11px] text-dune-500">{file.name} · change</span>}
-        <input
-          id={id}
-          type="file"
-          accept={accept.join(",")}
-          className="sr-only"
-          aria-invalid={!!error}
-          onChange={handleChange}
-        />
-      </label>
-      <FieldError>{error}</FieldError>
-    </div>
-  );
-}
-
-function checkImage(file: File | null, types: string[]): string | undefined {
-  if (!file) return undefined;
-  if (!types.includes(file.type)) return `Use a ${types.map((t) => t.split("/")[1].replace("+xml", "").toUpperCase()).join(", ")} image.`;
-  if (file.size > LOGO_MAX_BYTES) return "Image must be under 2 MB.";
-  return undefined;
-}
 
 export function SubmitProductForm({ categories, plans, tagIdsBySlug, nextFreeDate, initialUrl = "", initialPlan }: SubmitProductFormProps) {
   const { user, isReady } = useAuth();
@@ -341,24 +240,7 @@ export function SubmitProductForm({ categories, plans, tagIdsBySlug, nextFreeDat
           <FieldError>{errors.description}</FieldError>
         </div>
 
-        <fieldset>
-          <legend className="mb-2 text-sm font-semibold text-dune-50">Pricing Model</legend>
-          <div className="grid grid-cols-3 gap-3">
-            {LAUNCH_PRICING_MODELS.map((model) => (
-              <button
-                key={model}
-                type="button"
-                aria-pressed={values.pricing === model}
-                onClick={() => set("pricing", model)}
-                className={`rounded-xl border py-2.5 text-sm font-semibold transition ${
-                  values.pricing === model ? "border-sun bg-sun/15 text-sun" : "border-dune-900 bg-dune-990 text-dune-100 hover:border-dune-750"
-                }`}
-              >
-                {model}
-              </button>
-            ))}
-          </div>
-        </fieldset>
+        <PricingPicker value={values.pricing} onChange={(model) => set("pricing", model)} />
 
         <div className="grid gap-5 border-t border-dune-900 pt-6 sm:grid-cols-2">
           <UploadBox
@@ -383,38 +265,13 @@ export function SubmitProductForm({ categories, plans, tagIdsBySlug, nextFreeDat
           />
         </div>
 
-        <fieldset className="border-t border-dune-900 pt-6">
-          <div className="mb-3 flex items-baseline justify-between gap-4">
-            <legend className="text-sm font-semibold text-dune-50">
-              Select Categories (1–{MAX_CATEGORIES} tags)<span className="ml-0.5 text-danger">*</span>
-            </legend>
-            <span className="text-[11px] font-semibold text-dune-500">
-              {values.categories.length}/{MAX_CATEGORIES} chosen
-            </span>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {categories.map((c) => {
-              const selected = values.categories.includes(c.id);
-              const full = !selected && values.categories.length >= MAX_CATEGORIES;
-              return (
-                <button
-                  key={c.id}
-                  type="button"
-                  aria-pressed={selected}
-                  disabled={full}
-                  onClick={() => toggleCategory(c.id)}
-                  className={`rounded-full border px-3.5 py-1.5 text-xs font-semibold transition disabled:cursor-not-allowed disabled:opacity-40 ${
-                    selected ? "border-sun bg-sun text-on-sun" : "border-dune-900 bg-dune-990 text-dune-200 hover:border-dune-750"
-                  }`}
-                >
-                  {selected && "✓ "}
-                  {c.name}
-                </button>
-              );
-            })}
-          </div>
-          <FieldError>{errors.categories}</FieldError>
-        </fieldset>
+        <CategoryPicker
+          categories={categories}
+          selected={values.categories}
+          onToggle={toggleCategory}
+          error={errors.categories}
+          className="border-t border-dune-900 pt-6"
+        />
       </div>
 
       {/* ── Launch tier ─────────────────────────────────────────────────── */}
@@ -472,12 +329,9 @@ export function SubmitProductForm({ categories, plans, tagIdsBySlug, nextFreeDat
             <div className="rounded-xl border border-dune-850 bg-dune-940 p-4 text-center">
               <p className="text-sm font-bold text-white">Sign in to launch</p>
               <p className="mt-1 text-xs text-dune-400">A free account lets you submit launches, upvote and comment.</p>
-              <div className="mt-3 flex justify-center gap-2">
+              <div className="mt-3 flex justify-center">
                 <Link href={`/login?next=${encodeURIComponent(signInNext)}`} className={buttonClasses({ size: "sm" })}>
-                  Sign in
-                </Link>
-                <Link href={`/register?next=${encodeURIComponent(signInNext)}`} className={buttonClasses({ size: "sm", variant: "secondary" })}>
-                  Create account
+                  Sign in or create an account
                 </Link>
               </div>
             </div>
@@ -498,13 +352,9 @@ function TierCard({ plan, selected, onSelect, queueLabel }: { plan: PricingPlan;
   const best = plan.highlighted;
   const features = isFree ? plan.features.filter((f) => !/queue/i.test(f)) : plan.features;
 
-  const tone = best
-    ? selected
-      ? "border-sun bg-sun/10 ring-2 ring-sun/40"
-      : "border-sun/60 bg-sun/5 hover:border-sun"
-    : selected
-      ? "border-sun bg-dune-925 ring-2 ring-sun/30"
-      : "border-dune-850 bg-dune-990 hover:border-dune-750";
+  const tone = selected
+    ? `border-sun ring-2 ring-sun/30 ${best ? "bg-sun/10" : "bg-dune-925"}`
+    : `border-dune-850 hover:border-dune-750 ${best ? "bg-sun/5" : "bg-dune-990"}`;
 
   return (
     <label className={`relative block cursor-pointer rounded-2xl border p-4 transition ${tone}`}>
@@ -533,7 +383,7 @@ function TierCard({ plan, selected, onSelect, queueLabel }: { plan: PricingPlan;
           Live instantly
         </p>
       )}
-      <ul className={`mt-3 space-y-1 border-t pt-3 text-[13px] ${best ? "border-sun/30 text-sun" : "border-dune-900 text-dune-200"}`}>
+      <ul className={`mt-3 space-y-1 border-t pt-3 text-[13px] border-dune-900 ${best ? "text-sun" : "text-dune-200"}`}>
         {features.map((f) => (
           <li key={f}>✓ {f}</li>
         ))}

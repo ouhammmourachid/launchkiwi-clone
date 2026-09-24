@@ -43,11 +43,6 @@ const PRICING_PLANS = [
   },
 ];
 
-const AD_PLANS = [
-  { slug: "sidebar-weekly", name: "Sidebar spot — 1 week", price: 49, duration_days: 7, description: "Your product in the sidebar on every page for 7 days.", features: ["Sidebar placement", "Logo + tagline", "~25k impressions"] },
-  { slug: "sidebar-monthly", name: "Sidebar spot — 1 month", price: 149, duration_days: 30, description: "A month of sidebar visibility.", features: ["Sidebar placement", "Logo + tagline", "~100k impressions"] },
-];
-
 const SAMPLE_COMMENTS = [
   "Congrats on the launch! The onboarding felt really smooth.",
   "Upvoted — this solves a real pain point for me.",
@@ -219,6 +214,13 @@ async function main() {
       title: r.title,
       rating: r.rating,
       content: r.content || `<p>${r.title}</p>`,
+      takeaways: r.takeaways ?? [],
+      scores: r.scores ?? [],
+      best_for: r.best_for ?? "",
+      not_ideal_for: r.not_ideal_for ?? "",
+      pros: r.pros ?? [],
+      cons: r.cons ?? [],
+      verdict: r.verdict ?? "",
       status: "published",
       is_verified_user: true,
       published_at: pbDate(new Date(r.published_at)),
@@ -248,12 +250,11 @@ async function main() {
   for (const plan of PRICING_PLANS) {
     await upsert(pb, "pricing_plans", "slug = {:slug}", { slug: plan.slug }, { ...plan, currency: "USD", duration_days: 0, active: true });
   }
-  for (const plan of AD_PLANS) {
-    await upsert(pb, "ad_plans", "slug = {:slug}", { slug: plan.slug }, { ...plan, currency: "USD", active: true });
-  }
-  console.log(`  pricing plans: ${PRICING_PLANS.length}, ad plans: ${AD_PLANS.length}`);
+  // Ad plans (spotlight-30 / spotlight-90) are created by pb_migrations/1790100008_advertising.js.
+  console.log(`  pricing plans: ${PRICING_PLANS.length}`);
 
-  console.log(`\nDone. Demo login: ${DEMO_USERS[0].email} / ${DEMO_PASSWORD}`);
+  // Users sign in with an emailed one-time code; without SMTP the code prints in the PocketBase console.
+  console.log(`\nDone. Demo login: ${DEMO_USERS[0].email} (sign-in code appears in the PocketBase console)`);
 }
 
 main().catch((err) => {

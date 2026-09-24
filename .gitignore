@@ -50,3 +50,9 @@ next-env.d.ts
 /graphify-out/
 
 !.env.example
+
+# pocketbase local data (db + uploaded files)
+/pb/pb_data/
+
+# tool caches
+/.impeccable/hook.cache.json

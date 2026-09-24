@@ -1,19 +1,26 @@
 /**
- * Browser-only auth helpers. The PocketBase SDK persists the session in
+ * Browser-only auth helpers. Sign-in is passwordless: an emailed one-time code.
+ * The PocketBase SDK persists the session in
  * localStorage (LocalAuthStore), so no manual token handling is needed.
  */
 
 import { getPB } from "@/lib/pb/client";
 import type { UserRecord } from "@/lib/types/records";
-import type { SignInInput, SignUpInput } from "@/lib/validation/schemas";
+import type { SignInInput } from "@/lib/validation/schemas";
 
-export async function signIn({ email, password }: SignInInput): Promise<void> {
-  await getPB().collection("users").authWithPassword(email, password);
+/**
+ * Emails a one-time sign-in code and returns the id needed to verify it.
+ * There's no separate sign-up: an email without an account gets one created
+ * on the server (pb_hooks/auth.pb.js) before the code is sent.
+ */
+export async function requestSignInCode({ email }: SignInInput): Promise<string> {
+  const { otpId } = await getPB().collection("users").requestOTP(email);
+  return otpId;
 }
 
-export async function signUp({ name, email, password, passwordConfirm }: SignUpInput): Promise<void> {
-  await getPB().collection("users").create({ name, email, password, passwordConfirm });
-  await signIn({ email, password });
+/** Exchanges the emailed code for a session (also marks the email verified). */
+export async function verifySignInCode(otpId: string, code: string): Promise<void> {
+  await getPB().collection("users").authWithOTP(otpId, code);
 }
 
 export function signOut(): void {

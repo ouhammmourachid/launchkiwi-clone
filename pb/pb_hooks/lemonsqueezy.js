@@ -5,7 +5,8 @@
  *
  * Config comes from the environment (loaded from pb/.env by `npm run pb`):
  *   LEMONSQUEEZY_API_KEY, LEMONSQUEEZY_STORE_ID, LEMONSQUEEZY_WEBHOOK_SECRET,
- *   LEMONSQUEEZY_VARIANT_<PLAN SLUG> (e.g. LEMONSQUEEZY_VARIANT_PREMIUM),
+ *   LEMONSQUEEZY_VARIANT_<PLAN SLUG> (e.g. LEMONSQUEEZY_VARIANT_PREMIUM,
+ *   LEMONSQUEEZY_VARIANT_SPOTLIGHT_30 for the "spotlight-30" ad plan),
  *   APP_URL (where buyers land after paying, default http://localhost:3000).
  */
 
@@ -18,8 +19,9 @@ function env(name, fallback) {
   throw new Error(name + " is not set.");
 }
 
+/** "premium" → LEMONSQUEEZY_VARIANT_PREMIUM, "spotlight-30" → LEMONSQUEEZY_VARIANT_SPOTLIGHT_30. */
 function variantIdFor(planSlug) {
-  return String($os.getenv("LEMONSQUEEZY_VARIANT_" + planSlug.toUpperCase()) || "").trim();
+  return String($os.getenv("LEMONSQUEEZY_VARIANT_" + planSlug.toUpperCase().replace(/[^A-Z0-9]+/g, "_")) || "").trim();
 }
 
 /** Creates a hosted checkout and returns `{ id, url }`. */

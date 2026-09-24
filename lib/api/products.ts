@@ -1,10 +1,10 @@
-import { PRODUCT_EXPAND, toMyLaunch, toProductDetail, toProductSummary } from "@/lib/api/mappers";
+import { PRODUCT_EXPAND, toEditableLaunch, toMyLaunch, toProductDetail, toProductSummary } from "@/lib/api/mappers";
 import { PRODUCT_SORTS, type ProductSort } from "@/lib/catalog-options";
 import { getPB } from "@/lib/pb/client";
 import { isNotFound } from "@/lib/pb/errors";
-import type { MyLaunch, Paginated, ProductDetail, ProductSummary } from "@/lib/types/models";
+import type { EditableLaunch, MyLaunch, Paginated, ProductDetail, ProductSummary } from "@/lib/types/models";
 import type { PricingModel } from "@/lib/types/records";
-import type { ProductSubmitInput } from "@/lib/validation/schemas";
+import type { ProductEditInput, ProductSubmitInput } from "@/lib/validation/schemas";
 
 export interface ProductQuery {
   search?: string;
@@ -51,19 +51,29 @@ export async function listProducts(q: ProductQuery = {}, sortOverride?: string):
   };
 }
 
-/** Home page sections: paid placements pin to the top of the current week. */
-export async function getLaunchSections(limit = 15) {
-  const [thisWeek, lastWeek, earlier] = await Promise.all([
-    listProducts({ launchedAfter: daysAgo(7), perPage: limit }, "-priority_level,-upvotes,-launch_date"),
-    listProducts({ launchedAfter: daysAgo(14), launchedBefore: daysAgo(7), perPage: limit, sort: "top" }),
-    listProducts({ launchedAfter: daysAgo(30), launchedBefore: daysAgo(14), perPage: limit, sort: "top" }),
-  ]);
-  return { thisWeek, lastWeek, earlier };
+/** The home page's launch sections, newest first. */
+export type LaunchSection = "thisWeek" | "lastWeek" | "earlier";
+
+const LAUNCH_SECTIONS: Record<LaunchSection, { query: () => ProductQuery; sort?: string }> = {
+  // Paid placements pin to the top of the current week.
+  thisWeek: { query: () => ({ launchedAfter: daysAgo(7) }), sort: "-priority_level,-upvotes,-launch_date" },
+  lastWeek: { query: () => ({ launchedAfter: daysAgo(14), launchedBefore: daysAgo(7), sort: "top" }) },
+  earlier: { query: () => ({ launchedAfter: daysAgo(30), launchedBefore: daysAgo(14), sort: "top" }) },
+};
+
+/** One page of a home launch section (also used by its "View more" button). */
+export function listLaunchSection(section: LaunchSection, page: number, perPage: number) {
+  const { query, sort } = LAUNCH_SECTIONS[section];
+  return listProducts({ ...query(), page, perPage }, sort);
 }
 
-/** Launches older than the home page's sections, one page at a time (the home "load more"). */
-export function listOlderProducts(page: number, perPage = 15) {
-  return listProducts({ launchedBefore: daysAgo(30), page, perPage, sort: "top" });
+export async function getLaunchSections(limit = 10) {
+  const [thisWeek, lastWeek, earlier] = await Promise.all([
+    listLaunchSection("thisWeek", 1, limit),
+    listLaunchSection("lastWeek", 1, limit),
+    listLaunchSection("earlier", 1, limit),
+  ]);
+  return { thisWeek, lastWeek, earlier };
 }
 
 /** How many products launched this week and last week (the mobile menu's counters). */
@@ -102,10 +112,16 @@ export async function getProductBySlug(slug: string): Promise<ProductDetail | nu
   }
 }
 
-export async function getRelatedProducts(product: ProductSummary, limit = 4): Promise<ProductSummary[]> {
-  if (!product.category) return [];
-  const res = await listProducts({ category: product.category.slug, sort: "top", perPage: limit + 1 });
-  return res.items.filter((p) => p.id !== product.id).slice(0, limit);
+/** Top products in the same category, backfilled with top products overall when the category is small. */
+export async function getRelatedProducts(product: ProductSummary, limit = 3): Promise<ProductSummary[]> {
+  const [sameCategory, top] = await Promise.all([
+    product.category ? listProducts({ category: product.category.slug, sort: "top", perPage: limit + 1 }) : null,
+    listProducts({ sort: "top", perPage: limit * 2 + 1 }),
+  ]);
+  const seen = new Set([product.id]);
+  return [...(sameCategory?.items ?? []), ...top.items]
+    .filter((p) => !seen.has(p.id) && !!seen.add(p.id))
+    .slice(0, limit);
 }
 
 /** The maker's own launches, hidden ones included (the collection rules allow it). */
@@ -148,6 +164,48 @@ export async function submitProduct(
       { expand: PRODUCT_EXPAND },
     );
   return toProductSummary(record);
+}
+
+/** One of the signed-in maker's launches, hidden ones included (null if missing or not theirs). */
+export async function getMyLaunch(id: string, makerId: string): Promise<EditableLaunch | null> {
+  try {
+    const record = await getPB().collection("products").getOne(id, { expand: PRODUCT_EXPAND });
+    return record.maker === makerId ? toEditableLaunch(record) : null;
+  } catch (err) {
+    if (isNotFound(err)) return null;
+    throw err;
+  }
+}
+
+/**
+ * Saves a maker's edits. Name, URL and slug are locked (the products update
+ * hook enforces it too). Category picks are re-synced to tags the same way
+ * `submitProduct` sets them; tags that aren't categories are kept.
+ */
+export async function updateLaunch(
+  launch: EditableLaunch,
+  input: ProductEditInput,
+  files: { logo: File | null; screenshot: File | null },
+  categories: { picked: string[]; all: string[] },
+  tagIdsBySlug: Record<string, string>,
+): Promise<EditableLaunch> {
+  const categorySlugs = new Set(categories.all);
+  const pickedTagIds = categories.picked.map((slug) => tagIdsBySlug[slug]).filter(Boolean);
+  // Tags that don't mirror a category (e.g. set by an admin) are not the form's to remove.
+  const otherTagIds = launch.tagRefs.filter((t) => !categorySlugs.has(t.slug)).map((t) => t.id);
+
+  const body: Record<string, unknown> = {
+    tagline: input.tagline,
+    description: input.description,
+    category: input.categories[0],
+    tags: [...new Set([...pickedTagIds, ...otherTagIds])],
+    pricing_model: input.pricing,
+  };
+  if (files.logo) body.logo = files.logo;
+  if (files.screenshot) body.screenshots = [files.screenshot];
+
+  const record = await getPB().collection("products").update(launch.id, body, { expand: PRODUCT_EXPAND });
+  return toEditableLaunch(record);
 }
 
 /** Fresh upvote count, used to reconcile optimistic UI after a vote. */

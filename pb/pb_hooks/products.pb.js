@@ -77,7 +77,8 @@ routerAdd("GET", "/api/launch-queue", (e) => {
   return e.json(200, { nextFreeDate: u.nextFreeLaunchDate(e.app).string() });
 });
 
-// Makers may edit their listing copy, but not moderation fields or counters.
+// Makers may edit their listing copy, but not its identity (name/URL/slug),
+// moderation fields or counters.
 onRecordUpdateRequest((e) => {
   const u = require(`${__hooks}/utils.js`);
   if (!u.isAdmin(e)) {

@@ -3,7 +3,7 @@
  * PocketBase record shapes so components don't depend on the schema.
  */
 
-import type { PricingModel, ProductStatus } from "@/lib/types/records";
+import type { PricingModel, ProductStatus, ReviewScore } from "@/lib/types/records";
 
 export type ProductBadge = "PRIORITY" | "PREMIUM";
 
@@ -34,10 +34,23 @@ export interface MyLaunch extends ProductSummary {
   launchDate: string;
 }
 
+/** Everything the maker can change on their own launch (name and URL stay fixed). */
+export interface EditableLaunch extends MyLaunch {
+  /** Raw rich-text HTML, as the editor expects it. */
+  descriptionHtml: string;
+  categoryId: string | null;
+  /** Tag ids and slugs currently on the product. */
+  tagRefs: { id: string; slug: string }[];
+  screenshotUrl: string | null;
+}
+
 export interface ProductDetail extends ProductSummary {
   /** Plain-text paragraphs (HTML is stripped server-side for safety). */
   description: string[];
   makerId: string;
+  /** First uploaded preview screenshot, if any. */
+  screenshotUrl: string | null;
+  verified: boolean;
 }
 
 export interface ReviewSummary {
@@ -48,6 +61,17 @@ export interface ReviewSummary {
   /** Editorial HTML — only published reviews written by admins are exposed. */
   contentHtml: string;
   product: ProductSummary | null;
+}
+
+/** Everything the standalone review page (/p/<slug>/review) renders. */
+export interface ReviewDetail extends ReviewSummary {
+  takeaways: string[];
+  scores: ReviewScore[];
+  bestFor: string;
+  notIdealFor: string;
+  pros: string[];
+  cons: string[];
+  verdict: string;
 }
 
 export interface Comment {
@@ -83,6 +107,32 @@ export interface PricingPlan {
   description: string;
   features: string[];
   highlighted: boolean;
+}
+
+export interface AdPlan {
+  id: string;
+  slug: string;
+  name: string;
+  price: number;
+  currency: string;
+  durationDays: number;
+  /** Price per day, e.g. 0.88. */
+  perDay: number;
+  description: string;
+  features: string[];
+  /** Cheapest per day — gets the "Best value" badge. */
+  bestValue: boolean;
+}
+
+/** A paid spotlight ad as shown on the site. */
+export interface SpotlightAd {
+  id: string;
+  name: string;
+  tagline: string;
+  host: string;
+  logoUrl: string | null;
+  /** Tracks the click in PocketBase, then redirects to the advertiser. */
+  clickUrl: string;
 }
 
 export interface Paginated<T> {

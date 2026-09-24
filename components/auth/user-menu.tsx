@@ -35,10 +35,10 @@ export function UserMenu() {
   }, [open]);
 
   // Reserve space during hydration so the header doesn't jump.
-  if (!isReady) return <span className="inline-block h-8 w-14" aria-hidden />;
+  if (!isReady) return <span className="inline-block h-8 w-8" aria-hidden />;
 
   if (!user) {
-    const next = pathname && pathname !== "/login" && pathname !== "/register" ? `?next=${encodeURIComponent(pathname)}` : "";
+    const next = pathname && pathname !== "/login" ? `?next=${encodeURIComponent(pathname)}` : "";
     return (
       <Link href={`/login${next}`} className="whitespace-nowrap px-2 py-1 text-xs font-semibold text-dune-100 transition hover:text-white">
         Sign In
@@ -60,20 +60,19 @@ export function UserMenu() {
         onClick={() => setOpen((v) => !v)}
         aria-haspopup="menu"
         aria-expanded={open}
-        className="flex items-center gap-2 rounded-full border border-dune-850 bg-dune-925 py-1 pl-1 pr-3 text-xs font-semibold text-white transition hover:border-dune-750 cursor-pointer"
+        aria-label={`Account menu for ${user.name}`}
+        className="block rounded-lg transition hover:opacity-85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sun cursor-pointer"
       >
-        <UserAvatar user={user} size={24} />
-        <span className="hidden max-w-[110px] truncate sm:inline">{user.name}</span>
+        <UserAvatar user={user} size={32} shape="square" />
       </button>
 
       {open && (
-        <div role="menu" className="absolute right-0 mt-2 w-52 overflow-hidden rounded-xl border border-dune-850 bg-dune-940 py-1 shadow-xl">
+        <div role="menu" className="absolute right-0 mt-2 w-52 overflow-hidden rounded-xl border border-dune-850 bg-dune-940 py-1">
           <div className="border-b border-dune-900 px-3.5 py-2.5">
             <p className="truncate text-xs font-bold text-white">{user.name}</p>
             <p className="truncate text-[11px] text-dune-500">{user.email}</p>
           </div>
           <MenuLink href="/account" onSelect={() => setOpen(false)}>My account</MenuLink>
-          <MenuLink href="/launch" onSelect={() => setOpen(false)}>Launch a product</MenuLink>
           <button
             type="button"
             role="menuitem"

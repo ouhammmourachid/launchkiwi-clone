@@ -11,7 +11,7 @@ export function SubmitForm() {
   return (
     <Form
       action="/launch"
-      className="mt-5 flex items-center gap-2 max-w-md mx-auto rounded-xl border border-dune-850 bg-dune-970 p-1.5 shadow-inner"
+      className="mt-5 flex items-center gap-2 max-w-md mx-auto rounded-xl border border-dune-850 bg-dune-970 p-1.5"
     >
       <input
         type="url"

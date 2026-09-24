@@ -38,6 +38,7 @@ export interface ProductRecord extends RecordModel {
   tagline: string;
   description: string;
   logo: string;
+  screenshots: string[];
   category: string;
   tags: string[];
   pricing_model: PricingModel | "";
@@ -59,6 +60,13 @@ export interface ProductRecord extends RecordModel {
   };
 }
 
+/** One editorial criterion ("Ease of use", …) scored 0–10. */
+export interface ReviewScore {
+  label: string;
+  score: number;
+  note: string;
+}
+
 export interface ReviewRecord extends RecordModel {
   product: string;
   author: string;
@@ -67,6 +75,13 @@ export interface ReviewRecord extends RecordModel {
   content: string;
   status: "pending" | "published" | "hidden" | "rejected";
   published_at: string;
+  takeaways: string[] | null;
+  scores: ReviewScore[] | null;
+  best_for: string;
+  not_ideal_for: string;
+  pros: string[] | null;
+  cons: string[] | null;
+  verdict: string;
   expand?: { product?: ProductRecord };
 }
 
@@ -105,6 +120,28 @@ export interface PricingPlanRecord extends RecordModel {
   active: boolean;
 }
 
+export interface AdPlanRecord extends RecordModel {
+  name: string;
+  slug: string;
+  price: number;
+  currency: string;
+  duration_days: number;
+  description: string;
+  features: string[] | null;
+  active: boolean;
+}
+
+/** The public slice of an advertisement returned by the /api/ads/* routes. */
+export interface PublicAdRecord {
+  id: string;
+  collectionId: string;
+  collectionName: string;
+  product_name: string;
+  tagline: string;
+  website_url: string;
+  logo: string;
+}
+
 export interface SubscriberRecord extends RecordModel {
   email: string;
   active: boolean;
@@ -133,6 +170,7 @@ export interface TypedPocketBase extends PocketBase {
   collection(idOrName: "votes"): RecordService<VoteRecord>;
   collection(idOrName: "favorites"): RecordService<FavoriteRecord>;
   collection(idOrName: "pricing_plans"): RecordService<PricingPlanRecord>;
+  collection(idOrName: "ad_plans"): RecordService<AdPlanRecord>;
   collection(idOrName: "subscribers"): RecordService<SubscriberRecord>;
   collection(idOrName: "category_stats"): RecordService<CategoryStatsRecord>;
   collection(idOrName: "site_stats"): RecordService<SiteStatsRecord>;

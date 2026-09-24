@@ -1,13 +1,14 @@
 /**
  * sidebar-product-card.tsx
- * Compact featured-product card and advertise slot used by both sidebars.
+ * Compact featured-product card, paid spotlight ad card and open advertise
+ * slot used by both sidebars and the mobile featured grid.
  * Styled after launchdunes.com: borderless tinted cards that pop in, then dashed ad slots.
  */
 
 import Link from "next/link";
 
 import { ProductLogo } from "@/components/products/product-logo";
-import type { ProductSummary } from "@/lib/types/models";
+import type { ProductSummary, SpotlightAd } from "@/lib/types/models";
 
 // Tints cycle green -> amber -> gold, matching the reference site's primary/accent/premium.
 const TONES = [
@@ -16,7 +17,7 @@ const TONES = [
   "bg-[#c9a227]/[0.16] hover:bg-[#c9a227]/[0.22]",
 ];
 
-const CARD_MOTION = "animate-card-pop transition-[transform,box-shadow,background-color,border-color] hover:scale-[1.03] hover:shadow-md";
+const CARD_MOTION ="animate-card-pop transition-[transform,background-color,border-color] hover:scale-[1.03]";
 
 interface SidebarProductCardProps {
   product: ProductSummary;
@@ -32,11 +33,32 @@ export function SidebarProductCard({ product, index }: SidebarProductCardProps) 
     >
       <div className="flex items-center gap-2.5">
         <ProductLogo name={product.name} logoUrl={product.logoUrl} size="sm" />
-        <h4 className="flex-1 truncate text-[15px] font-bold leading-snug text-white">{product.name}</h4>
+        <h4 className="product-name flex-1 truncate text-[15px] font-bold leading-snug">{product.name}</h4>
         <ExternalIcon />
       </div>
       <p className="line-clamp-2 text-[13px] leading-relaxed text-dune-200">{product.tagline}</p>
     </Link>
+  );
+}
+
+/** A paid spotlight ad. Clicks go through PocketBase so they're counted. */
+export function SidebarAdCard({ ad, index }: { ad: SpotlightAd; index: number }) {
+  return (
+    <a
+      href={ad.clickUrl}
+      target="_blank"
+      rel="sponsored noopener"
+      className={`group flex flex-col gap-2 rounded-2xl border border-sun/30 bg-sun/[0.07] p-4 hover:border-sun/60 hover:bg-sun/[0.11] ${CARD_MOTION}`}
+      style={{ animationDelay: `${index * 80}ms` }}
+    >
+      <div className="flex items-center gap-2.5">
+        <ProductLogo name={ad.name} logoUrl={ad.logoUrl} size="sm" />
+        <h4 className="product-name flex-1 truncate text-[15px] font-bold leading-snug">{ad.name}</h4>
+        <ExternalIcon />
+      </div>
+      <p className="line-clamp-2 text-[13px] leading-relaxed text-dune-200">{ad.tagline}</p>
+      <span className="text-[9px] font-black uppercase tracking-[0.16em] text-sun">Sponsored</span>
+    </a>
   );
 }
 

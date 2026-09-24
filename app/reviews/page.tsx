@@ -48,7 +48,7 @@ export default async function ReviewsPage() {
           )}
 
           {/* Priority upsell callout */}
-          <section className="rounded-[24px] border border-dune-800 bg-dune-925 p-6 sm:p-8 shadow-md">
+          <section className="rounded-[24px] border border-dune-800 bg-dune-925 p-6 sm:p-8">
             <h3 className="text-lg sm:text-xl font-bold tracking-tight text-white">
               Want your product reviewed?
             </h3>
@@ -58,7 +58,7 @@ export default async function ReviewsPage() {
             <div className="mt-5">
               <Link
                 href="/pricing"
-                className="inline-flex items-center gap-1.5 rounded-full bg-sun px-5 py-2.5 text-xs font-bold text-on-sun transition hover:bg-sun-bright shadow-sm cursor-pointer"
+                className="inline-flex items-center gap-1.5 rounded-full bg-sun px-5 py-2.5 text-xs font-bold text-on-sun transition hover:bg-sun-bright cursor-pointer"
               >
                 <span>Get Priority</span>
                 <span>→</span>

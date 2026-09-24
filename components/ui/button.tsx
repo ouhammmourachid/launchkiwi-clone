@@ -5,12 +5,14 @@
 
 import type { ButtonHTMLAttributes } from "react";
 
-type Variant = "primary" | "secondary" | "ghost";
+type Variant = "primary" | "secondary" | "inverse" | "ghost";
 type Size = "sm" | "md";
 
 const VARIANTS: Record<Variant, string> = {
   primary: "bg-sun text-on-sun hover:bg-sun-bright",
   secondary: "border border-dune-850 bg-dune-925 text-white hover:bg-dune-900",
+  // Literal white in both themes (the `white` token is dark ink in the light theme).
+  inverse: "bg-[#ffffff] text-on-sun hover:bg-[#f1e9dd] light:border light:border-dune-850",
   ghost: "text-dune-100 hover:text-white",
 };
 

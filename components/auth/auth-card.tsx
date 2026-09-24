@@ -13,7 +13,7 @@ interface AuthCardProps {
   title: string;
   subtitle: string;
   children: ReactNode;
-  footer: ReactNode;
+  footer?: ReactNode;
   inModal?: boolean;
 }
 
@@ -33,7 +33,7 @@ export function AuthCard({ title, subtitle, children, footer, inModal = false }:
     return (
       <div className="p-7 sm:p-8">
         {body}
-        <p className="mt-6 text-center text-xs text-dune-400">{footer}</p>
+        {footer && <p className="mt-6 text-center text-xs text-dune-400">{footer}</p>}
       </div>
     );
   }
@@ -41,7 +41,7 @@ export function AuthCard({ title, subtitle, children, footer, inModal = false }:
   return (
     <div className="mx-auto w-full max-w-md px-4 py-12">
       <Panel className="p-7 sm:p-8">{body}</Panel>
-      <p className="mt-5 text-center text-xs text-dune-400">{footer}</p>
+      {footer && <p className="mt-5 text-center text-xs text-dune-400">{footer}</p>}
     </div>
   );
 }

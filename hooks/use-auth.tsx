@@ -3,19 +3,20 @@
 import { usePathname, useRouter } from "next/navigation";
 import { createContext, useCallback, useContext, useEffect, useMemo, useSyncExternalStore, type ReactNode } from "react";
 
-import { getAuthRecord, refreshSession, signIn, signOut, signUp } from "@/lib/api/auth";
+import { getAuthRecord, refreshSession, requestSignInCode, signOut, verifySignInCode } from "@/lib/api/auth";
 import { toSessionUser } from "@/lib/api/mappers";
 import { getPB } from "@/lib/pb/client";
 import type { SessionUser } from "@/lib/types/models";
 import type { UserRecord } from "@/lib/types/records";
-import type { SignInInput, SignUpInput } from "@/lib/validation/schemas";
+import type { SignInInput } from "@/lib/validation/schemas";
 
 interface AuthContextValue {
   user: SessionUser | null;
   /** False during SSR/hydration, when the persisted session isn't known yet. */
   isReady: boolean;
-  signIn: (input: SignInInput) => Promise<void>;
-  signUp: (input: SignUpInput) => Promise<void>;
+  /** Emails a one-time code (creating the account if new); resolves to the id `verifyCode` needs. */
+  requestSignInCode: (input: SignInInput) => Promise<string>;
+  verifyCode: (otpId: string, code: string) => Promise<void>;
   signOut: () => void;
 }
 
@@ -43,7 +44,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const user = useMemo(() => (record ? toSessionUser(record) : null), [record]);
-  const value = useMemo<AuthContextValue>(() => ({ user, isReady, signIn, signUp, signOut }), [user, isReady]);
+  const value = useMemo<AuthContextValue>(() => ({ user, isReady, requestSignInCode, verifyCode: verifySignInCode, signOut }), [user, isReady]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
