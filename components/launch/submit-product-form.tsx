@@ -461,7 +461,7 @@ export function SubmitProductForm({ categories, plans, tagIdsBySlug, nextFreeDat
           <p className="mt-2 text-xs leading-relaxed text-dune-500">
             {isPaid
               ? "Paid tiers skip the queue entirely — pick today to go live instantly, or a later date to schedule it."
-              : "Free launches go live on the next open queue slot. Upgrade anytime to skip the wait."}
+              : "Free launches go live on the next open queue slot once our badge is verified on your site. Upgrade anytime to skip the wait."}
           </p>
         </div>
 

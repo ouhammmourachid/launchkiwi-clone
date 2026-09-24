@@ -112,20 +112,18 @@ routerAdd("POST", "/api/lemonsqueezy/webhook", (e) => {
       const plan = txApp.findRecordById("pricing_plans", payment.getString("pricing_plan"));
       ls.applyPlan(product, plan, paidAt);
       ls.scheduleLaunch(product, String(payload.meta.custom_data.launch_date || ""), paidAt);
-      txApp.save(product);
-
-      try {
-        const submission = txApp.findFirstRecordByFilter("submissions", "product = {:p}", { p: product.id });
-        if (plan.getInt("priority_level") > 0) submission.set("plan", plan.getString("slug"));
-        txApp.save(submission);
-      } catch (_) {
-        /* seeded products have no submission */
+      // Paid tiers skip badge verification: the launch goes public on its date.
+      if (plan.getBool("instant_approval")) {
+        const u = require(`${__hooks}/utils.js`);
+        u.publishProduct(txApp, product, product.getDateTime("launch_date"), plan.getString("slug"));
       }
+      txApp.save(product);
     } else {
       if (payment.getString("status") !== "paid") return;
       payment.set("status", "refunded");
       txApp.save(payment);
       ls.recomputePlanPerks(txApp, product);
+      ls.revertToFreeIfUnverified(txApp, product);
       txApp.save(product);
     }
   });

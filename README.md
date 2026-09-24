@@ -49,7 +49,7 @@ scripts/                scraper + seed
 - **Personal state** (session, votes, favorites, comments) lives on the client via React Query. PocketBase's SDK keeps the session in `localStorage`.
 - **Browse filters** are URL search params, so results are shareable and server-rendered.
 
-### Server-side rules (`pb/pb_hooks/main.pb.js`)
+### Server-side rules (`pb/pb_hooks/*.pb.js`)
 
 - Upvotes: one per user per product (unique index); counters are updated atomically in SQL on vote create/delete.
 - Product submission: forces safe defaults (published, free plan, zero counters, unique slug), rejects duplicate URLs, records a submission and a launch-week entry.

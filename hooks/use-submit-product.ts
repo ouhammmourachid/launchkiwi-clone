@@ -22,7 +22,7 @@ export interface LaunchRequest {
 }
 
 /**
- * Creates the product (queued as a free launch), then — for a paid tier —
+ * Creates the product (hidden until its badge is verified), then — for a paid tier —
  * hands off to the Lemon Squeezy checkout, whose webhook applies the plan.
  */
 export function useSubmitProduct() {
@@ -39,8 +39,8 @@ export function useSubmitProduct() {
       try {
         return { product, checkoutUrl: await createCheckout(req.paidPlan, product.id, req.launchDate) };
       } catch (err) {
-        // The launch exists (queued for free) — let the maker pay from /upgrade later.
-        toast(`${product.name} is queued as a free launch. You can upgrade it from your account.`);
+        // The launch exists (a hidden free launch) — let the maker pay from /upgrade later.
+        toast(`${product.name} is saved as a free launch. Verify the badge or upgrade it from your account.`);
         router.push(`/upgrade?plan=${req.paidPlan}&product=${product.id}`);
         throw err;
       }
@@ -50,7 +50,7 @@ export function useSubmitProduct() {
         window.location.assign(checkoutUrl);
         return;
       }
-      toast(`🚀 ${product.name} is in the launch queue!`);
+      toast(`🚀 ${product.name} is submitted! Add the badge to your site to go live.`);
       router.push("/account");
     },
   });

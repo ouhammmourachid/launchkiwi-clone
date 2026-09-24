@@ -11,7 +11,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
+import { BadgeVerification } from "@/components/account/badge-verification";
 import { UserAvatar } from "@/components/auth/user-avatar";
+import { BoltIcon, RocketIcon } from "@/components/layout/nav-icons";
 import { ProductList } from "@/components/products/product-list";
 import { Button, buttonClasses } from "@/components/ui/button";
 import { Alert, Panel } from "@/components/ui/panel";
@@ -55,11 +57,11 @@ export function AccountDashboard({ paymentSucceeded = false }: { paymentSucceede
         </div>
         <div className="flex gap-2">
           <Link href="/launch" className={buttonClasses({ size: "sm" })}>
-            🚀 New launch
+            <RocketIcon /> New launch
           </Link>
           {!!myProducts.data?.length && (
             <Link href="/pricing" className={buttonClasses({ variant: "secondary", size: "sm" })}>
-              ⚡ Upgrade a launch
+              <BoltIcon /> Upgrade a launch
             </Link>
           )}
           <Button variant="secondary" size="sm" onClick={signOut}>
@@ -67,6 +69,10 @@ export function AccountDashboard({ paymentSucceeded = false }: { paymentSucceede
           </Button>
         </div>
       </Panel>
+
+      {myProducts.data
+        ?.filter((launch) => launch.needsBadge)
+        .map((launch) => <BadgeVerification key={launch.id} launch={launch} userId={user.id} />)}
 
       <ProductList
         title="My launches"

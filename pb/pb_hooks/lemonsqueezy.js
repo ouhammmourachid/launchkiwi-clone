@@ -101,7 +101,8 @@ function recomputePlanPerks(app, product) {
   product.set("priority_level", 0);
   product.set("featured", false);
   product.set("featured_until", "");
-  product.set("dofollow_enabled", false);
+  // A verified badge keeps earning the free dofollow link.
+  product.set("dofollow_enabled", product.getBool("badge_verified"));
   product.set("instant_approved", false);
   const paid = app.findRecordsByFilter("payments", "product = {:p} && status = 'paid'", "", 0, 0, { p: product.id });
   paid.forEach((payment) => {
@@ -113,4 +114,24 @@ function recomputePlanPerks(app, product) {
   });
 }
 
-module.exports = { env, variantIdFor, createCheckout, isValidSignature, applyPlan, scheduleLaunch, recomputePlanPerks };
+/**
+ * After a refund leaves no paid plan: a launch that never verified its badge
+ * is back to the free rules — hidden until the badge is on the site (caller saves).
+ */
+function revertToFreeIfUnverified(app, product) {
+  if (product.getBool("instant_approved") || product.getBool("badge_verified")) return;
+  if (product.getString("submission_type") !== "self_submitted") return;
+  product.set("status", "pending");
+  product.set("launch_date", "");
+  product.set("published_at", "");
+  try {
+    const submission = app.findFirstRecordByFilter("submissions", "product = {:p}", { p: product.id });
+    submission.set("status", "needs_badge");
+    submission.set("plan", "free");
+    app.save(submission);
+  } catch (_) {
+    /* no submission */
+  }
+}
+
+module.exports = { env, revertToFreeIfUnverified, variantIdFor, createCheckout, isValidSignature, applyPlan, scheduleLaunch, recomputePlanPerks };

@@ -9,6 +9,7 @@ import type { Metadata } from "next";
 import { BrowseFilters } from "@/components/browse/browse-filters";
 import { Pagination } from "@/components/browse/pagination";
 import { ContentShell } from "@/components/layout/content-shell";
+import { FeaturedGrid } from "@/components/layout/featured-grid";
 import { ProductList } from "@/components/products/product-list";
 import { listCategories } from "@/lib/api/catalog";
 import { listProducts } from "@/lib/api/products";
@@ -46,6 +47,8 @@ export default async function BrowsePage({ searchParams }: { searchParams: Searc
   return (
     <ContentShell withSidebars>
       <div className="space-y-6 pb-12">
+        <FeaturedGrid />
+
         <BrowseFilters categories={categories} totalItems={results.totalItems} current={{ search, category, pricing, sort }} />
 
         <ProductList

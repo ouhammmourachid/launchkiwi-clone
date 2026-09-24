@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="54" viewBox="0 0 200 54" role="img" aria-label="Launched on LaunchDunes">
+  <title>Launched on LaunchDunes</title>
+  <defs>
+    <linearGradient id="ld-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1e160e"/>
+      <stop offset="1" stop-color="#120d08"/>
+    </linearGradient>
+  </defs>
+  <rect x="0.5" y="0.5" width="199" height="53" rx="12" fill="url(#ld-bg)" stroke="#3f3327"/>
+  <!-- LaunchDunes mark: three dune ridges, top ridge in sun amber -->
+  <g transform="translate(11 9) scale(0.9)" fill="none" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 34C11 34 15 26 21 26C25 26 27 32 37 34" stroke="#f7ead6" stroke-opacity="0.45"/>
+    <path d="M3 25C11 25 15 17 21 17C25 17 27 23 37 25" stroke="#f7ead6" stroke-opacity="0.75"/>
+    <path d="M3 16C11 16 15 8 21 8C25 8 27 14 37 16" stroke="#f2a33a"/>
+  </g>
+  <text x="56" y="22" font-family="system-ui,-apple-system,'Segoe UI',Roboto,sans-serif" font-size="9" font-weight="700" letter-spacing="1.5" fill="#b39d80">LAUNCHED ON</text>
+  <text x="55" y="41" font-family="system-ui,-apple-system,'Segoe UI',Roboto,sans-serif" font-size="18" font-weight="800" letter-spacing="-0.3" fill="#f7ead6">Launch<tspan fill="#f2a33a">Dunes</tspan></text>
+</svg>

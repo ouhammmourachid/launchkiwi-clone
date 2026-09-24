@@ -9,6 +9,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState, useTransition } from "react";
 
+import { RocketIcon, SearchIcon } from "@/components/layout/nav-icons";
 import { PRICE_FILTERS, PRODUCT_SORTS, type ProductSort } from "@/lib/catalog-options";
 import type { CategoryOption } from "@/lib/types/models";
 import type { PricingModel } from "@/lib/types/records";
@@ -62,11 +63,11 @@ export function BrowseFilters({ categories, totalItems, current }: BrowseFilters
   }, [search]);
 
   return (
-    <section className="rounded-[24px] border border-dune-850 bg-dune-940 p-6 shadow-lg" aria-busy={isPending}>
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <section className="rounded-[24px] border border-dune-850 bg-dune-940 p-4 shadow-lg sm:p-6" aria-busy={isPending}>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="text-xl">🚀</span>
+            <RocketIcon className="h-5 w-5 text-sun" />
             <h1 className="text-2xl font-black text-white tracking-tight">Browse Products</h1>
           </div>
           <p className="mt-1 text-xs text-dune-400">
@@ -91,7 +92,9 @@ export function BrowseFilters({ categories, totalItems, current }: BrowseFilters
       </div>
 
       <div className="relative mt-5">
-        <span className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-dune-700">🔍</span>
+        <span className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-dune-600">
+          <SearchIcon />
+        </span>
         <input
           type="search"
           value={search}
@@ -104,7 +107,8 @@ export function BrowseFilters({ categories, totalItems, current }: BrowseFilters
 
       <div className="mt-5">
         <div className="text-[10px] font-bold uppercase tracking-widest text-dune-500 mb-2.5">CATEGORY</div>
-        <div className="flex flex-wrap items-center gap-1.5">
+        {/* One swipeable row on phones (bleeding to the panel edge), wrapping from sm up. */}
+        <div className="-mx-4 flex items-center gap-1.5 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0 [&::-webkit-scrollbar]:hidden">
           <FilterChip label="All" active={!current.category} onClick={() => navigate({ category: undefined })} />
           {categories.map((cat) => (
             <FilterChip
@@ -144,7 +148,7 @@ function FilterChip({ label, count, active, onClick }: FilterChipProps) {
       type="button"
       onClick={onClick}
       aria-pressed={active}
-      className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-semibold transition cursor-pointer ${
+      className={`inline-flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-semibold transition cursor-pointer sm:py-1 ${
         active
           ? "bg-sun text-on-sun font-bold"
           : "bg-dune-940 border border-dune-850 text-dune-200 hover:border-dune-750 hover:text-white"

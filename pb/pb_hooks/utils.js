@@ -98,6 +98,116 @@ function nextFreeLaunchDate(app) {
   return new DateTime(utcDay(3650));
 }
 
+// ── Launch lifecycle ─────────────────────────────────────────────────────
+//
+// Free:     created `pending` (hidden) → maker adds our badge to their site →
+//           verified → published into the free queue with a dofollow link.
+// Premium / Priority: the paid webhook publishes immediately, no badge needed.
+
+/** Public site origin used in badge links (pb/.env SITE_URL, falling back to APP_URL). */
+function siteUrl() {
+  return String($os.getenv("SITE_URL") || $os.getenv("APP_URL") || "http://localhost:3000")
+    .trim()
+    .replace(/\/+$/, "");
+}
+
+/** Hosts we refuse to fetch during badge checks (loopback, private and link-local ranges). */
+function isPrivateHost(host) {
+  const h = String(host || "").toLowerCase().replace(/^\[|\]$/g, "");
+  if (!h || h === "localhost" || h.endsWith(".localhost") || h.endsWith(".local") || h.endsWith(".internal")) return true;
+  if (h.includes(":")) return h === "::1" || /^(fc|fd|fe80)/.test(h);
+  const m = h.match(/^(\d+)\.(\d+)\.(\d+)\.(\d+)$/);
+  if (!m) return false;
+  const a = +m[1], b = +m[2];
+  return a === 0 || a === 10 || a === 127 || (a === 169 && b === 254) || (a === 172 && b >= 16 && b <= 31) || (a === 192 && b === 168) || (a === 100 && b >= 64 && b <= 127);
+}
+
+/**
+ * Looks for our badge on the product's website. The badge counts when the
+ * homepage links to the product's page on our site or carries its badge token.
+ * Returns `{ ok, reason, html }` — never throws.
+ */
+function checkBadge(product) {
+  const url = product.getString("website_url");
+  const host = (url.match(/^https?:\/\/([^\/?#:]+|\[[^\]]+\])/i) || [])[1];
+  if (isPrivateHost(host)) return { ok: false, reason: "This website address can't be checked.", html: "" };
+
+  let res;
+  try {
+    res = $http.send({
+      url: url,
+      method: "GET",
+      timeout: 15,
+      headers: { "User-Agent": "LaunchDunesBadgeBot/1.0 (+" + siteUrl() + ")", Accept: "text/html" },
+    });
+  } catch (err) {
+    return { ok: false, reason: "We couldn't reach your website. Is it online?", html: "" };
+  }
+  if (res.statusCode >= 400) return { ok: false, reason: "Your website answered with HTTP " + res.statusCode + ".", html: "" };
+
+  const html = toString(res.body);
+  const token = product.getString("badge_token");
+  const productPath = "/p/" + product.getString("slug");
+  const siteHost = siteUrl().replace(/^https?:\/\//, "");
+  const linksToUs = html.toLowerCase().includes((siteHost + productPath).toLowerCase());
+  if (linksToUs || (token && html.includes(token))) return { ok: true, reason: "", html: "" };
+  return {
+    ok: false,
+    reason: "We couldn't find the badge on " + url + ". Make sure it's on your homepage and deployed.",
+    html: html.slice(0, 2000),
+  };
+}
+
+/** Appends a row to `badge_verifications` (audit trail + throttling). */
+function logBadgeCheck(app, product, result) {
+  const row = new Record(app.findCollectionByNameOrId("badge_verifications"));
+  row.set("product", product.id);
+  row.set("token", product.getString("badge_token") || "-");
+  row.set("verification_url", product.getString("website_url"));
+  row.set("status", result.ok ? "verified" : "failed");
+  row.set("checked_at", new DateTime());
+  row.set("failure_reason", result.reason || "");
+  row.set("detected_html", result.html || "");
+  app.save(row);
+}
+
+/**
+ * Makes a hidden launch public on `launchDate` (caller saves the product) and
+ * books its launch-week entry and submission. Safe to call on a product that
+ * is already published — it only fills what's missing.
+ */
+function publishProduct(app, product, launchDate, plan) {
+  const now = new DateTime();
+  const wasPublished = product.getString("status") === "published";
+  product.set("status", "published");
+  if (product.getDateTime("approved_at").isZero()) product.set("approved_at", now);
+  if (!wasPublished || product.getDateTime("launch_date").isZero()) {
+    product.set("launch_date", launchDate);
+    product.set("published_at", launchDate);
+  }
+
+  try {
+    const submission = app.findFirstRecordByFilter("submissions", "product = {:p}", { p: product.id });
+    submission.set("status", "approved");
+    submission.set("approved_at", now);
+    if (plan) submission.set("plan", plan);
+    const week = currentLaunchWeek(app);
+    if (week && !submission.getString("launch_week")) {
+      submission.set("launch_week", week.id);
+      if (app.countRecords("launch_entries", $dbx.hashExp({ product: product.id, launch_week: week.id })) === 0) {
+        const entry = new Record(app.findCollectionByNameOrId("launch_entries"));
+        entry.set("launch_week", week.id);
+        entry.set("product", product.id);
+        entry.set("week_upvotes", 0);
+        app.save(entry);
+      }
+    }
+    app.save(submission);
+  } catch (_) {
+    /* seeded products have no submission */
+  }
+}
+
 /** Fields only admins may set on a product (counters, moderation, paid perks). */
 const PROTECTED_PRODUCT_FIELDS = [
   "maker",
@@ -114,6 +224,7 @@ const PROTECTED_PRODUCT_FIELDS = [
   "dofollow_enabled",
   "instant_approved",
   "badge_token",
+  "maker_email",
   "badge_verified",
   "badge_verified_at",
   "rejection_reason",
@@ -132,6 +243,10 @@ module.exports = {
   currentLaunchWeek,
   nextFreeLaunchDate,
   visitorId,
+  siteUrl,
+  checkBadge,
+  logBadgeCheck,
+  publishProduct,
   MAX_GUEST_VOTES_PER_IP,
   PROTECTED_PRODUCT_FIELDS,
 };

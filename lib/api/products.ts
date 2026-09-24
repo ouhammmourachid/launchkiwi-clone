@@ -1,8 +1,8 @@
-import { PRODUCT_EXPAND, toProductDetail, toProductSummary } from "@/lib/api/mappers";
+import { PRODUCT_EXPAND, toMyLaunch, toProductDetail, toProductSummary } from "@/lib/api/mappers";
 import { PRODUCT_SORTS, type ProductSort } from "@/lib/catalog-options";
 import { getPB } from "@/lib/pb/client";
 import { isNotFound } from "@/lib/pb/errors";
-import type { Paginated, ProductDetail, ProductSummary } from "@/lib/types/models";
+import type { MyLaunch, Paginated, ProductDetail, ProductSummary } from "@/lib/types/models";
 import type { PricingModel } from "@/lib/types/records";
 import type { ProductSubmitInput } from "@/lib/validation/schemas";
 
@@ -61,6 +61,22 @@ export async function getLaunchSections(limit = 15) {
   return { thisWeek, lastWeek, earlier };
 }
 
+/** Launches older than the home page's sections, one page at a time (the home "load more"). */
+export function listOlderProducts(page: number, perPage = 15) {
+  return listProducts({ launchedBefore: daysAgo(30), page, perPage, sort: "top" });
+}
+
+/** How many products launched this week and last week (the mobile menu's counters). */
+export async function getWeeklyLaunchCounts(): Promise<{ thisWeek: number; lastWeek: number }> {
+  const count = async (q: ProductQuery) =>
+    (await getPB().collection("products").getList(1, 1, { filter: buildFilter(q), fields: "id" })).totalItems;
+  const [thisWeek, lastWeek] = await Promise.all([
+    count({ launchedAfter: daysAgo(7) }),
+    count({ launchedAfter: daysAgo(14), launchedBefore: daysAgo(7) }),
+  ]);
+  return { thisWeek, lastWeek };
+}
+
 /** Paid (Premium/Priority) listings for sidebars. */
 export async function getFeaturedProducts(limit = 5, offset = 0): Promise<ProductSummary[]> {
   const res = await getPB()
@@ -92,19 +108,20 @@ export async function getRelatedProducts(product: ProductSummary, limit = 4): Pr
   return res.items.filter((p) => p.id !== product.id).slice(0, limit);
 }
 
-export async function listProductsByMaker(makerId: string): Promise<ProductSummary[]> {
+/** The maker's own launches, hidden ones included (the collection rules allow it). */
+export async function listProductsByMaker(makerId: string): Promise<MyLaunch[]> {
   const pb = getPB();
   const items = await pb.collection("products").getFullList({
     filter: pb.filter("maker = {:maker}", { maker: makerId }),
     sort: "-created",
     expand: PRODUCT_EXPAND,
   });
-  return items.map(toProductSummary);
+  return items.map(toMyLaunch);
 }
 
 /**
- * Self-serve launch. Server hooks set status, slug, counters and the queued
- * launch date. The first category is the primary one; all picks also become
+ * Self-serve launch. Server hooks set status, slug and counters; the launch
+ * stays hidden until its badge is verified (free) or its plan is paid. The first category is the primary one; all picks also become
  * tags when a tag with the same slug exists.
  */
 export async function submitProduct(

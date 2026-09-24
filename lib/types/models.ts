@@ -3,7 +3,7 @@
  * PocketBase record shapes so components don't depend on the schema.
  */
 
-import type { PricingModel } from "@/lib/types/records";
+import type { PricingModel, ProductStatus } from "@/lib/types/records";
 
 export type ProductBadge = "PRIORITY" | "PREMIUM";
 
@@ -20,6 +20,18 @@ export interface ProductSummary {
   upvotes: number;
   badge: ProductBadge | null;
   launchedAt: string;
+  /** Outbound link passes SEO value (verified badge or paid plan); otherwise rel="nofollow". */
+  dofollow: boolean;
+}
+
+/** A launch as its maker sees it, including hidden (badge-pending) ones. */
+export interface MyLaunch extends ProductSummary {
+  status: ProductStatus;
+  /** Free launch waiting for the badge on the maker's site. */
+  needsBadge: boolean;
+  badgeVerified: boolean;
+  /** Empty until the launch has a queue slot. */
+  launchDate: string;
 }
 
 export interface ProductDetail extends ProductSummary {

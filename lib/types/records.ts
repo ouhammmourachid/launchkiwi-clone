@@ -46,6 +46,9 @@ export interface ProductRecord extends RecordModel {
   priority_level: number;
   featured: boolean;
   verified: boolean;
+  dofollow_enabled: boolean;
+  instant_approved: boolean;
+  badge_verified: boolean;
   upvotes: number;
   published_at: string;
   launch_date: string;

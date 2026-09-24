@@ -78,7 +78,7 @@ export default async function ProductPage({ params }: { params: Params }) {
               <p className="mt-2 text-sm text-dune-300 leading-relaxed">{product.tagline}</p>
 
               <div className="mt-5 flex flex-wrap items-center gap-2.5">
-                <a href={product.websiteUrl} target="_blank" rel="noopener noreferrer" className={buttonClasses({ size: "sm" })}>
+                <a href={product.websiteUrl} target="_blank" rel={product.dofollow ? "noopener" : "nofollow noopener"} className={buttonClasses({ size: "sm" })}>
                   Visit site ↗
                 </a>
                 <FavoriteButton productId={product.id} />

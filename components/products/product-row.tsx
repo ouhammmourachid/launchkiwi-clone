@@ -19,22 +19,27 @@ interface ProductRowProps {
 
 export function ProductRow({ product, index, showRank = true }: ProductRowProps) {
   const isTopRank = index < 3;
-  const highlighted = product.badge === "PRIORITY";
+  // Paid placements (Priority/Premium) read as one pinned block: gold edge, warm tint, hairline dividers.
+  const pinned = product.badge !== null;
   const meta = [product.category?.name, ...product.tags.filter((t) => t !== product.category?.name), product.pricing].filter(
     (v): v is string => !!v,
   );
 
   return (
     <div
-      className={`group relative flex items-center justify-between gap-4 p-4 text-left transition ${
-        highlighted
-          ? "border-2 border-[#ca8a04] bg-dune-925 rounded-xl my-1 shadow-[0_0_15px_rgba(202,138,4,0.15)]"
+      className={`group relative flex items-center justify-between gap-3 p-3 text-left transition sm:gap-4 sm:p-4 ${
+        pinned
+          ? "border-l-[3px] border-l-[#ca8a04] border-b border-b-[#ca8a04]/15 last:border-b-0 bg-[#ca8a04]/[0.08] hover:bg-[#ca8a04]/[0.12]"
           : "border-b border-dune-900 last:border-b-0 hover:bg-dune-925"
       }`}
     >
-      <div className="flex items-center gap-3.5 min-w-0 flex-1">
+      <div className="flex items-center gap-3 min-w-0 flex-1 sm:gap-3.5">
         {showRank && (
-          <span className={`w-5 text-center text-sm font-bold shrink-0 ${isTopRank ? "text-[#ca8a04]" : "text-dune-500"}`}>
+          <span
+            className={`hidden h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold tabular-nums sm:flex ${
+              isTopRank ? "bg-[#ca8a04]/15 text-[#ca8a04]" : "text-dune-600"
+            }`}
+          >
             {index + 1}
           </span>
         )}
@@ -42,7 +47,7 @@ export function ProductRow({ product, index, showRank = true }: ProductRowProps)
         <ProductLogo name={product.name} logoUrl={product.logoUrl} />
 
         <div className="min-w-0 flex-1">
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
             <h3 className="text-sm sm:text-base font-bold text-white tracking-tight leading-none group-hover:text-sun transition">
               {/* Stretched link: the whole row opens the product page. */}
               <Link href={`/p/${product.slug}`} className="after:absolute after:inset-0">
@@ -55,11 +60,11 @@ export function ProductRow({ product, index, showRank = true }: ProductRowProps)
           <p className="mt-1 text-xs text-dune-300 leading-snug line-clamp-1">{product.tagline}</p>
 
           {meta.length > 0 && (
-            <div className="mt-1.5 flex flex-wrap items-center gap-1.5 text-[10px] text-dune-600 font-medium">
+            <div className="mt-1.5 flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-[10px] text-dune-600 font-medium">
               {meta.map((item, i) => (
                 <span key={`${item}-${i}`} className="flex items-center gap-1.5">
                   {item}
-                  {i < meta.length - 1 && <span className="text-dune-750">•</span>}
+                  {i < meta.length - 1 && <span className="text-dune-750">·</span>}
                 </span>
               ))}
             </div>
@@ -72,8 +77,12 @@ export function ProductRow({ product, index, showRank = true }: ProductRowProps)
         <a
           href={product.websiteUrl}
           target="_blank"
-          rel="noopener noreferrer"
-          className="hidden sm:inline-flex items-center gap-1 rounded-lg border border-dune-850 bg-dune-925 px-3 py-1.5 text-xs font-semibold text-dune-200 transition hover:border-dune-750 hover:text-white"
+          rel={product.dofollow ? "noopener" : "nofollow noopener"}
+          className={`hidden sm:inline-flex items-center gap-1 text-xs font-semibold transition ${
+            pinned
+              ? "px-1 py-1.5 text-dune-500 hover:text-sun"
+              : "rounded-lg border border-dune-850 bg-dune-925 px-3 py-1.5 text-dune-200 hover:border-dune-750 hover:text-white"
+          }`}
         >
           <span>Visit</span>
           <span className="text-[10px]">↗</span>

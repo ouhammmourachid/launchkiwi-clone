@@ -1,5 +1,5 @@
 import { getPB } from "@/lib/pb/client";
-import type { Comment, ProductDetail, ProductSummary, ReviewSummary, SessionUser } from "@/lib/types/models";
+import type { Comment, MyLaunch, ProductDetail, ProductSummary, ReviewSummary, SessionUser } from "@/lib/types/models";
 import type { CommentRecord, ProductRecord, ReviewRecord, UserRecord } from "@/lib/types/records";
 import { htmlToParagraphs } from "@/lib/utils/format";
 
@@ -25,6 +25,17 @@ export function toProductSummary(record: ProductRecord): ProductSummary {
     upvotes: record.upvotes ?? 0,
     badge: record.priority_level >= 2 ? "PRIORITY" : record.priority_level === 1 ? "PREMIUM" : null,
     launchedAt: record.launch_date || record.created,
+    dofollow: !!record.dofollow_enabled,
+  };
+}
+
+export function toMyLaunch(record: ProductRecord): MyLaunch {
+  return {
+    ...toProductSummary(record),
+    status: record.status,
+    needsBadge: record.status === "pending" && !record.badge_verified && !record.instant_approved,
+    badgeVerified: !!record.badge_verified,
+    launchDate: record.launch_date,
   };
 }
 

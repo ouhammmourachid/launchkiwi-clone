@@ -7,8 +7,9 @@ import Link from "next/link";
 import { connection } from "next/server";
 
 import { ContentShell } from "@/components/layout/content-shell";
+import { FeaturedGrid } from "@/components/layout/featured-grid";
+import { LoadMoreProducts } from "@/components/products/load-more-products";
 import { ProductList } from "@/components/products/product-list";
-import { buttonClasses } from "@/components/ui/button";
 import { SubmitForm } from "@/components/ui/submit-form";
 import { heroFeatures, marketingStats } from "@/data/site";
 import { getSiteStats } from "@/lib/api/catalog";
@@ -78,7 +79,7 @@ function HeroDunes() {
 
 function HeroSection({ stats }: { stats: SiteStats }) {
   return (
-    <section className="relative overflow-hidden rounded-[24px] border border-dune-850 bg-dune-940 px-6 pt-5 pb-8 sm:px-10 sm:pt-6 sm:pb-10 text-center shadow-lg">
+    <section className="relative overflow-hidden rounded-[24px] border border-dune-850 bg-dune-940 px-4 pt-5 pb-8 sm:px-10 sm:pt-6 sm:pb-10 text-center shadow-lg">
       <HeroDunes />
       <div className="relative">
         <HeroBadge />
@@ -108,17 +109,6 @@ function HeroSection({ stats }: { stats: SiteStats }) {
   );
 }
 
-function ViewMoreLink({ href, label }: { href: string; label: string }) {
-  return (
-    <div className="text-center py-2">
-      <Link href={href} className={buttonClasses({ variant: "secondary", size: "sm" })}>
-        <span>{label}</span>
-        <span>→</span>
-      </Link>
-    </div>
-  );
-}
-
 // ---------------------------------------------------------------------------
 // Page
 // ---------------------------------------------------------------------------
@@ -132,6 +122,8 @@ export default async function HomePage() {
     <ContentShell withSidebars>
       <div className="space-y-6 pb-12">
         <HeroSection stats={stats} />
+
+        <FeaturedGrid />
 
         <ProductList
           title="This Week's Hunts"
@@ -149,7 +141,7 @@ export default async function HomePage() {
 
         <ProductList title="Earlier This Month" subtitle="Sorted by upvote count" products={earlier.items} emptyTitle="Nothing launched earlier this month" />
 
-        <ViewMoreLink href="/browse?sort=top" label="Browse all products" />
+        <LoadMoreProducts />
       </div>
     </ContentShell>
   );

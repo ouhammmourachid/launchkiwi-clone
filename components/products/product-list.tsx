@@ -34,7 +34,7 @@ export function ProductList({
   return (
     <Panel className="overflow-hidden shadow-none">
       {title && <SectionHeader title={title} subtitle={subtitle} />}
-      <div className="p-1">
+      <div>
         {products.length > 0 ? (
           products.map((product, index) => (
             <ProductRow key={product.id} product={product} index={startIndex + index} showRank={showRank} />

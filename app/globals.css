@@ -68,26 +68,61 @@
   --font-mono: var(--font-jetbrains-mono);
 }
 
-html {
-  scroll-behavior: smooth;
-  background: var(--background);
+/*
+ * Element defaults live in the base layer so Tailwind utilities (`text-xs` on a button,
+ * `hover:underline` on a link, `hidden` on an img) can still override them.
+ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background: var(--background);
+  }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(ellipse 80% 40% at 50% -5%, rgba(242, 163, 58, 0.14), transparent 60%),
+      var(--background);
+    color: var(--foreground);
+    transition: background-color 0.2s ease, color 0.2s ease;
+    font-family: var(--font-readex-pro), "Segoe UI", Tahoma, Arial, sans-serif;
+  }
+
+  /* Headings and the wordmark use the display face. */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-bricolage), var(--font-readex-pro), system-ui, sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
 }
 
-body {
-  margin: 0;
-  background:
-    radial-gradient(ellipse 80% 40% at 50% -5%, rgba(242, 163, 58, 0.14), transparent 60%),
-    var(--background);
-  color: var(--foreground);
-  transition: background-color 0.2s ease, color 0.2s ease;
-  font-family: var(--font-readex-pro), "Segoe UI", Tahoma, Arial, sans-serif;
-}
-
-/* Headings and the wordmark use the display face. */
-h1,
-h2,
-h3 {
-  font-family: var(--font-bricolage), var(--font-readex-pro), system-ui, sans-serif;
+/* iOS zooms into any focused field under 16px, so phones keep form text at 16px. */
+@media (max-width: 639px) {
+  input,
+  textarea,
+  select {
+    font-size: max(16px, 1em);
+  }
 }
 
 /*
@@ -136,26 +171,6 @@ h3 {
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-}
-
-a {
-  text-decoration: none;
-}
-
-input,
-button,
-textarea,
-select {
-  font: inherit;
 }
 
 ::selection {

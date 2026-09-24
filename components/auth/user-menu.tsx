@@ -40,7 +40,7 @@ export function UserMenu() {
   if (!user) {
     const next = pathname && pathname !== "/login" && pathname !== "/register" ? `?next=${encodeURIComponent(pathname)}` : "";
     return (
-      <Link href={`/login${next}`} className="text-xs font-semibold text-dune-100 transition hover:text-white px-2 py-1">
+      <Link href={`/login${next}`} className="whitespace-nowrap px-2 py-1 text-xs font-semibold text-dune-100 transition hover:text-white">
         Sign In
       </Link>
     );

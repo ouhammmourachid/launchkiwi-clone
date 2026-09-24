@@ -28,7 +28,7 @@ const EDITOR = { email: "editor@launchkiwi.local", name: "LaunchKiwi Editorial",
 const PRICING_PLANS = [
   {
     slug: "free", name: "Free", price: 0, description: "Join the queue, earn your way up.",
-    features: ["Permanent listing on LaunchKiwi", "Badge verification required", "Dofollow backlink", "Queue-based launch"],
+    features: ["Permanent listing on LaunchDunes", "Badge verification required", "Dofollow backlink", "Queue-based launch"],
     badge_required: true, instant_approval: false, dofollow: true, featured: false, pin_days: 0, priority_level: 0,
   },
   {
